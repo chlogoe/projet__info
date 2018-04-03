@@ -87,6 +87,10 @@ public class Map2 extends JPanel {
         		g.setColor(Color.RED);
             	g.fillRect(x * 32+8, y * 32+8, 16, 16);
         		break;
+        	case "Test":
+        		g.setColor(Color.GREEN);
+        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		break;
         	}
         }
     }

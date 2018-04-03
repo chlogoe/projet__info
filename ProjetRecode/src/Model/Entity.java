@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class Entity extends GameObject implements Activable, Deletable{
+public abstract class Entity extends GameObject implements Deletable, Activable{
 	private int lifePoints;
 	private int damage;
 	public Entity(int x, int y, String ID, int lifePoint) {

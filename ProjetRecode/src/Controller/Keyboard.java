@@ -3,14 +3,14 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import Model.Game2;
+import Model.Game;
 
 public class Keyboard implements KeyListener {
-    private Game2 game;
+    private Game game;
 
     private static final int player1 = 0;
 
-    public Keyboard(Game2 game2) {
+    public Keyboard(Game game2) {
         this.game = game2;
     }
 

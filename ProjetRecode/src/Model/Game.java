@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Game2 implements DeletableObserver {
+public class Game implements DeletableObserver {
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<GameObject> entities = new ArrayList<GameObject>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
 
@@ -16,16 +16,18 @@ public class Game2 implements DeletableObserver {
     private int size;
     private int lineNumber;
 
-    public Game2(Window window) throws IOException {
+    public Game(Window window) throws IOException {
         this.window = window;
         size = window.getSize();
 
         // Creating one Player at the center of the map
         entities.add(new Player(size/2, size/2, 3, 5));
-        entities.add(new MonstreTest(size/2 -5, size/2));
+        MonstreTest monstre = new MonstreTest(size/2 -5, size/2);
+        monstre.attachDeletable(this);
+        entities.add(monstre);
 
-        // Map building, peut-être en faire une fonction
-        this.textToString();
+        // Map building
+        this.textMapToList();
         
 
         window.setGameObjects(this.getGameObjects());//Une fois le terrain et toutes les entités dans les liste,
@@ -72,7 +74,7 @@ public class Game2 implements DeletableObserver {
     		break;
     	}
     	Activable aimedObject = null;
-		for(GameObject object : terrains){
+		for(GameObject object : entities){
 			if(object.isAtPosition(x,y)){
 			    if(object instanceof Activable){
 			        aimedObject = (Activable) object;
@@ -96,7 +98,7 @@ public class Game2 implements DeletableObserver {
     @SuppressWarnings("unlikely-arg-type")
 	@Override
     synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
-        terrains.remove(ps);
+        entities.remove(ps);
         if (loot != null) {
             terrains.addAll(loot);
         }
@@ -131,7 +133,7 @@ public class Game2 implements DeletableObserver {
 		}
     }
     
-    private void textToString() throws IOException {
+    private void textMapToList() throws IOException {
     	FileReader file = null;
         BufferedReader in = null;
         

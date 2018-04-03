@@ -24,29 +24,8 @@ public class Game2 implements DeletableObserver {
         entities.add(new Player(size/2, size/2, 3, 5));
 
         // Map building, peut-être en faire une fonction
-        FileReader file = null;
-        BufferedReader in = null;
+        this.textToString();
         
-        try {
-        	file = new FileReader("maps/map2.txt"); //On ouvre le fichier de la map souhaité
-        	in = new BufferedReader(file);//On met le fichier en mémoire
-        	String line;
-        	lineNumber = 0;
-        	while((line = in.readLine()) != null) {//On lit chaque ligne jusqu'à une ligne vide
-        		for(int i = 0; i < size ; i++) {
-        			char ID = line.charAt(i);//Le type de terrain est définit par le caractère utilisé dans le fichier texte
-        			this.addObject(i, lineNumber, ID);//Ajoute le block à la liste de block du terrain
-        		}
-        		lineNumber++;
-        	}
-        	
-        	
-        } catch (Exception e) {
-        	e.printStackTrace();
-        } finally {
-        	in.close();//On vide la mémoire du fichier texte
-        	file.close();//On ferme le fichier
-        }
 
         window.setGameObjects(this.getGameObjects());//Une fois le terrain et toutes les entités dans les liste,
         window.setOther(entities);//on ajoute les listes à la map et on rafraichit la map
@@ -146,6 +125,32 @@ public class Game2 implements DeletableObserver {
 		default:
 			//Créer un block par défaut
 		}
+    }
+    
+    private void textToString() throws IOException {
+    	FileReader file = null;
+        BufferedReader in = null;
+        
+        try {
+        	file = new FileReader("maps/map2.txt"); //On ouvre le fichier de la map souhaité
+        	in = new BufferedReader(file);//On met le fichier en mémoire
+        	String line;
+        	lineNumber = 0;
+        	while((line = in.readLine()) != null) {//On lit chaque ligne jusqu'à une ligne vide
+        		for(int i = 0; i < size ; i++) {
+        			char ID = line.charAt(i);//Le type de terrain est définit par le caractère utilisé dans le fichier texte
+        			this.addObject(i, lineNumber, ID);//Ajoute le block à la liste de block du terrain
+        		}
+        		lineNumber++;
+        	}
+        	
+        	
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {
+        	in.close();//On vide la mémoire du fichier texte
+        	file.close();//On ferme le fichier
+        }
     }
 
 }

@@ -7,7 +7,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
     private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
     private int lifepoints = 0;
     public BlockBreakable(int x, int y) {
-        super(x, y, 'B');
+        super(x, y, "B");
     }
     
     public void activate(){

@@ -3,13 +3,11 @@ package Model;
 public abstract class GameObject {
     protected int posX;
     protected int posY;
-    protected char ID;
-    //protected int color;
+    protected String ID;
 
-    public GameObject(int X, int Y, char ID) {
-        this.posX = X;
-        this.posY = Y;
-        //this.color = color;
+    public GameObject(int x, int y, String ID) {
+        this.posX = x;
+        this.posY = y;
         this.ID = ID;
     }
 
@@ -20,13 +18,8 @@ public abstract class GameObject {
     public int getPosY() {
         return this.posY;
     }
-    /*
-    public int getColor() {
-        return this.color;
-    }
-	*/
     
-    public char getID() {
+    public String getID() {
     	return this.ID;
     }
     

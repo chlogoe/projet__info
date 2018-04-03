@@ -4,12 +4,10 @@ public abstract class GameObject {
     protected int posX;
     protected int posY;
     protected String ID;
-    //protected int color;
 
-    public GameObject(int X, int Y, String ID) {
-        this.posX = X;
-        this.posY = Y;
-        //this.color = color;
+    public GameObject(int x, int y, String ID) {
+        this.posX = x;
+        this.posY = y;
         this.ID = ID;
     }
 
@@ -20,11 +18,6 @@ public abstract class GameObject {
     public int getPosY() {
         return this.posY;
     }
-    /*
-    public int getColor() {
-        return this.color;
-    }
-	*/
     
     public String getID() {
     	return this.ID;

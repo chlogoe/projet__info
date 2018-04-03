@@ -4,10 +4,10 @@ A BBBB  BB   BBBBB   BB BBBB A
 A B                        B A
 A B                        B A
 A B                        B A
-A    BBB  BBBB  BBBB  BBB    A
-A    B                  B    A
+A H  BBB  BBBB  BBBB  BBB  H A
+A H  B                  B  H A
 A B  B                  B  B A
-A B       BBBBBBBBBB       B A
+A B      HBBBBBBBBBBH      B A
 A       B            B       A
 A       B            B       A
 A    B  B            B  B    A
@@ -20,8 +20,8 @@ A    B  B            B  B    A
 A       B            B       A
 A B       BBBBBBBBBB       B A
 A B  B                  B  B A
-A    B                  B    A
-A    BBB  BBBB  BBBB  BBB    A
+A H  B                  B  H A
+A H  BBB  BBBB  BBBB  BBB  H A
 A B                        B A
 A B                        B A
 A B                        B A

@@ -21,7 +21,6 @@ public class Map2 extends JPanel {
     public Map2() {
         this.setFocusable(true);//Autorise la map à être au premier plan
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
-        
         try { //Le try catch ici permet d'éviter les erreurs
         	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
         } catch (IOException e) {
@@ -30,6 +29,15 @@ public class Map2 extends JPanel {
     }
 
     public void paint(Graphics g) {
+    	
+    	for (int i=0; i<size+400 ; i++) {
+    		for (int j=0; j<size ; j++) {
+    			int x = i;
+    			int y = j;
+    			g.setColor(Color.BLACK);
+    			g.fillRect(x, y, 31, 31);
+    		}
+    	}
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int x = i;
@@ -60,6 +68,10 @@ public class Map2 extends JPanel {
             	g.setColor(Color.BLUE);
             	g.fillRect(x * 32, y * 32, 32, 32);
             	break;
+            case "H":
+            	g.setColor(Color.BLACK);
+            	g.drawRect(x*32, y*32, 31, 31);
+            	g.fillRect(x*32, y*32, 31, 31);
             }
             
         	

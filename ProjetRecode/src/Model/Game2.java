@@ -123,6 +123,9 @@ public class Game2 implements DeletableObserver {
 		case 'C':
 			terrains.add(new BlockWater(x, y));
 			break;
+		case 'H':
+			terrains.add(new Hole(x,y));
+			break;
 		default:
 			//Créer un block par défaut
 		}

@@ -19,8 +19,8 @@ public class Window {
     	
         JFrame window = new JFrame(gameName);//Crée la fenêtre à proprement parlé
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Quand on clique sur la croix, ça quitte
-        window.setBounds(0, 0, size*32+6, size*32+28); //Adapte la taille de la fenêtre à la taille de la carte
-        window.getContentPane().setBackground(Color.gray);//La couleur de fond de la fenètre est grise
+        window.setBounds(0, 0, size*32+500, size*32+28); //Adapte la taille de la fenêtre à la taille de la carte
+        window.getContentPane().setBackground(Color.black);//La couleur de fond de la fenètre est grise
         window.getContentPane().add(this.map);//On met la carte dans la fenêtre
         window.setLocationRelativeTo(null);//On place la fenêtre au centre de l'image
         window.setResizable(false);//On empêche de redimensionner la fenêtre

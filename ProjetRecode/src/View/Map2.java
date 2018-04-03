@@ -23,7 +23,7 @@ public class Map2 extends JPanel {
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
         
         try { //Le try catch ici permet d'éviter les erreurs
-        	this.font = ImageIO.read(getClass().getResourceAsStream("/images/font.png")); //Charge l'image dans la mémoire du jeu
+        	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
         } catch (IOException e) {
     		e.printStackTrace();
     	}

@@ -60,7 +60,7 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 				this.move(0, 1);
 				Thread.sleep(1000);
 				window.update();
-				System.out.println("Entity moved");
+				System.out.println("Entity moved.");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

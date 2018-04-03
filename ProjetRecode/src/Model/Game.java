@@ -46,7 +46,7 @@ public class Game implements DeletableObserver {
             if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
                 obstacle = object.isObstacle();
             }
-            if (obstacle == true) { //si obstacle, on ne bouge pas
+            if (obstacle == true) { //si obstacle, on ne bouge pas.
                 break;
             }
         }

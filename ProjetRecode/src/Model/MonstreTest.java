@@ -2,12 +2,17 @@ package Model;
 
 import java.util.ArrayList;
 
-public class MonstreTest extends Entity implements Activable, Deletable{
+import View.Window;
+
+public class MonstreTest extends Entity implements Activable, Deletable, Runnable{
 	
 	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
+	private Window window;
 	
-	public MonstreTest(int x, int y) {
+	public MonstreTest(int x, int y, Window window) {
 		super(x, y, "Test", 2);
+		new Thread(this).start();
+		this.window = window;
 	}
 
 	@Override
@@ -43,6 +48,22 @@ public class MonstreTest extends Entity implements Activable, Deletable{
 		}
 		else {
 			kill();
+			this.setLifePoints(0);
+		}
+		
+	}
+
+	@Override
+	public synchronized void run() {
+		try{
+			while (this.getLifePoints()>0){
+				this.move(0, 1);
+				Thread.sleep(1000);
+				window.update();
+				System.out.println("Entity moved");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		
 	}

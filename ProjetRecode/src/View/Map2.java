@@ -41,22 +41,22 @@ public class Map2 extends JPanel {
         for (GameObject terrain : this.terrains) { //Dessine tout les composant du terrain
             int x = terrain.getPosX();
             int y = terrain.getPosY();
-            char ID = terrain.getID();
+            String ID = terrain.getID();
 
             switch(ID) {
-            case 'A':
+            case "A":
             	g.setColor(Color.BLACK);
                 g.drawRect(x * 32, y * 32, 31, 31);
             	g.setColor(Color.DARK_GRAY);
             	g.fillRect(x * 32, y * 32, 31, 31);
             	break;
-            case 'B':
+            case "B":
             	g.setColor(Color.BLACK);
                 g.drawRect(x * 32, y * 32, 31, 31);
                 g.setColor(Color.GRAY);
                 g.fillRect(x * 32, y * 32, 31, 31);
             	break;
-            case 'C':
+            case "C":
             	g.setColor(Color.BLUE);
             	g.fillRect(x * 32, y * 32, 32, 32);
             	break;
@@ -68,10 +68,10 @@ public class Map2 extends JPanel {
         for(GameObject other : this.entities) { //Dessine toutes les entités
         	int x = other.getPosX();
         	int y = other.getPosY();
-        	char ID = other.getID();
+        	String ID = other.getID();
         	
         	switch(ID) {
-        	case 'P':
+        	case "Player":
         		g.setColor(Color.RED);
             	g.fillRect(x * 32+8, y * 32+8, 16, 16);
         		break;

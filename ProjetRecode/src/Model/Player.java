@@ -5,7 +5,7 @@ public class Player extends GameObject {
     int lifes = 0;
 
     public Player(int x, int y, int maxBomb, int lifes) {
-        super(x, y, 'P');
+        super(x, y, "Player");
         this.lifes = lifes;
     }
 

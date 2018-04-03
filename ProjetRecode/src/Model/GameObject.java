@@ -3,10 +3,10 @@ package Model;
 public abstract class GameObject {
     protected int posX;
     protected int posY;
-    protected char ID;
+    protected String ID;
     //protected int color;
 
-    public GameObject(int X, int Y, char ID) {
+    public GameObject(int X, int Y, String ID) {
         this.posX = X;
         this.posY = Y;
         //this.color = color;
@@ -26,7 +26,7 @@ public abstract class GameObject {
     }
 	*/
     
-    public char getID() {
+    public String getID() {
     	return this.ID;
     }
     

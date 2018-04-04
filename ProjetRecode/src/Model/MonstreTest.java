@@ -46,13 +46,13 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 
 	@Override
 	public void activate() {
-		int lifePoints = this.getLifePoints();
-		if(lifePoints > 1) {
-			this.setLifePoints(lifePoints-1);
+		int health = this.getHealth();
+		if(health > 1) {
+			this.setHealth(health-1);
 		}
 		else {
 			kill();
-			this.setLifePoints(0);
+			this.setHealth(0);
 		}
 		
 	}
@@ -61,7 +61,7 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 	public synchronized void run() {
 		Random rand = new Random();
 		try{
-			while (this.getLifePoints()>0){
+			while (this.getHealth()>0){
 				int x = rand.nextInt(3)-1;
 				int y = 0;
 				if(x==0) {

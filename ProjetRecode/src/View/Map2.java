@@ -30,14 +30,6 @@ public class Map2 extends JPanel {
 
     public void paint(Graphics g) {
     	
-    	for (int i=0; i<size+400 ; i++) {
-    		for (int j=0; j<size ; j++) {
-    			int x = i;
-    			int y = j;
-    			g.setColor(Color.BLACK);
-    			g.fillRect(x, y, 31, 31);
-    		}
-    	}
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int x = i;

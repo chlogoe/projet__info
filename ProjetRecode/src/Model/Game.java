@@ -139,6 +139,10 @@ public class Game implements DeletableObserver {
     	return entities.get(0);
     }
     
+    public int getAmountEntities() {
+    	return entities.size();
+    }
+    
     private void addObject(int x, int y, char ID) {
     	switch(ID){
 		case 'A':
@@ -155,6 +159,10 @@ public class Game implements DeletableObserver {
 		case 'H':
 			terrains.add(new Hole(x,y));
 			break;
+		case 'D':
+			terrains.add(new Door(x,y,this));
+			break;
+			
 		default:
 			//Créer un block par défaut
 		}

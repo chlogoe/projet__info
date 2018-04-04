@@ -3,15 +3,21 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Model.Entity;
 import Model.Game;
+import Model.GameObject;
+import Model.Player;
 
 public class Keyboard implements KeyListener {
     private Game game;
+    private Player player;
 
     private static final int player1 = 0;
 
-    public Keyboard(Game game2) {
-        this.game = game2;
+    public Keyboard(Game game, GameObject player) {
+        this.game = game;
+        this.player = (Player) player;
+        System.out.println(player);
     }
 
     @Override
@@ -20,16 +26,16 @@ public class Keyboard implements KeyListener {
 
         switch (key) {
         case KeyEvent.VK_D:
-            game.movePlayer(1, 0, player1);
+            game.moveEntity(1, 0, player);
             break;
         case KeyEvent.VK_Q:
-            game.movePlayer(-1, 0, player1);
+            game.moveEntity(-1, 0, player);
             break;
         case KeyEvent.VK_S:
-            game.movePlayer(0, 1, player1);
+            game.moveEntity(0, 1, player);
             break;
         case KeyEvent.VK_Z:
-            game.movePlayer(0, -1, player1);
+            game.moveEntity(0, -1, player);
             break;
         case KeyEvent.VK_P:
             game.playerPos(player1);

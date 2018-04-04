@@ -22,38 +22,44 @@ public class Game implements DeletableObserver {
 
         // Creating one Player at the center of the map
         entities.add(new Player(size/2, size/2, 3, 5));
-        MonstreTest monstre = new MonstreTest(size/2 -5, size/2, window);
+        MonstreTest monstre = new MonstreTest(size/2 -5, size/2, window, this);
         monstre.attachDeletable(this);
         entities.add(monstre);
 
         // Map building
         this.textMapToList();
-        
 
         window.setGameObjects(this.getGameObjects());//Une fois le terrain et toutes les entités dans les liste,
         window.setOther(entities);//on ajoute les listes à la map et on rafraichit la map
         notifyView();
     }
-
-
-    public void movePlayer(int x, int y, int playerNumber) { //Vérifie si le joueur peut bouger, et le bouge
-        Player player = ((Player) entities.get(playerNumber));
-        int nextX = player.getPosX() + x;
-        int nextY = player.getPosY() + y;
+    
+    public void moveEntity(int x, int y, Entity entity) {
+    	int nextX = entity.getPosX() + x;
+        int nextY = entity.getPosY() + y;
 
         boolean obstacle = false;
-        for (GameObject object : terrains) {
+        obstacle = checkObstacle(terrains, nextX, nextY);
+        if(obstacle == false) {
+        	obstacle = checkObstacle(entities, nextX, nextY);
+        }
+        if (obstacle == false) {
+            entity.move(x, y);
+        }
+        notifyView();
+    }
+    
+    public boolean checkObstacle(ArrayList<GameObject> elem, int nextX, int nextY) {
+    	boolean obstacle = false;
+    	for (GameObject object : elem) {
             if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
                 obstacle = object.isObstacle();
             }
-            if (obstacle == true) { //si obstacle, on ne bouge pas.
-                break;
+            if(obstacle == true) {
+            	break;
             }
         }
-        if (obstacle == false) {
-            player.move(x, y);
-        }
-        notifyView();
+    	return obstacle;
     }
     
     public void attack(String side) {
@@ -110,6 +116,10 @@ public class Game implements DeletableObserver {
         Player player = ((Player) entities.get(playerNumber));
         System.out.println(player.getPosX() + ":" + player.getPosY());
         
+    }
+    
+    public GameObject getPlayer() {
+    	return entities.get(0);
     }
     
     private void addObject(int x, int y, char ID) {

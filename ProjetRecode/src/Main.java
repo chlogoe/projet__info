@@ -9,7 +9,7 @@ public class Main {
         Window window = new Window(30);
 
         Game game = new Game(window);
-        Keyboard keyboard = new Keyboard(game);
+        Keyboard keyboard = new Keyboard(game, game.getPlayer());
         window.setKeyListener(keyboard);
     }
 }

@@ -29,53 +29,51 @@ public class Game implements DeletableObserver {
         // Map building
         this.textMapToList();
 
-        window.setGameObjects(this.getGameObjects());//Une fois le terrain et toutes les entités dans les liste,
+        window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
         window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
         notifyView();
     }
     
+    /*
+     * Fonction qui vérifie les condition nécéssaire au déplacement d'une entité
+     */
     public void moveEntity(int x, int y, Entity entity) {
     	int nextX = entity.getPosX() + x;
         int nextY = entity.getPosY() + y;
 
-        boolean obstacle = false;
-        obstacle = checkObstacleTerrains(terrains, nextX, nextY);
-        if(obstacle == false) {
-        	obstacle = checkObstacleEntities(entities, nextX, nextY);
-        }
-        if (obstacle == false) {
+        if (!checkObstacle(nextX, nextY)) {
             entity.move(x, y);
         }
         notifyView();
     }
 
-	public boolean checkObstacleTerrains(ArrayList<GameObject> elem, int nextX, int nextY) {
+    /*
+     * Vérifie si il y a un obstacle empêchant le déplacement d'une entité
+     */
+	public boolean checkObstacle(int x, int y) {
     	boolean obstacle = false;
-    	for (GameObject object : elem) {
-            if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
+    	for (GameObject object : terrains) {
+            if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
                 obstacle = object.isObstacle();
             }
             if(obstacle == true) {
             	break;
             }
         }
-    	return obstacle;
-    }
-	
-	public boolean checkObstacleEntities(ArrayList<Entity> elem, int nextX, int nextY) {
-    	boolean obstacle = false;
-    	for (GameObject object : elem) {
-            if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
-                obstacle = object.isObstacle();
-            }
-            if(obstacle == true) {
+    	for (GameObject object : entities) {
+    		if(obstacle == true) {
             	break;
+            }
+            if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
+                obstacle = object.isObstacle();
             }
         }
     	return obstacle;
     }
     
-    
+	/*
+	 * Fonction qui vérifie si il y a quelque chose à attaquer et, le cas échéant, attaque
+	 */
     public void attack(Direction direction, Entity attacker) {
     	int x = attacker.getPosX();
     	int y = attacker.getPosY();
@@ -111,14 +109,16 @@ public class Game implements DeletableObserver {
 		notifyView();
     }
 
+    /*
+     * Met l'affichage à jour
+     */
     private void notifyView() {
         window.update();
     }
 
-    public ArrayList<GameObject> getGameObjects() {
-        return this.terrains;
-    }
-
+    /*
+     *Supprime l'objet auquel est attaché le Deletable ps
+     */
 	@Override
     synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
         entities.remove(ps);
@@ -128,21 +128,34 @@ public class Game implements DeletableObserver {
         notifyView();
     }
 
-
+	/*
+	 * Affiche la position du joueur dans la console
+	 */
     public void playerPos(int playerNumber) {
         Player player = ((Player) entities.get(playerNumber));
         System.out.println(player.getPosX() + ":" + player.getPosY());
-        
     }
     
+    /*
+     * Fonction qui revoie l'objet joueur
+     * (utilisé pour permettre au clavier de savoir quelle entité il dirige)
+     */
     public GameObject getPlayer() {
     	return entities.get(0);
     }
     
+    /*
+     * Fonction qui renvoie le nombre d'entité encore présente sur la carte.
+     * (utilisé pour l'ouverture de la porte)
+     */
     public int getAmountEntities() {
     	return entities.size();
     }
     
+    /*
+     * Fonction qui ajoute les block à la liste en fonction de leur type
+     * En cas de block cassable, ne pas oublier d'attacher un Deletable pour pouvoir le supprimer.
+     */
     private void addObject(int x, int y, char ID) {
     	switch(ID){
 		case 'A':
@@ -167,7 +180,10 @@ public class Game implements DeletableObserver {
 			//Créer un block par défaut
 		}
     }
-    
+ 
+    /*
+     * Fonction qui transforme la carte version texte en une liste de block
+     */
     private void textMapToList() throws IOException {
     	FileReader file = null;
         BufferedReader in = null;

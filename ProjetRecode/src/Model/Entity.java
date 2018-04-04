@@ -1,6 +1,8 @@
 package Model;
 
+
 public abstract class Entity extends GameObject implements Deletable, Activable, Directable{
+
 	private int health;
 	private int damage;
 	private Direction direction = Direction.Up;
@@ -24,8 +26,8 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 		return health;
 	}
 	
-	public void setHealth(int lifePoints) {
-		this.health = lifePoints;
+	public void setHealth(int health) {
+		this.health = health;
 	}
 	
 	public abstract void attack();

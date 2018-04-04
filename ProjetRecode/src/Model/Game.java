@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Game implements DeletableObserver {
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
-    private ArrayList<GameObject> entities = new ArrayList<GameObject>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
+    private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
 
     private Window window;
     private int size;
@@ -30,7 +30,7 @@ public class Game implements DeletableObserver {
         this.textMapToList();
 
         window.setGameObjects(this.getGameObjects());//Une fois le terrain et toutes les entités dans les liste,
-        window.setOther(entities);//on ajoute les listes à la map et on rafraichit la map
+        window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
         notifyView();
     }
     
@@ -39,17 +39,30 @@ public class Game implements DeletableObserver {
         int nextY = entity.getPosY() + y;
 
         boolean obstacle = false;
-        obstacle = checkObstacle(terrains, nextX, nextY);
+        obstacle = checkObstacleTerrains(terrains, nextX, nextY);
         if(obstacle == false) {
-        	obstacle = checkObstacle(entities, nextX, nextY);
+        	obstacle = checkObstacleEntities(entities, nextX, nextY);
         }
         if (obstacle == false) {
             entity.move(x, y);
         }
         notifyView();
     }
-    
-    public boolean checkObstacle(ArrayList<GameObject> elem, int nextX, int nextY) {
+
+	public boolean checkObstacleTerrains(ArrayList<GameObject> elem, int nextX, int nextY) {
+    	boolean obstacle = false;
+    	for (GameObject object : elem) {
+            if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
+                obstacle = object.isObstacle();
+            }
+            if(obstacle == true) {
+            	break;
+            }
+        }
+    	return obstacle;
+    }
+	
+	public boolean checkObstacleEntities(ArrayList<Entity> elem, int nextX, int nextY) {
     	boolean obstacle = false;
     	for (GameObject object : elem) {
             if (object.isAtPosition(nextX, nextY)) {//regarde si il y a un obstacle devant
@@ -62,21 +75,26 @@ public class Game implements DeletableObserver {
     	return obstacle;
     }
     
-    public void attack(String side) {
-    	int x = entities.get(0).getPosX();
-    	int y = entities.get(0).getPosY();
-    	switch(side) {
-    	case "LEFT" :
+    
+    public void attack(Direction direction, Entity attacker) {
+    	int x = attacker.getPosX();
+    	int y = attacker.getPosY();
+    	switch(direction) {
+    	case Left :
     		x--;
+    		attacker.setDirection(Direction.Left);
     		break;
-    	case "RIGHT":
+    	case Right:
     		x++;
+    		attacker.setDirection(Direction.Right);
     		break;
-    	case "UP":
+    	case Up:
     		y--;
+    		attacker.setDirection(Direction.Up);
     		break;
-    	case "DOWN":
+    	case Down:
     		y++;
+    		attacker.setDirection(Direction.Down);
     		break;
     	}
     	Activable aimedObject = null;
@@ -89,8 +107,8 @@ public class Game implements DeletableObserver {
 		}
 		if(aimedObject != null){
 		    aimedObject.activate();
-            notifyView();
 		}
+		notifyView();
     }
 
     private void notifyView() {
@@ -101,7 +119,6 @@ public class Game implements DeletableObserver {
         return this.terrains;
     }
 
-    @SuppressWarnings("unlikely-arg-type")
 	@Override
     synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
         entities.remove(ps);

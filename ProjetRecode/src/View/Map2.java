@@ -1,5 +1,7 @@
 package View;
 
+import Model.Direction;
+import Model.Entity;
 import Model.GameObject;
 
 import java.awt.Color;
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
 public class Map2 extends JPanel {
 	private int size;	//Initialisation des variables
     private ArrayList<GameObject> terrains = null;
-    private ArrayList<GameObject> entities = null;
+    private ArrayList<Entity> entities = null;
     private BufferedImage font;
 
     public Map2() {
@@ -30,12 +32,12 @@ public class Map2 extends JPanel {
 
     public void paint(Graphics g) {
     	
-    	for (int i=0; i<size+400 ; i++) {
+    	for (int i=0; i<size+20 ; i++) {
     		for (int j=0; j<size ; j++) {
     			int x = i;
     			int y = j;
     			g.setColor(Color.BLACK);
-    			g.fillRect(x, y, 31, 31);
+    			g.fillRect(x*32, y*32, 32, 32);
     		}
     	}
         for (int i = 0; i < size; i++) {
@@ -77,15 +79,40 @@ public class Map2 extends JPanel {
         	
         }
         
-        for(GameObject other : this.entities) { //Dessine toutes les entités
-        	int x = other.getPosX();
-        	int y = other.getPosY();
-        	String ID = other.getID();
+        for(Entity entity : this.entities) { //Dessine toutes les entités
+        	int x = entity.getPosX();
+        	int y = entity.getPosY();
+        	String ID = entity.getID();
+        	Direction direction = entity.getDirection();
+        	int a1[]={32*x+16,32*x+4,32*x+28};
+        	int b1[]={32*y+4,32*y+28,32*y+28};
+        	int a2[]={32*x+4,32*x+4,32*x+28};
+        	int b2[]={32*y+4,32*y+28,32*y+16};
+        	int a3[]={32*x+16,32*x+4,32*x+28};
+        	int b3[]={32*y+28,32*y+4,32*y+4};
+        	int a4[]={32*x+28,32*x+28,32*x+4};
+        	int b4[]={32*y+4,32*y+28,32*y+16};
         	
         	switch(ID) {
         	case "Player":
         		g.setColor(Color.RED);
-            	g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		switch(direction) {
+        		case Up:
+        			g.fillPolygon(a1,b1,3);
+                	break;
+        		case Right:
+        			g.fillPolygon(a2,b2,3);
+                	break;
+        		case Down:
+        			g.fillPolygon(a3,b3,3);
+                	break;
+        		case Left:
+        			g.fillPolygon(a4,b4,3);
+                	break;
+        		}
+            	//g.fillRect(x * 32+8, y * 32+8, 16, 16);
+            	
+            	
         		break;
         	case "Test":
         		g.setColor(Color.GREEN);
@@ -99,7 +126,7 @@ public class Map2 extends JPanel {
         this.terrains = terrain;
     }
     
-    public void setOther(ArrayList<GameObject> other) { //Permet d'ajouter des entités depuis l'ectérieur de la classe
+    public void setEntities(ArrayList<Entity> other) { //Permet d'ajouter des entités depuis l'ectérieur de la classe
         this.entities = other;
     }
 

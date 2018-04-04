@@ -12,7 +12,6 @@ public class Player extends Entity {
     public void move(int X, int Y) {
         this.posX = this.posX + X;
         this.posY = this.posY + Y;
-        System.out.println("Player moved");
     }
 
    // //////////////////////////////////////////////////////////////////////////////////////

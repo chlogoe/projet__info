@@ -1,5 +1,6 @@
 package View;
 
+import Model.Entity;
 import Model.GameObject;
 
 import java.awt.Color;
@@ -32,8 +33,8 @@ public class Window {
         this.map.redraw();
     }
     
-    public void setOther(ArrayList<GameObject> objects) { //Fonction qui ajoute toutes les entités à la carte
-        this.map.setOther(objects);
+    public void setEntities(ArrayList<Entity> objects) { //Fonction qui ajoute toutes les entités à la carte
+        this.map.setEntities(objects);
         this.map.redraw();
     }
 

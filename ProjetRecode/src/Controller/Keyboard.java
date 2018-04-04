@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Model.Direction;
 import Model.Entity;
 import Model.Game;
 import Model.GameObject;
@@ -17,7 +18,6 @@ public class Keyboard implements KeyListener {
     public Keyboard(Game game, GameObject player) {
         this.game = game;
         this.player = (Player) player;
-        System.out.println(player);
     }
 
     @Override
@@ -41,16 +41,16 @@ public class Keyboard implements KeyListener {
             game.playerPos(player1);
             break;
         case KeyEvent.VK_LEFT:
-        	game.attack("LEFT");
+        	game.attack(Direction.Left, player);
         	break;
         case KeyEvent.VK_RIGHT:
-        	game.attack("RIGHT");
+        	game.attack(Direction.Right, player);
         	break;
         case KeyEvent.VK_UP:
-        	game.attack("UP");
+        	game.attack(Direction.Up, player);
         	break;
         case KeyEvent.VK_DOWN:
-        	game.attack("DOWN");
+        	game.attack(Direction.Down, player);
         	break;
         }
     }

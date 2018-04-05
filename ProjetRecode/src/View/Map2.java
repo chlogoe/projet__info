@@ -52,7 +52,6 @@ public class Map2 extends JPanel {
             int x = terrain.getPosX();
             int y = terrain.getPosY();
             String ID = terrain.getID();
-
             switch(ID) {
             case "A":
             	g.setColor(Color.BLACK);
@@ -76,7 +75,7 @@ public class Map2 extends JPanel {
             	g.fillRect(x*32, y*32, 31, 31);
             	break;
             case "D":
-            	g.setColor(Color.DARK_GRAY);
+            	g.setColor(Color.WHITE);
             	if(entities.size() == 1) {
             		g.fillRect(x*32+28, y*32, 4, 32);
             	}

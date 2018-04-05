@@ -23,8 +23,11 @@ public class Game implements DeletableObserver {
         // Creating one Player at the center of the map
         entities.add(new Player(size/2, size/2, 3, 5));
         MonstreTest monstre = new MonstreTest(size/2 -5, size/2, window, this);
+        MonstreTest monstre2 = new MonstreTest(1,1,window, this);
         monstre.attachDeletable(this);
+        monstre2.attachDeletable(this);
         entities.add(monstre);
+        entities.add(monstre2);
 
         // Map building
         this.textMapToList();

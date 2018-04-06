@@ -19,7 +19,7 @@ public class ActiveBomb extends Item implements Runnable, Deletable, Activable {
 	}
 	
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		return true;
 	}
 

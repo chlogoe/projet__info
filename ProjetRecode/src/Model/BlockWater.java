@@ -8,7 +8,7 @@ public class BlockWater extends Block {
 	}
 
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		return false;
 	}
 

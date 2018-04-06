@@ -2,7 +2,7 @@ AAAAAAAAAAAAAAADAAAAAAAAAAAAAA
 A                            A
 A BBBB  BB   BBBBB   BB BBBB A
 A B                        B A
-A B                        B A
+A B     PPP         PPP    B A
 A B                        B A
 A H  BBB  BBBB  BBBB  BBB  H A
 A H  B                  B  H A
@@ -23,7 +23,7 @@ A B  B                  B  B A
 A H  B                  B  H A
 A H  BBB  BBBB  BBBB  BBB  H A
 A B                        B A
-A B                        B A
+A B     PPP        PPP     B A
 A B                        B A
 A BBBB  BB   BBBB   BB  BBBB A
 A                            A

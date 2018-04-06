@@ -26,7 +26,7 @@ public class Player extends Entity {
 
 
     @Override
-    public boolean isObstacle() {
+    public boolean isObstacle(Entity entity) {
         return true;
     }
 
@@ -42,7 +42,7 @@ public class Player extends Entity {
 
     @Override
     public void activate() {
-    	// TODO Auto-generated method stub
+    	System.out.println("OK");
 	}
 
     @Override

@@ -2,8 +2,8 @@ package Model;
 
 public class Bomb extends Item {
 
-	public Bomb(int x, int y, String ID) {
-		super(x, y, ID);
+	public Bomb(int x, int y) {
+		super(x, y, "Bomb");
 		// TODO Auto-generated constructor stub
 	}
 

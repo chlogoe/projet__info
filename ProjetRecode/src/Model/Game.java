@@ -46,7 +46,7 @@ public class Game implements DeletableObserver {
     	int nextX = entity.getPosX() + x;
         int nextY = entity.getPosY() + y;
 
-        if (!checkObstacle(nextX, nextY)) {
+        if (!checkObstacle(nextX, nextY, entity)) {
             entity.move(x, y);
         }
         notifyView();
@@ -55,11 +55,11 @@ public class Game implements DeletableObserver {
     /*
      * Vérifie si il y a un obstacle empêchant le déplacement d'une entité
      */
-	public boolean checkObstacle(int x, int y) {
+	public boolean checkObstacle(int x, int y, Entity entity) {
     	boolean obstacle = false;
     	for (GameObject object : terrains) {
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
-                obstacle = object.isObstacle();
+                obstacle = object.isObstacle(entity);
             }
             if(obstacle == true) {
             	break;
@@ -70,7 +70,7 @@ public class Game implements DeletableObserver {
             	break;
             }
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
-                obstacle = object.isObstacle();
+                obstacle = object.isObstacle(entity);
             }
         }
     	for (GameObject object : items) {
@@ -78,11 +78,16 @@ public class Game implements DeletableObserver {
             	break;
             }
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
-                obstacle = object.isObstacle();
+                obstacle = object.isObstacle(entity);
             }
         }
     	return obstacle;
     }
+	
+	
+	public void interact(int x, int y, Player player) {
+		
+	}
 	
 	
 	public void explode(ActiveBomb bomb) {
@@ -167,12 +172,12 @@ public class Game implements DeletableObserver {
      *Supprime l'objet auquel est attaché le Deletable ps
      */
 	@Override
-    synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
+    synchronized public void delete(Deletable ps, Item item) {
         entities.remove(ps);
         terrains.remove(ps);
         items.remove(ps);
-        if (loot != null) {
-            terrains.addAll(loot);
+        if (item != null) {
+            items.add(item);
         }
         notifyView();
     }
@@ -223,6 +228,9 @@ public class Game implements DeletableObserver {
 			break;
 		case 'D':
 			terrains.add(new Door(x,y,this));
+			break;
+		case 'P':
+			terrains.add(new Spike(x,y,(Player) entities.get(0)));
 			break;
 			
 		default:

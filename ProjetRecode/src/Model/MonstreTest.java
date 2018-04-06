@@ -78,7 +78,8 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 	}
 
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		return true;
 	}
+
 }

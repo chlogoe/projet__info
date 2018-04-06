@@ -7,7 +7,7 @@ public class BlockUnbreakable extends Block {
     }
 
     @Override
-    public boolean isObstacle() {
+    public boolean isObstacle(Entity entity) {
         return true;
     }
 }

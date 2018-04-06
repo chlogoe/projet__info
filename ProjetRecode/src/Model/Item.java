@@ -5,7 +5,7 @@ public abstract class Item extends GameObject{
 		super (x,y,ID);
 	}
 	
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		return false;
 	}
 }

@@ -84,7 +84,16 @@ public class Map2 extends JPanel {
             	else {
             		g.fillRect(x*32, y*32+28, 32, 4);
             	}
+            	break;
+            case "P":
+            	g.setColor(Color.LIGHT_GRAY);
+            	g.drawRect(x*32+4, y*32+4, 24, 24);
+            	break;
+            case "B2":
+            	g.setColor(Color.PINK);
+            	g.fillRect(x*32, y*32, 32, 32);
             }
+            
             
         	
         }
@@ -140,7 +149,12 @@ public class Map2 extends JPanel {
         		g.setColor(Color.MAGENTA);
         		g.fillRect(x * 32+8, y * 32+8, 16, 16);
         		break;
+        	case "Bomb":
+        		g.setColor(Color.BLACK);
+        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		break;
         	}
+        		
         }
     }
 

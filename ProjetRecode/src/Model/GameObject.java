@@ -27,5 +27,5 @@ public abstract class GameObject {
         return this.posX == x && this.posY == y;
     }
 
-    public abstract boolean isObstacle();
+    public abstract boolean isObstacle(Entity entity);
 }

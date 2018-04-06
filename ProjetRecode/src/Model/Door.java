@@ -10,7 +10,7 @@ public class Door extends Block {
 	}
 
 	@Override
-	public boolean isObstacle() {
+	public boolean isObstacle(Entity entity) {
 		if(game.getAmountEntities()>1) {
 			return true;
 		}

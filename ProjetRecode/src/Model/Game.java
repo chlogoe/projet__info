@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Game implements DeletableObserver {
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     private Window window;
     private int size;
@@ -34,6 +35,7 @@ public class Game implements DeletableObserver {
 
         window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
         window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
+        window.setItems(items);
         notifyView();
     }
     
@@ -73,6 +75,40 @@ public class Game implements DeletableObserver {
         }
     	return obstacle;
     }
+	
+	
+	public void explode(ActiveBomb bomb) {
+		int x = bomb.getPosX();
+		int y = bomb.getPosY();
+		ArrayList<GameObject> terrain = new ArrayList<GameObject>();
+		ArrayList<GameObject> entity = new ArrayList<GameObject>();
+		for(int i = -1;i<2;i++) {
+			for(int j = -1; j < 2;j++) {
+				for(GameObject object : terrains) {
+					if(object.isAtPosition(x+i, j+y) && object instanceof Activable) {
+						terrain.add(object);
+					}
+				}
+				for(GameObject object : entities) {
+					if(object.isAtPosition(x+i, j+y) && object instanceof Activable) {
+						entity.add(object);
+					}
+				}
+			}
+		}
+		for(GameObject object : terrain) {
+			((BlockBreakable) object).activate();
+		}
+		for(GameObject object : entity) {
+			((Entity) object).activate();
+		}
+	}
+	
+	public void dropBomb(int x, int y) {
+		ActiveBomb activeBomb = new ActiveBomb(x,y, this);
+		activeBomb.attachDeletable(this);
+		items.add(activeBomb);
+	}
     
 	/*
 	 * Fonction qui vérifie si il y a quelque chose à attaquer et, le cas échéant, attaque
@@ -125,6 +161,7 @@ public class Game implements DeletableObserver {
 	@Override
     synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
         entities.remove(ps);
+        terrains.remove(ps);
         if (loot != null) {
             terrains.addAll(loot);
         }

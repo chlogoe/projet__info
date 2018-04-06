@@ -11,7 +11,7 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	
 	public void move(int x, int y) {
 		this.posX += x;
-		this.posY += y;	
+		this.posY += y;
 	}
 	
 	public abstract boolean isObstacle();

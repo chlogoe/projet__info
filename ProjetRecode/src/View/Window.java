@@ -2,6 +2,7 @@ package View;
 
 import Model.Entity;
 import Model.GameObject;
+import Model.Item;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -48,6 +49,11 @@ public class Window {
     public void setEntities(ArrayList<Entity> objects) { //Fonction qui ajoute toutes les entités à la carte
         this.map.setEntities(objects);
         this.map.redraw();
+    }
+    
+    public void setItems(ArrayList<Item> items) {
+    	this.map.setItems(items);
+    	this.map.redraw();
     }
 
     public void update() {	//Met la carte à jour

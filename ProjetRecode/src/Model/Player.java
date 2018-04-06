@@ -7,7 +7,7 @@ public class Player extends Entity {
     private int lifes = 0;
     private int health;
     private int maxBombs = 5;
-    private int bombAmount = 0;
+    private int bombAmount = 4;
     private int maxKeys = 5;
     private int keyAmount = 0;
     private ArrayList<Item> inventory = new ArrayList<Item>();
@@ -78,22 +78,14 @@ public class Player extends Entity {
     }
     
     public int getBombAmount() {
-    	int bombAmount = 0;
-    	for(Item item : inventory) {
-    		if(item instanceof Bomb) {
-    			bombAmount++;
-    		}
-    	}
     	return bombAmount;
     }
     
+    public void useBomb() {
+    	this.bombAmount--;
+    }
+    
     public int getKeyAmount() {
-    	int keyAmount = 0;
-    	for(Item item : inventory) {
-    		if(item instanceof Key) {
-    			keyAmount++;
-    		}
-    	}
     	return keyAmount;
     }
 }

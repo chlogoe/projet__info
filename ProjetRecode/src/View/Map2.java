@@ -3,6 +3,7 @@ package View;
 import Model.Direction;
 import Model.Entity;
 import Model.GameObject;
+import Model.Item;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,6 +19,7 @@ public class Map2 extends JPanel {
 	private int size;	//Initialisation des variables
     private ArrayList<GameObject> terrains = null;
     private ArrayList<Entity> entities = null;
+    private ArrayList<Item> items = null;
     private BufferedImage font;
 
     public Map2() {
@@ -128,14 +130,30 @@ public class Map2 extends JPanel {
         		break;
         	}
         }
+        
+        for(Item item : items) {
+        	int x = item.getPosX();
+        	int y = item.getPosY();
+        	String ID = item.getID();
+        	switch(ID) {
+        	case "ActiveBomb":
+        		g.setColor(Color.MAGENTA);
+        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		break;
+        	}
+        }
     }
 
     public void setTerrain(ArrayList<GameObject> terrain) { //Permet de modifier le terrain de la map depuis l'extérieur de la classe
         this.terrains = terrain;
     }
     
-    public void setEntities(ArrayList<Entity> other) { //Permet d'ajouter des entités depuis l'ectérieur de la classe
-        this.entities = other;
+    public void setEntities(ArrayList<Entity> entities) { //Permet d'ajouter des entités depuis l'ectérieur de la classe
+        this.entities = entities;
+    }
+    
+    public void setItems(ArrayList<Item> items) {
+    	this.items = items;
     }
 
     public void redraw() { //Redessine la map

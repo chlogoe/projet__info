@@ -162,6 +162,7 @@ public class Game implements DeletableObserver {
     synchronized public void delete(Deletable ps, ArrayList<GameObject> loot) {
         entities.remove(ps);
         terrains.remove(ps);
+        items.remove(ps);
         if (loot != null) {
             terrains.addAll(loot);
         }

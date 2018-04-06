@@ -1,0 +1,5 @@
+Les objets spéciaux, le joueur peut en avoir plusieurs de chaques? Si non, l'object à le encore le droit de spawner sur la carte ?
+Est-ce que les ennemis drop des items commun (clé, bombes, vie) ?
+
+Au TP :
+Quelle est la bonne pratique ? Une fonction pour chaque item ou une seule fonction avec des conditions ?

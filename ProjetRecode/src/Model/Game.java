@@ -6,9 +6,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Game implements DeletableObserver {
+	
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
     private ArrayList<Item> items = new ArrayList<Item>();
@@ -25,15 +27,10 @@ public class Game implements DeletableObserver {
         Player player = new Player(size/2, size/2, 3, 5);
         player.attachDeletable(this);
         entities.add(player);
-        MonstreTest monstre = new MonstreTest(size/2 -5, size/2, window, this);
-        MonstreTest monstre2 = new MonstreTest(1,1,window, this);
-        monstre.attachDeletable(this);
-        monstre2.attachDeletable(this);
-        entities.add(monstre);
-        entities.add(monstre2);
+       addMonster(3);
 
         // Map building
-        this.textMapToList();
+        this.buildMap();
 
         window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
         window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
@@ -217,6 +214,37 @@ public class Game implements DeletableObserver {
     	return entities.size();
     }
     
+    public void addMonster(int number) {
+    	Random rand = new Random();
+    	Entity monster;
+    	int x = -1;
+    	int y = -1;
+    	for(int i = 0;i<number;i++) {
+    		int j = rand.nextInt(1);
+    		if(j == 0) {
+    			monster = new MonstreTest(x, y, window, this);
+    			monster.attachDeletable(this);
+    			entities.add(monster);
+    		}
+    		else {
+    			monster = new MonstreTest(-1, -1, window, this);
+    			monster.attachDeletable(this);
+    			entities.add(monster);
+    		}
+    		
+    		boolean obstacle = true;
+    		while(obstacle) {
+    			x = rand.nextInt(29) + 1;
+    			y = rand.nextInt(29) + 1;
+    			obstacle = checkObstacle(x,y,null);
+    		}
+    		monster.setPosX(x);
+    		monster.setPosY(y);
+    		System.out.println("Monstre en " + x + " " + y);
+    	}
+    }
+    
+    
     /*
      * Fonction qui ajoute les block à la liste en fonction de leur type
      * En cas de block cassable, ne pas oublier d'attacher un Deletable pour pouvoir le supprimer.
@@ -252,7 +280,7 @@ public class Game implements DeletableObserver {
     /*
      * Fonction qui transforme la carte version texte en une liste de block
      */
-    private void textMapToList() throws IOException {
+    private void buildMap() throws IOException {
     	FileReader file = null;
         BufferedReader in = null;
         

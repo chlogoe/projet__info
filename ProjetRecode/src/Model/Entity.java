@@ -1,6 +1,11 @@
 package Model;
 
+import java.util.ArrayList;
+
 public abstract class Entity extends GameObject implements Deletable, Activable, Directable{
+	
+	protected ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
+	
 	private int health;
 	private int damage;
 	private int maxHealth;
@@ -12,11 +17,13 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	}
 	
 	public void move(int x, int y) {
-		this.posX += x;
-		this.posY += y;
+		this.setPosX(this.getPosX()+x);
+		this.setPosY(this.getPosY()+y);
 	}
 	
-	public abstract boolean isObstacle(Entity entity);
+	public boolean isObstacle(Entity entity) {
+		return true;
+	}
 	
 	public int getDamage() {
 		return damage;
@@ -46,4 +53,9 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
+	
+	@Override
+    public void attachDeletable(DeletableObserver po) {
+        observers.add(po);
+    }
 }

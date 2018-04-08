@@ -13,7 +13,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
         Random rand = new Random();
         int tinted = rand.nextInt(200);
         if(tinted == 3) {
-        	ID = "B2";
+        	this.setID("B2");
         }
         items.add(new Bomb(x,y));
         //items.add(new Key(x,y));
@@ -37,7 +37,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
     @Override
     public void notifyDeletableObserver() {
         for (DeletableObserver o : observers) {
-        	if(ID == "B2") {
+        	if(this.getID() == "B2") {
         		o.delete(this, items.get(0));
         	}
         	else {

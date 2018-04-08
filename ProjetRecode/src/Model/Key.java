@@ -1,6 +1,6 @@
 package Model;
 
-public class Key extends Item {
+public class Key extends Item implements Activable {
 
 	public Key(int x, int y) {
 		super(x, y, "Key");
@@ -9,7 +9,7 @@ public class Key extends Item {
 
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
+		this.notifyDeletableObserver();
 		
 	}
 

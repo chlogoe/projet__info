@@ -15,14 +15,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class Map2 extends JPanel {
+public class Map extends JPanel {
 	private int size;	//Initialisation des variables
     private ArrayList<GameObject> terrains = null;
     private ArrayList<Entity> entities = null;
     private ArrayList<Item> items = null;
     private BufferedImage font;
 
-    public Map2() {
+    public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
         try { //Le try catch ici permet d'éviter les erreurs

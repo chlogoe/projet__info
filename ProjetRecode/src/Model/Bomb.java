@@ -1,6 +1,6 @@
 package Model;
 
-public class Bomb extends Item {
+public class Bomb extends Item implements Activable {
 
 	public Bomb(int x, int y) {
 		super(x, y, "Bomb");

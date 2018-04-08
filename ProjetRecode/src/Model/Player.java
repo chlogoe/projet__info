@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
 
-	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
-    private int lifes = 0;
+    private int lifes = 3;
     private int maxBombs = 5;
     private int bombAmount = 4;
     private int maxKeys = 5;
@@ -17,23 +16,7 @@ public class Player extends Entity {
         super.setMaxHealth(10);
     }
 
-    public void move(int X, int Y) {
-        this.posX = this.posX + X;
-        this.posY = this.posY + Y;
-    }
-
    // //////////////////////////////////////////////////////////////////////////////////////
-
-
-    @Override
-    public boolean isObstacle(Entity entity) {
-        return true;
-    }
-
-    @Override
-    public void attachDeletable(DeletableObserver po) {
-    	observers.add(po);
-    }
 
     @Override
     public void notifyDeletableObserver() {
@@ -46,8 +29,13 @@ public class Player extends Entity {
     public void activate() {
     	int health = this.getHealth();
     	this.setHealth(health - 1);
-    	if(health == 0) {
+    	if(health == 0 && lifes == 0) {
     		notifyDeletableObserver();
+    		System.out.println("Fin de la partie");
+    	}
+    	else if(health == 0) {
+    		this.setHealth(this.getMaxHealth());
+    		lifes--;
     	}
 	}
 

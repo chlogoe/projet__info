@@ -1,18 +1,15 @@
 package Model;
 
-import java.util.ArrayList;
+
 import java.util.Random;
 
 import View.Window;
 import Model.Game;
 
-public class MonstreTest extends Entity implements Activable, Deletable, Runnable{
+public class MonstreTest extends Entity implements Runnable{
 	
-	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	private Window window;
 	private Game game;
-	private int prevX;
-	private int prevY;
 
 	
 	public MonstreTest(int x, int y, Window window, Game game) {
@@ -41,13 +38,6 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
     }
 
 	@Override
-    public void attachDeletable(DeletableObserver po) {
-        observers.add(po);
-    }
-	
-
-
-	@Override
 	public void activate() {
 		int health = this.getHealth();
 		if(health > 1) {
@@ -57,7 +47,6 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 			this.setHealth(0);
 			kill();
 		}
-		
 	}
 
 	@Override
@@ -85,8 +74,6 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 						y = 0;
 					}
 				}
-				prevX = this.getPosX();
-				prevY = this.getPosY();
 				game.moveEntity(x, y, this);
 				Thread.sleep(sleepTime);
 				window.update();
@@ -95,11 +82,5 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 			e.printStackTrace();
 		}
 		
-	}
-	
-
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return true;
 	}
 }

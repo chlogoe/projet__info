@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class Window {
 	private JPanel windowPanel;
-    private Map2 map = new Map2();
+    private Map map = new Map();
     private Inventory inventory= new Inventory();
     private int size;
     private String gameName = "Splendid Game";

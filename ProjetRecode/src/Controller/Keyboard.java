@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import Model.Direction;
-import Model.Entity;
 import Model.Game;
 import Model.GameObject;
 import Model.Player;
@@ -57,6 +56,9 @@ public class Keyboard implements KeyListener {
         		player.useBomb();
         		game.dropBomb(player.getPosX(), player.getPosY());
         	}
+        	break;
+        case KeyEvent.VK_H:
+        	game.addMonster(10);
         }
     }
 

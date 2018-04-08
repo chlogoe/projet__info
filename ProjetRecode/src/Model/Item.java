@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public abstract class Item extends GameObject implements Deletable, Activable{
+public abstract class Item extends GameObject implements Deletable{
 	
 	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	

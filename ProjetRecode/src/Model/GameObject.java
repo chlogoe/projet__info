@@ -1,9 +1,9 @@
 package Model;
 
 public abstract class GameObject {
-    protected int posX;
-    protected int posY;
-    protected String ID;
+    private int posX;
+    private int posY;
+    private String ID;
 
     public GameObject(int x, int y, String ID) {
         this.posX = x;
@@ -19,8 +19,20 @@ public abstract class GameObject {
         return this.posY;
     }
     
+    public void setPosX(int x){
+    	this.posX = x;
+    }
+    
+    public void setPosY(int y) {
+    	this.posY = y;
+    }
+    
     public String getID() {
     	return this.ID;
+    }
+    
+    public void setID(String ID) {
+    	this.ID = ID;
     }
     
     public boolean isAtPosition(int x, int y) {

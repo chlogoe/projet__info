@@ -47,6 +47,7 @@ public class Map2 extends JPanel {
                 int x = i;
                 int y = j;
                 g.drawImage(font, x*32, y*32,null); //on dessine une image sur toutes les cases de sol, on ajoute plus bas les autres textures
+                g.fillRect(x*32, y*32, 32, 32);
             }
         }
 
@@ -129,13 +130,18 @@ public class Map2 extends JPanel {
         			g.fillPolygon(a4,b4,3);
                 	break;
         		}
-            	//g.fillRect(x * 32+8, y * 32+8, 16, 16);
-            	
+        		g.setColor(Color.GREEN);
+        		g.fillRect(x*32+1, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+        		g.setColor(Color.RED);
+        		g.fillRect(x*32+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
             	
         		break;
         	case "Test":
         		g.setColor(Color.GREEN);
         		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+        		g.setColor(Color.RED);
+        		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
         		break;
         	}
         }

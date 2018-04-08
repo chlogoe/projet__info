@@ -16,10 +16,11 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 
 	
 	public MonstreTest(int x, int y, Window window, Game game) {
-		super(x, y, "Test", 1);
+		super(x, y, "Test", 5);
 		new Thread(this).start();
 		this.window = window;
 		this.game = game;
+		super.setMaxHealth(5);
 	}
 
 	@Override

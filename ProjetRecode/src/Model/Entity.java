@@ -3,7 +3,9 @@ package Model;
 public abstract class Entity extends GameObject implements Deletable, Activable, Directable{
 	private int health;
 	private int damage;
+	private int maxHealth;
 	private Direction direction = Direction.Up;
+	
 	public Entity(int x, int y, String ID, int health) {
 		super(x,y,ID);
 		this.health = health;
@@ -35,5 +37,13 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	}
 	public Direction getDirection() {
 		return direction;
+	}
+	
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 }

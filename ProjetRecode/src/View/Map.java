@@ -47,7 +47,6 @@ public class Map extends JPanel {
                 int x = i;
                 int y = j;
                 g.drawImage(font, x*32, y*32,null); //on dessine une image sur toutes les cases de sol, on ajoute plus bas les autres textures
-                g.fillRect(x*32, y*32, 32, 32);
             }
         }
 

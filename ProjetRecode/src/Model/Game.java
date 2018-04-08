@@ -83,11 +83,9 @@ public class Game implements DeletableObserver {
     	return obstacle;
     }
 	
-	
-	public void interact(int x, int y, Player player) {
-		
-	}
-	
+	/*
+	 * Fonction qui gère l'explosion d'une bombe et les dégats qu'elle inflige aux entités et à la carte
+	 */
 	
 	public void explode(ActiveBomb bomb) {
 		int x = bomb.getPosX();
@@ -115,6 +113,10 @@ public class Game implements DeletableObserver {
 			((Entity) object).activate();
 		}
 	}
+	
+	/*
+	 * Fonction qui dépose une bombe active au coordonée souhaitées
+	 */
 	
 	public void dropBomb(int x, int y) {
 		ActiveBomb activeBomb = new ActiveBomb(x,y, this);
@@ -213,6 +215,11 @@ public class Game implements DeletableObserver {
     public int getAmountEntities() {
     	return entities.size();
     }
+
+    /*
+     * Fonction qui se charge de créer les monstres et de les ajouters aléatoirement sur la carte
+     * L'emplacement des monstres est vérifier avant de placer le monstre.
+     */
     
     public void addMonster(int number) {
     	Random rand = new Random();
@@ -220,7 +227,7 @@ public class Game implements DeletableObserver {
     	int x = -1;
     	int y = -1;
     	for(int i = 0;i<number;i++) {
-    		int j = rand.nextInt(1);
+    		int j = rand.nextInt(1);//Changer le 1 en le nombre de type de monstre que l'on fait appairaitre aléatoirement
     		if(j == 0) {
     			monster = new MonstreTest(x, y, window, this);
     			monster.attachDeletable(this);
@@ -240,7 +247,6 @@ public class Game implements DeletableObserver {
     		}
     		monster.setPosX(x);
     		monster.setPosY(y);
-    		System.out.println("Monstre en " + x + " " + y);
     	}
     }
     
@@ -306,6 +312,10 @@ public class Game implements DeletableObserver {
         }
     }
 
+    /*
+     * Fonction permettant de regarder si le joueur est dans la zone de vue d'un mnostre
+     */
+    
     public boolean playerInZone(int x, int y, int view) {
     	boolean isPlayerInZone = false;
     	for(int i = view*-1; i < view+1; i++) {

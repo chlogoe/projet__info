@@ -8,9 +8,9 @@ public class Key extends Item {
 	}
 
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public void activate() {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 }

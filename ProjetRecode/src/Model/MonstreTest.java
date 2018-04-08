@@ -11,6 +11,8 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	private Window window;
 	private Game game;
+	private int prevX;
+	private int prevY;
 
 	
 	public MonstreTest(int x, int y, Window window, Game game) {
@@ -62,13 +64,30 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 		Random rand = new Random();
 		try{
 			while (this.getHealth()>0){
+				int sleepTime = 250;
 				int x = rand.nextInt(3)-1;
 				int y = 0;
+				Player player = (Player) game.getPlayer();
 				if(x==0) {
 					y  = rand.nextInt(3)-1;
 				}
+				
+				if(game.playerInZone(this.getPosX(), this.getPosY(),5)) {
+					int dx = player.getPosX()-this.getPosX();
+					int dy = player.getPosY()-this.getPosY();
+					if(Math.abs(dx) < Math.abs(dy)) {
+						y = dy/Math.abs(dy);
+						x = 0;
+					}
+					else {
+						x = dx/Math.abs(dx);
+						y = 0;
+					}
+				}
+				prevX = this.getPosX();
+				prevY = this.getPosY();
 				game.moveEntity(x, y, this);
-				Thread.sleep(400);
+				Thread.sleep(sleepTime);
 				window.update();
 			}
 		}catch(Exception e){
@@ -76,10 +95,10 @@ public class MonstreTest extends Entity implements Activable, Deletable, Runnabl
 		}
 		
 	}
+	
 
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return true;
 	}
-
 }

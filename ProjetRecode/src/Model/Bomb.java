@@ -7,4 +7,10 @@ public class Bomb extends Item {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void activate() {
+		this.notifyDeletableObserver();
+		
+	}
+
 }

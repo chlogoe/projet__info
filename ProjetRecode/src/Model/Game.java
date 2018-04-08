@@ -155,6 +155,14 @@ public class Game implements DeletableObserver {
 			    }
 			}
 		}
+		for(GameObject object : items) {
+			if(object.isAtPosition(x,y)){
+			    if(object instanceof Bomb){
+			        ((Player) attacker).addItem((Item) object); 
+			    }
+			    aimedObject = (Activable) object;
+			}
+		}
 		if(aimedObject != null){
 		    aimedObject.activate();
 		}
@@ -177,6 +185,7 @@ public class Game implements DeletableObserver {
         terrains.remove(ps);
         items.remove(ps);
         if (item != null) {
+        	item.attachDeletable(this);
             items.add(item);
         }
         notifyView();
@@ -267,4 +276,19 @@ public class Game implements DeletableObserver {
         }
     }
 
+    public boolean playerInZone(int x, int y, int view) {
+    	boolean isPlayerInZone = false;
+    	for(int i = view*-1; i < view+1; i++) {
+    		for(int j = view*-1; j < view+1; j++) {
+    			if(entities.get(0).isAtPosition(x+i, y+j)) {
+    				isPlayerInZone = true;
+    			}
+    			if(isPlayerInZone) {
+    				break;
+    			}
+    		}
+    		
+    	}
+    	return isPlayerInZone;
+    }
 }

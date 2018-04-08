@@ -28,7 +28,7 @@ public class Spike extends Block implements Runnable {
 		while(true) {
 			while(!player.isAtPosition(x, y)) {
 				try {
-					Thread.sleep(50);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

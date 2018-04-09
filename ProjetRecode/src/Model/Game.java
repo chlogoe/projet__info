@@ -241,8 +241,8 @@ public class Game implements DeletableObserver {
     		
     		boolean obstacle = true;
     		while(obstacle) {
-    			x = rand.nextInt(29) + 1;
-    			y = rand.nextInt(29) + 1;
+    			x = rand.nextInt(28) + 1;
+    			y = rand.nextInt(28) + 1;
     			obstacle = checkObstacle(x,y,null);
     		}
     		monster.setPosX(x);

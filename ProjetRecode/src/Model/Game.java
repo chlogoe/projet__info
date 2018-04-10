@@ -14,28 +14,54 @@ public class Game implements DeletableObserver {
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
     private ArrayList<Item> items = new ArrayList<Item>();
+    
+    /*
+     * Pour faire les listes de map,
+     * Prendre un paramètre de taille de map
+     * avec celui-ci aller chercher l'ensemble des maps de cette taille
+     * celles-ci se trouveraient dans un dossier du nom de leur taille
+     * Utiliser les proposition trouvée ici https://stackoverflow.com/questions/5694385/getting-the-filenames-of-all-files-in-a-folder
+     * Ensuite faire un random sur la longeur de la liste obtenue et prendre la map qui correspond au random
+     * 
+     */
 
     private Window window;
     private int size;
     private int lineNumber;
+    private int level = 0;
 
-    public Game(Window window) throws IOException {
+    public Game(Window window) throws IOException{
         this.window = window;
         size = window.getSize();
-
-        // Creating one Player at the center of the map
+        
+        //Creating the player
+        
         Player player = new Player(size/2, size/2, 3, 5);
         player.attachDeletable(this);
         entities.add(player);
-       addMonster(3);
-
-        // Map building
-        this.buildMap();
-
-        window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
-        window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
-        window.setItems(items);
+   
+        startLevel();
         notifyView();
+    }
+    
+    private void startLevel() throws IOException {
+    	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).isAtPosition(15, 0))) {
+    		terrains.clear();
+    		items.clear();
+    		level++;
+    		
+    		this.getPlayer().setPosX(15);
+    		this.getPlayer().setPosY(28);
+
+            // Map building
+            this.buildMap();
+            
+            addMonster(level);
+            
+            window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
+            window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
+            window.setItems(items);
+    	}
     }
     
     /*
@@ -174,6 +200,11 @@ public class Game implements DeletableObserver {
      * Met l'affichage à jour
      */
     private void notifyView() {
+    	try {
+			startLevel();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         window.update();
     }
 
@@ -289,9 +320,18 @@ public class Game implements DeletableObserver {
     private void buildMap() throws IOException {
     	FileReader file = null;
         BufferedReader in = null;
+        Random rand = new Random();
+        int x = rand.nextInt(2);
+        String map;
+        if(x == 0) {
+        	map = "maps/map2.txt";
+        }
+        else {
+        	map = "maps/map3.txt";
+        }
         
         try {
-        	file = new FileReader("maps/map2.txt"); //On ouvre le fichier de la map souhaité
+        	file = new FileReader(map); //On ouvre le fichier de la map souhaité
         	in = new BufferedReader(file);//On met le fichier en mémoire
         	String line;
         	lineNumber = 0;

@@ -4,12 +4,16 @@ public class Spike extends Block implements Runnable {
 	private Player player;
 	private int x;
 	private int y;
+	private int level;
+	private Game game;
 	
-	public Spike(int x, int y, Player player) {
+	public Spike(int x, int y, Player player, Game game) {
 		super(x, y, "P");
 		this.player = player;
 		this.x = x;
 		this.y = y;
+		this.level = game.getLevel();
+		this.game = game;
 		new Thread(this).start();
 	}
 
@@ -25,13 +29,19 @@ public class Spike extends Block implements Runnable {
 
 	@Override
 	public void run() {
-		while(true) {
+		while(this.level == game.getLevel()) {
 			while(!player.isAtPosition(x, y)) {
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				if(this.level == game.getLevel()) {
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
+				else {
+					break;
+				}
+				
 			}
 			player.activate();
 			try {
@@ -42,5 +52,4 @@ public class Spike extends Block implements Runnable {
 			}
 		}
 	}
-
 }

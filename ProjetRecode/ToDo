@@ -1,6 +1,5 @@
-Passer par une classe abstraite pour les entités
-Créer la possibilité de plus de block
 Inventaire
 Coffre
-Bombe
 Menu graphique
+
+Au changement de amp, les objects ne sont que retirer de la liste, il faut les supprimer completement de la mémoire, sinon risque de surcharge de la mémoire (en plus les threads sont encore actif)

@@ -246,6 +246,10 @@ public class Game implements DeletableObserver {
     public int getAmountEntities() {
     	return entities.size();
     }
+    
+    public int getLevel() {
+    	return level;
+    }
 
     /*
      * Fonction qui se charge de créer les monstres et de les ajouters aléatoirement sur la carte
@@ -306,7 +310,7 @@ public class Game implements DeletableObserver {
 			terrains.add(new Door(x,y,this));
 			break;
 		case 'P':
-			terrains.add(new Spike(x,y,(Player) entities.get(0)));
+			terrains.add(new Spike(x,y,(Player) entities.get(0), this));
 			break;
 			
 		default:

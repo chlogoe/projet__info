@@ -7,18 +7,18 @@ A B                        B A
 A H  BBB  BBBB  BBBB  BBB  H A
 A H  B                  B  H A
 A B  B                  B  B A
-A B      HBBBBBBBBBBH      B A
+A B       BBBBHHBBBB       B A
 A       B            B       A
 A       B            B       A
 A    B  B            B  B    A
 A B  B  B            B  B  B A
-A B  B  B            B  B  B A
-A B     B            B     B A
+A B  B  H            H  B  B A
+A B     H            H     B A
 A B  B  B            B  B  B A
 A    B  B            B  B    A
 A    B  B            B  B    A
 A       B            B       A
-A B       BBBBBBBBBB       B A
+A B       BBBBHHBBBB       B A
 A B  B                  B  B A
 A H  B                  B  H A
 A H  BBB  BBBB  BBBB  BBB  H A

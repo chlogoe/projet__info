@@ -10,12 +10,12 @@ A      BBB          BBB      A
 A       BBB PP  PP BBB       A
 A        BBB      BBB        A
 A   H     BBB    BBB     H   A
+A   H     BBB    BBB     H   A
 A   H      BB    BB      H   A
-A   H       B BB B       H   A
-A   H       P    P       H   A
-A   H                    H   A
 A   H       P BB P       H   A
-A   H      BB    BB      H   A
+A   H                    H   A
+A   H       P    P       H   A
+A   H      BB BB BB      H   A
 A   H     BBB    BBB     H   A
 A        BBB      BBB        A
 A       BBB PP  PP BBB       A

@@ -39,6 +39,7 @@ public class Game implements DeletableObserver {
         Player player = new Player(size/2, size/2, 3, 5);
         player.attachDeletable(this);
         entities.add(player);
+        window.setPlayer(player);
    
         startLevel();
         notifyView();
@@ -206,6 +207,7 @@ public class Game implements DeletableObserver {
 			e.printStackTrace();
 		}
         window.update();
+        window.updateInventory();
     }
 
     /*

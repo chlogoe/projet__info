@@ -3,6 +3,7 @@ package View;
 import Model.Entity;
 import Model.GameObject;
 import Model.Item;
+import Model.Player;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -55,9 +56,18 @@ public class Window {
     	this.map.setItems(items);
     	this.map.redraw();
     }
+    
+    public void setPlayer(Player player) {
+    	this.inventory.setPlayer(player);
+    }
 
-    public void update() {	//Met la carte à jour
+    public void update() {	//Met la carte et l'inventaire à jour
         this.map.redraw();
+       // this.inventory.redraw();
+    }
+    
+    public void updateInventory() {
+    	this.inventory.redraw();
     }
 
     public void setKeyListener(KeyListener keyboard) { //Ajoute le lecteur de clavier à la fenêtre

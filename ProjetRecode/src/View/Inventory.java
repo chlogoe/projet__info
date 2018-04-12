@@ -1,6 +1,8 @@
 package View;
 
 import Model.GameObject;
+import Model.Item;
+
 import javax.swing.JPanel;
 import Model.Player;
 import java.awt.Color;
@@ -12,20 +14,26 @@ import javax.imageio.ImageIO;
 
 public class Inventory extends JPanel{
 	
+	private Player player;
+	
 	public Inventory(){
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 	}
 	
+	
 	public void paint(Graphics g) {
-		for (int i=51; i<400;i++) {
-			for (int j = 10; j<30; j++) {
-				int x=i;
-				int y=j;
-				g.setColor(Color.cyan);
-				g.fillRect(x, y, 32, 32);
-				
-			}
-		}
+		g.setColor(Color.GREEN);
+		g.fillRect(100, 100, 300*player.getHealth()/player.getMaxHealth(), 20);
+		g.setColor(Color.RED);
+		g.fillRect(100+300*player.getHealth()/player.getMaxHealth(), 100, 300-300*player.getHealth()/player.getMaxHealth(), 20);
+    				
 	}
+	public void setPlayer(Player player) {
+    	this.player = player;
+    }	
+	
+	public void redraw() { 
+        this.repaint();
+    }
 }

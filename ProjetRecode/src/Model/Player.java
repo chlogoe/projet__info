@@ -29,11 +29,11 @@ public class Player extends Entity {
     public void activate() {
     	int health = this.getHealth();
     	this.setHealth(health - 1);
-    	if(health == 0 && lifes == 0) {
+    	if(lifes == 0 && health == 1) {
     		notifyDeletableObserver();
     		System.out.println("Fin de la partie");
     	}
-    	else if(health == 0) {
+    	else if(health == 1) {
     		this.setHealth(this.getMaxHealth());
     		lifes--;
     	}

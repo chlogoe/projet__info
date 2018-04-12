@@ -6,13 +6,13 @@ import java.util.Random;
 import View.Window;
 import Model.Game;
 
-public class MonstreTest extends Entity implements Runnable{
+public class MonstreCaC extends Entity implements Runnable{
 	
 	private Window window;
 	private Game game;
 
 	
-	public MonstreTest(int x, int y, Window window, Game game) {
+	public MonstreCaC(int x, int y, Window window, Game game) {
 		super(x, y, "Test", 5);
 		new Thread(this).start();
 		this.window = window;

@@ -264,12 +264,12 @@ public class Game implements DeletableObserver {
     	for(int i = 0;i<number;i++) {
     		int j = rand.nextInt(1);//Changer le 1 en le nombre de type de monstre que l'on fait appairaitre aléatoirement
     		if(j == 0) {
-    			monster = new MonstreTest(x, y, window, this);
+    			monster = new MonstreCaC(x, y, window, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}
     		else {
-    			monster = new MonstreTest(-1, -1, window, this);
+    			monster = new MonstreCaC(-1, -1, window, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}

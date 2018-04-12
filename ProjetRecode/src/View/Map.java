@@ -20,13 +20,19 @@ public class Map extends JPanel {
     private ArrayList<GameObject> terrains = null;
     private ArrayList<Entity> entities = null;
     private ArrayList<Item> items = null;
+    
+    
     private BufferedImage font;
+    private BufferedImage breakableBlock;
+    private BufferedImage tintedRock;
 
     public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
         try { //Le try catch ici permet d'éviter les erreurs
         	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
+        	this.breakableBlock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick.png"));
+        	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick_cracked.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -53,10 +59,7 @@ public class Map extends JPanel {
             	g.fillRect(x * 32, y * 32, 31, 31);
             	break;
             case "B":
-            	g.setColor(Color.BLACK);
-                g.drawRect(x * 32, y * 32, 31, 31);
-                g.setColor(Color.GRAY);
-                g.fillRect(x * 32, y * 32, 31, 31);
+            	g.drawImage(breakableBlock, x*32, y*32,null);
             	break;
             case "C":
             	g.setColor(Color.BLUE);
@@ -81,8 +84,8 @@ public class Map extends JPanel {
             	g.drawRect(x*32+4, y*32+4, 24, 24);
             	break;
             case "B2":
-            	g.setColor(Color.PINK);
-            	g.fillRect(x*32, y*32, 32, 32);
+            	g.drawImage(tintedRock, x*32, y*32,null);
+            	break;
             }
             
             

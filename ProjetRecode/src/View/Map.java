@@ -32,7 +32,7 @@ public class Map extends JPanel {
         try { //Le try catch ici permet d'éviter les erreurs
         	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
         	this.breakableBlock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick.png"));
-        	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick_cracked.png"));
+        	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick_mossy.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}

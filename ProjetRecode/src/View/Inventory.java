@@ -23,6 +23,8 @@ public class Inventory extends JPanel{
 	
 	
 	public void paint(Graphics g) {
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 0, 10000, 10000);
 		g.setColor(Color.GREEN);
 		g.fillRect(100, 100, 300*player.getHealth()/player.getMaxHealth(), 20);
 		g.setColor(Color.RED);

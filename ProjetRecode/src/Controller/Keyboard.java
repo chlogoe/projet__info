@@ -51,7 +51,7 @@ public class Keyboard implements KeyListener {
         case KeyEvent.VK_DOWN:
         	game.attack(Direction.Down, player);
         	break;
-        case KeyEvent.VK_A:
+        case KeyEvent.VK_E:
         	if(player.getBombAmount()>0) {
         		player.useBomb();
         		game.dropBomb(player.getPosX(), player.getPosY());

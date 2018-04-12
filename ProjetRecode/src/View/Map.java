@@ -33,15 +33,6 @@ public class Map extends JPanel {
     }
 
     public void paint(Graphics g) {
-    	
-    	for (int i=0; i<size+20 ; i++) {
-    		for (int j=0; j<size ; j++) {
-    			int x = i;
-    			int y = j;
-    			g.setColor(Color.BLACK);
-    			g.fillRect(x*32, y*32, 32, 32);
-    		}
-    	}
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int x = i;
@@ -152,11 +143,12 @@ public class Map extends JPanel {
         	switch(ID) {
         	case "ActiveBomb":
         		g.setColor(Color.MAGENTA);
-        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		g.fillOval(x*32+8, y*32+8, 16, 16);
         		break;
         	case "Bomb":
         		g.setColor(Color.BLACK);
-        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		g.fillOval(x*32+8, y*32+8, 16, 16);
+
         		break;
         	}
         		

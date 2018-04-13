@@ -61,7 +61,7 @@ public class Map extends JPanel {
             case "B":
             	g.drawImage(breakableBlock, x*32, y*32,null);
             	break;
-            case "C":
+            case "W":
             	g.setColor(Color.BLUE);
             	g.fillRect(x * 32, y * 32, 32, 32);
             	break;
@@ -86,6 +86,9 @@ public class Map extends JPanel {
             case "B2":
             	g.drawImage(tintedRock, x*32, y*32,null);
             	break;
+            case "C":
+            	g.setColor(Color.ORANGE);
+            	g.fillRect(x*32, y*32, 32, 32);
             }
             
             

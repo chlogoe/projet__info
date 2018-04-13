@@ -302,7 +302,7 @@ public class Game implements DeletableObserver {
             block.attachDeletable(this);
             terrains.add(block);
 			break;
-		case 'C':
+		case 'W':
 			terrains.add(new BlockWater(x, y));
 			break;
 		case 'H':
@@ -313,6 +313,9 @@ public class Game implements DeletableObserver {
 			break;
 		case 'P':
 			terrains.add(new Spike(x,y,(Player) entities.get(0), this));
+			break;
+		case 'C':
+			terrains.add(new Chest(x,y));
 			break;
 			
 		default:
@@ -327,13 +330,16 @@ public class Game implements DeletableObserver {
     	FileReader file = null;
         BufferedReader in = null;
         Random rand = new Random();
-        int x = rand.nextInt(2);
+        int x = rand.nextInt(3);
         String map;
         if(x == 0) {
         	map = "maps/map2.txt";
         }
-        else {
+        else if(x==1) {
         	map = "maps/map3.txt";
+        }
+        else {
+        	map = "maps/map4.txt";
         }
         
         try {

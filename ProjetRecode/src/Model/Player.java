@@ -12,8 +12,9 @@ public class Player extends Entity {
     private ArrayList<Item> inventory = new ArrayList<Item>();
 
     public Player(int x, int y, int maxBomb, int health) {
-        super(x, y, "Player", health);
+        super(x, y, "Player", health, 4);
         super.setMaxHealth(10);
+        
     }
 
    // //////////////////////////////////////////////////////////////////////////////////////
@@ -25,19 +26,37 @@ public class Player extends Entity {
         }
     }
 
+    /*
+     * Fonction qui gère la prise de dégat du joueur
+     * Vérifie si la vie après les dégat est possible, sinon met la vie à zéro
+     * 
+     * Vérifie ensuite, si la vie du joueur est nulle, si il a une vie supplémentaire
+     */
+    
     @Override
-    public void activate() {
+    public void dealDamage(int damage) {
     	int health = this.getHealth();
-    	this.setHealth(health - 1);
-    	if(lifes == 0 && health == 1) {
+    	
+    	if(health - damage > 0) {
+    		this.setHealth(health - damage);
+    	}
+    	else {
+    		this.setHealth(0);
+    	}
+    	
+    	health = this.getHealth();
+    	
+    	
+    	if(lifes == 0 && health == 0) {
     		notifyDeletableObserver();
     		System.out.println("Fin de la partie");
     	}
-    	else if(health == 1) {
+    	else if(health == 0) {
     		this.setHealth(this.getMaxHealth());
     		lifes--;
     	}
-	}
+    	
+    }
 
     @Override
     public void attack() {

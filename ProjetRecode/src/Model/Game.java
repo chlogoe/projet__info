@@ -127,7 +127,7 @@ public class Game implements DeletableObserver {
 					}
 				}
 				for(GameObject object : entities) {
-					if(object.isAtPosition(x+i, j+y) && object instanceof Activable) {
+					if(object.isAtPosition(x+i, j+y) && object instanceof Damageable) {
 						entity.add(object);
 					}
 				}
@@ -137,7 +137,7 @@ public class Game implements DeletableObserver {
 			((BlockBreakable) object).activate();
 		}
 		for(GameObject object : entity) {
-			((Entity) object).activate();
+			((Entity) object).dealDamage(2);
 		}
 	}
 	
@@ -175,11 +175,11 @@ public class Game implements DeletableObserver {
     		attacker.setDirection(Direction.Down);
     		break;
     	}
-    	Activable aimedObject = null;
+    	GameObject aimedObject = null;
 		for(GameObject object : entities){
 			if(object.isAtPosition(x,y)){
-			    if(object instanceof Activable){
-			        aimedObject = (Activable) object;
+			    if(object instanceof Damageable){
+			        aimedObject = object;
 			    }
 			}
 		}
@@ -188,11 +188,16 @@ public class Game implements DeletableObserver {
 			    if(object instanceof Bomb){
 			        ((Player) attacker).addItem((Item) object); 
 			    }
-			    aimedObject = (Activable) object;
+			    aimedObject = object;
 			}
 		}
 		if(aimedObject != null){
-		    aimedObject.activate();
+			if(aimedObject instanceof Entity) {
+				((Entity) aimedObject).dealDamage(attacker.getDamage());
+			}
+			else if(aimedObject instanceof Bomb) {
+				((Bomb) aimedObject).activate();
+			}
 		}
 		notifyView();
     }
@@ -237,8 +242,14 @@ public class Game implements DeletableObserver {
      * Fonction qui revoie l'objet joueur
      * (utilisé pour permettre au clavier de savoir quelle entité il dirige)
      */
-    public GameObject getPlayer() {
-    	return entities.get(0);
+    public Player getPlayer() {
+    	Entity player = entities.get(0);
+    	if(player instanceof Player) {
+    		return (Player) player;
+    	}
+    	else {
+    		return null;
+    	}
     }
     
     /*
@@ -370,17 +381,19 @@ public class Game implements DeletableObserver {
     
     public boolean playerInZone(int x, int y, int view) {
     	boolean isPlayerInZone = false;
-    	for(int i = view*-1; i < view+1; i++) {
-    		for(int j = view*-1; j < view+1; j++) {
-    			if(entities.get(0).isAtPosition(x+i, y+j)) {
-    				isPlayerInZone = true;
-    			}
-    			if(isPlayerInZone) {
-    				break;
-    			}
-    		}
-    		
+    	if(this.getPlayer() != null) {
+    		for(int i = view*-1; i < view+1; i++) {
+        		for(int j = view*-1; j < view+1; j++) {
+        			if(this.getPlayer().isAtPosition(x+i, y+j)) {
+        				isPlayerInZone = true;
+        			}
+        			if(isPlayerInZone) {
+        				break;
+        			}
+        		}
+        	}
     	}
+    	
     	return isPlayerInZone;
     }
 }

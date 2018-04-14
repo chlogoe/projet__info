@@ -13,7 +13,7 @@ public class MonstreCaC extends Entity implements Runnable{
 
 	
 	public MonstreCaC(int x, int y, Window window, Game game) {
-		super(x, y, "Test", 5);
+		super(x, y, "Test", 5, 5);
 		new Thread(this).start();
 		this.window = window;
 		this.game = game;
@@ -38,18 +38,6 @@ public class MonstreCaC extends Entity implements Runnable{
     }
 
 	@Override
-	public void activate() {
-		int health = this.getHealth();
-		if(health > 1) {
-			this.setHealth(health-1);
-		}
-		else {
-			this.setHealth(0);
-			kill();
-		}
-	}
-
-	@Override
 	public synchronized void run() {
 		Random rand = new Random();
 		try{
@@ -57,7 +45,7 @@ public class MonstreCaC extends Entity implements Runnable{
 				int sleepTime = 250;
 				int x = rand.nextInt(3)-1;
 				int y = 0;
-				Player player = (Player) game.getPlayer();
+				Player player = game.getPlayer();
 				if(x==0) {
 					y  = rand.nextInt(3)-1;
 				}
@@ -81,6 +69,17 @@ public class MonstreCaC extends Entity implements Runnable{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
+	}
+
+	@Override
+	public void dealDamage(int damage) {
+		int health = this.getHealth();
+		if(health - damage > 0) {
+			this.setHealth(health-damage);
+		}
+		else {
+			this.setHealth(0);
+			kill();
+		}
 	}
 }

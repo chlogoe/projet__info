@@ -10,7 +10,5 @@ public class Bomb extends Item implements Activable {
 	@Override
 	public void activate() {
 		this.notifyDeletableObserver();
-		
 	}
-
 }

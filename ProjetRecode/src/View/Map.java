@@ -151,6 +151,10 @@ public class Map extends JPanel {
         		g.setColor(Color.MAGENTA);
         		g.fillOval(x*32+8, y*32+8, 16, 16);
         		break;
+        	case "ActiveBomb2":
+        		g.setColor(Color.BLUE);
+        		g.fillOval(x*32+8, y*32+8, 16, 16);
+        		break;
         	case "Bomb":
         		g.setColor(Color.BLACK);
         		g.fillOval(x*32+8, y*32+8, 16, 16);

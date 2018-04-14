@@ -12,8 +12,6 @@ public class Keyboard implements KeyListener {
     private Game game;
     private Player player;
 
-    private static final int player1 = 0;
-
     public Keyboard(Game game, GameObject player) {
         this.game = game;
         this.player = (Player) player;
@@ -36,20 +34,17 @@ public class Keyboard implements KeyListener {
         case KeyEvent.VK_Z:
             game.moveEntity(0, -1, player);
             break;
-        case KeyEvent.VK_P:
-            game.playerPos(player1);
-            break;
         case KeyEvent.VK_LEFT:
-        	game.attack(Direction.Left, player);
+        	game.interact(Direction.Left, player);
         	break;
         case KeyEvent.VK_RIGHT:
-        	game.attack(Direction.Right, player);
+        	game.interact(Direction.Right, player);
         	break;
         case KeyEvent.VK_UP:
-        	game.attack(Direction.Up, player);
+        	game.interact(Direction.Up, player);
         	break;
         case KeyEvent.VK_DOWN:
-        	game.attack(Direction.Down, player);
+        	game.interact(Direction.Down, player);
         	break;
         case KeyEvent.VK_E:
         	if(player.getBombAmount()>0) {

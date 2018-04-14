@@ -36,7 +36,7 @@ public class Game implements DeletableObserver {
         
         //Creating the player
         
-        Player player = new Player(size/2, size/2, 3, 5);
+        Player player = new Player(size/2, size/2, 3, 10);
         player.attachDeletable(this);
         entities.add(player);
         window.setPlayer(player);
@@ -44,6 +44,7 @@ public class Game implements DeletableObserver {
         startLevel();
         notifyView();
     }
+    
     
     private void startLevel() throws IOException {
     	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).isAtPosition(15, 0))) {
@@ -74,14 +75,31 @@ public class Game implements DeletableObserver {
 
         if (!checkObstacle(nextX, nextY, entity)) {
             entity.move(x, y);
+            if(entity instanceof Player) {
+            	pickUpItem();
+            }
         }
         notifyView();
+    }
+    
+    private void pickUpItem() {
+    	boolean pickedUp = false;
+    	for(Item item: items) {
+    		if(item.isAtPosition(getPlayer().getPosX(), getPlayer().getPosY())) {
+    			getPlayer().addItem(item);
+    			pickedUp = true;
+    		}
+    		if(pickedUp) {
+    			item.activate();
+    			break;
+    		}
+    	}
     }
 
     /*
      * Vérifie si il y a un obstacle empêchant le déplacement d'une entité
      */
-	public boolean checkObstacle(int x, int y, Entity entity) {
+	private boolean checkObstacle(int x, int y, Entity entity) {
     	boolean obstacle = false;
     	for (GameObject object : terrains) {
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
@@ -154,25 +172,25 @@ public class Game implements DeletableObserver {
 	/*
 	 * Fonction qui vérifie si il y a quelque chose à attaquer et, le cas échéant, attaque
 	 */
-    public void attack(Direction direction, Entity attacker) {
-    	int x = attacker.getPosX();
-    	int y = attacker.getPosY();
+    public void interact(Direction direction, Entity actor) {
+    	int x = actor.getPosX();
+    	int y = actor.getPosY();
     	switch(direction) {
     	case Left :
     		x--;
-    		attacker.setDirection(Direction.Left);
+    		actor.setDirection(Direction.Left);
     		break;
     	case Right:
     		x++;
-    		attacker.setDirection(Direction.Right);
+    		actor.setDirection(Direction.Right);
     		break;
     	case Up:
     		y--;
-    		attacker.setDirection(Direction.Up);
+    		actor.setDirection(Direction.Up);
     		break;
     	case Down:
     		y++;
-    		attacker.setDirection(Direction.Down);
+    		actor.setDirection(Direction.Down);
     		break;
     	}
     	GameObject aimedObject = null;
@@ -183,21 +201,26 @@ public class Game implements DeletableObserver {
 			    }
 			}
 		}
+		/*
 		for(GameObject object : items) {
 			if(object.isAtPosition(x,y)){
-			    if(object instanceof Bomb){
-			        ((Player) attacker).addItem((Item) object); 
+			    if(object instanceof Item){
+			        ((Player) actor).addItem((Item) object); 
 			    }
 			    aimedObject = object;
 			}
 		}
+		*/
 		if(aimedObject != null){
+			((Entity) aimedObject).dealDamage(actor.getDamage());
+			/*
 			if(aimedObject instanceof Entity) {
-				((Entity) aimedObject).dealDamage(attacker.getDamage());
+				((Entity) aimedObject).dealDamage(actor.getDamage());
 			}
-			else if(aimedObject instanceof Bomb) {
-				((Bomb) aimedObject).activate();
+			else if(aimedObject instanceof Item) {
+				((Item) aimedObject).activate();
 			}
+			*/
 		}
 		notifyView();
     }
@@ -205,7 +228,7 @@ public class Game implements DeletableObserver {
     /*
      * Met l'affichage à jour
      */
-    private void notifyView() {
+    public void notifyView() {
     	try {
 			startLevel();
 		} catch (IOException e) {
@@ -228,14 +251,6 @@ public class Game implements DeletableObserver {
             items.add(item);
         }
         notifyView();
-    }
-
-	/*
-	 * Affiche la position du joueur dans la console
-	 */
-    public void playerPos(int playerNumber) {
-        Player player = ((Player) entities.get(playerNumber));
-        System.out.println(player.getPosX() + ":" + player.getPosY());
     }
     
     /*

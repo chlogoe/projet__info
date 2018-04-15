@@ -33,7 +33,7 @@ public class MonstreCaC extends Entity implements Runnable{
 	@Override
     public void notifyDeletableObserver() {
         for (DeletableObserver o : observers) {
-            o.delete(this, null);
+            o.delete(this, new Heart(this.getPosX(), this.getPosY()));
         }
     }
 

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Player extends Entity {
 
     private int lifes = 3;
+    
     private int maxBombs = 5;
     private int bombAmount = 4;
     private int maxKeys = 5;
     private int keyAmount = 0;
+    
     private ArrayList<Item> inventory = new ArrayList<Item>();
 
     public Player(int x, int y, int maxBomb, int health) {
@@ -55,7 +57,17 @@ public class Player extends Entity {
     		this.setHealth(this.getMaxHealth());
     		lifes--;
     	}
+    }
+    
+    private void heal(int healing) {
+    	int nextHealth = this.getHealth()+healing;
     	
+    	if(nextHealth < this.getMaxHealth()) {
+    		this.setHealth(nextHealth);
+    	}
+    	else {
+    		this.setHealth(this.getMaxHealth());
+    	}
     }
 
     @Override
@@ -76,14 +88,15 @@ public class Player extends Entity {
     	if(item instanceof Bomb) {
     		if (bombAmount < maxBombs) {
     			bombAmount++;
-    			this.inventory.add(item);
     		}
     	}
     	else if (item instanceof Key){
     		if (keyAmount < maxKeys) {
         		keyAmount++;
-        		this.inventory.add(item);
     		}
+    	}
+    	else if(item instanceof Heart) {
+    		heal(3);
     	}
     	else {
     		this.inventory.add(item);
@@ -100,5 +113,9 @@ public class Player extends Entity {
     
     public int getKeyAmount() {
     	return keyAmount;
+    }
+    
+    public ArrayList<Item> getInventory(){
+    	return inventory;
     }
 }

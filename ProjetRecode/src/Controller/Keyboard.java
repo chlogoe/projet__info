@@ -54,6 +54,10 @@ public class Keyboard implements KeyListener {
         	break;
         case KeyEvent.VK_H:
         	game.addMonster(10);
+        	break;
+        case KeyEvent.VK_I:
+        	System.out.println(player.getInventory());
+        	break;
         }
     }
 

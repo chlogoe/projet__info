@@ -25,6 +25,7 @@ public class Map extends JPanel {
     private BufferedImage font;
     private BufferedImage breakableBlock;
     private BufferedImage tintedRock;
+    private BufferedImage spike;
 
     public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
@@ -33,6 +34,7 @@ public class Map extends JPanel {
         	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
         	this.breakableBlock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick.png"));
         	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick_cracked.png"));
+        	this.spike = ImageIO.read(getClass().getResourceAsStream("/images/spike.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -80,8 +82,7 @@ public class Map extends JPanel {
             	}
             	break;
             case "P":
-            	g.setColor(Color.LIGHT_GRAY);
-            	g.drawRect(x*32+4, y*32+4, 24, 24);
+            	g.drawImage(spike, x*32, y*32, null);
             	break;
             case "B2":
             	g.drawImage(tintedRock, x*32, y*32,null);
@@ -158,8 +159,10 @@ public class Map extends JPanel {
         	case "Bomb":
         		g.setColor(Color.BLACK);
         		g.fillOval(x*32+8, y*32+8, 16, 16);
-
         		break;
+        	case "Heart":
+        		g.setColor(Color.PINK);
+        		g.fillOval(x*32+8, y*32+8, 16, 16);
         	}
         		
         }

@@ -1,26 +1,36 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Player extends Entity {
 
     private int lifes = 3;
     
     private int maxBombs = 5;
-    private int bombAmount = 4;
     private int maxKeys = 5;
-    private int keyAmount = 0;
     
-    private ArrayList<Item> inventory = new ArrayList<Item>();
+    //private ArrayList<Item> inventory = new ArrayList<Item>();
+    
+    private Hashtable<String, Integer> inventory = new Hashtable<String, Integer>();
+    
+    
+    
 
     public Player(int x, int y, int maxBomb, int health) {
         super(x, y, "Player", health, 4);
         super.setMaxHealth(10);
-        
+        initializeInventory();
     }
 
    // //////////////////////////////////////////////////////////////////////////////////////
-
+    
+    private void initializeInventory() {
+    	inventory.put("Bomb", 4);
+    	inventory.put("Key", 0);
+    	inventory.put("DamageUp", 0);
+    }
+    
     @Override
     public void notifyDeletableObserver() {
     	for (DeletableObserver o : observers) {
@@ -85,37 +95,28 @@ public class Player extends Entity {
      */
     
     public void addItem(Item item) {
-    	if(item instanceof Bomb) {
-    		if (bombAmount < maxBombs) {
-    			bombAmount++;
-    		}
-    	}
-    	else if (item instanceof Key){
-    		if (keyAmount < maxKeys) {
-        		keyAmount++;
-    		}
-    	}
-    	else if(item instanceof Heart) {
+    	if(item instanceof Heart) {
     		heal(3);
     	}
     	else {
-    		this.inventory.add(item);
+    		String ID = item.getID();
+    		inventory.put(ID, inventory.get(ID)+1);
     	}
     }
     
     public int getBombAmount() {
-    	return bombAmount;
+    	return inventory.get("Bomb");
     }
     
     public void useBomb() {
-    	this.bombAmount--;
+    	inventory.put("Bomb", inventory.get("Bomb")-1);
     }
     
     public int getKeyAmount() {
-    	return keyAmount;
+    	return inventory.get("Key");
     }
     
-    public ArrayList<Item> getInventory(){
+    public Hashtable<String, Integer> getInventory(){
     	return inventory;
     }
 }

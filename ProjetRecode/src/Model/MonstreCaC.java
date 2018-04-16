@@ -33,15 +33,29 @@ public class MonstreCaC extends Entity implements Runnable{
 	@Override
     public void notifyDeletableObserver() {
         for (DeletableObserver o : observers) {
-            o.delete(this, new Heart(this.getPosX(), this.getPosY()));
+            o.delete(this, getLoot());
         }
     }
+	
+	private Item getLoot() {
+		Random rand = new Random();
+		int n = rand.nextInt(25);
+		if(n == 3) {
+			return new Heart(this.getPosX(), this.getPosY());
+		}
+		else if(n == 7) {
+			return new Bomb(this.getPosX(), this.getPosY());
+		}
+		else {
+			return null;
+		}
+	}
 
 	@Override
 	public synchronized void run() {
 		Random rand = new Random();
 		try{
-			while (this.getHealth()>0){
+			while (this.getHealth()>0 && game.getPlayer() != null){
 				int sleepTime = 250;
 				int x = rand.nextInt(3)-1;
 				int y = 0;
@@ -64,7 +78,7 @@ public class MonstreCaC extends Entity implements Runnable{
 				}
 				Direction playerDirection = checkPlayerDirection(player);
 				if(playerDirection != null) {
-					Thread.sleep(200);
+					Thread.sleep(150);
 					switch(playerDirection) {
 					case Left:
 						game.interact(Direction.Left,this);

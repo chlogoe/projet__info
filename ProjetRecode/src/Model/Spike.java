@@ -29,28 +29,24 @@ public class Spike extends Block implements Runnable {
 
 	@Override
 	public void run() {
-		while(this.level == game.getLevel() && game.getPlayer() != null) {
-			while(!player.isAtPosition(x, y)) {
-				if(this.level == game.getLevel()) {
-					try {
+		try {
+			while(this.level == game.getLevel() && game.getPlayer() != null) {
+				while(!player.isAtPosition(x, y)) {
+					if(this.level == game.getLevel()) {
 						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					}
+					else {
+						break;
 					}
 				}
-				else {
-					break;
+				if(this.level == game.getLevel()) {
+				player.dealDamage(2);;
 				}
-			}
-			
-			if(this.level == game.getLevel()) {
-			player.dealDamage(2);;
-			}
-			try {
 				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

@@ -26,7 +26,7 @@ public class Player extends Entity {
    // //////////////////////////////////////////////////////////////////////////////////////
     
     private void initializeInventory() {
-    	inventory.put("Bomb", 4);
+    	inventory.put("Bomb", 10);
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
     }

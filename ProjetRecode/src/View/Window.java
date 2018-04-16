@@ -62,13 +62,13 @@ public class Window {
     }
 
     public void update() {	//Met la carte et l'inventaire à jour
-        this.map.redraw();
+        this.windowPanel.repaint();
        // this.inventory.redraw();
     }
     
-    public void updateInventory() {
-    	this.inventory.redraw();
-    }
+//    public void updateInventory() {
+//    	this.inventory.redraw();
+//    }
 
     public void setKeyListener(KeyListener keyboard) { //Ajoute le lecteur de clavier à la fenêtre
         this.map.addKeyListener(keyboard);

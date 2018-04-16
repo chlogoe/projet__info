@@ -79,7 +79,7 @@ public class MonstreCaC extends Entity implements Runnable{
 		else if (true) {
 			return Direction.Left;
 		}
-		return Direction.Down;
+		return Direction.Up;
 	}
 	
 	@Override

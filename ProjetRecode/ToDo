@@ -2,4 +2,7 @@ Inventaire
 Coffre
 Menu graphique
 
+
+Utiliser un tableau / liste avec clé-valeur (cf openclasssroom) pour l'inventaire
+
 Au changement de amp, les objects ne sont que retirer de la liste, il faut les supprimer completement de la mémoire, sinon risque de surcharge de la mémoire (en plus les threads sont encore actif)

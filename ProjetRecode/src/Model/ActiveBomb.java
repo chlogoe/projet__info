@@ -22,12 +22,29 @@ public class ActiveBomb extends Item implements Runnable {
 
 	@Override
 	public void run() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		int counter = 0;
+		int sleepTime = 20;
+		while(counter < 25) {
+			try {
+				Thread.sleep(sleepTime*(25-counter));
+				counter++;
+				if(counter%2 == 0) {
+					this.setID("ActiveBomb");
+				}
+				else {
+					this.setID("ActiveBomb2");
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			game.notifyView();
 		}
 		explode();
 		
+	}
+
+	@Override
+	public void activate() {
+		//Ne fait rien
 	}
 }

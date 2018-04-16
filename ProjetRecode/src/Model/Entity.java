@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public abstract class Entity extends GameObject implements Deletable, Activable, Directable{
+public abstract class Entity extends GameObject implements Deletable, Damageable, Directable{
 	
 	protected ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	
@@ -11,9 +11,10 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	private int maxHealth;
 	private Direction direction = Direction.Up;
 	
-	public Entity(int x, int y, String ID, int health) {
+	public Entity(int x, int y, String ID, int health, int damage) {
 		super(x,y,ID);
 		this.health = health;
+		this.damage = damage;
 	}
 	
 	public void move(int x, int y) {
@@ -28,6 +29,8 @@ public abstract class Entity extends GameObject implements Deletable, Activable,
 	public int getDamage() {
 		return damage;
 	}
+	
+	public abstract void dealDamage(int damage);
 	
 	public int getHealth() {
 		return health;

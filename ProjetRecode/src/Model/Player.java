@@ -121,6 +121,6 @@ public class Player extends Entity {
     }
     
     public void useKey() {
-    	this.keyAmount--;
+    	inventory.put("Key", inventory.get("Key")-1);
     }
 }

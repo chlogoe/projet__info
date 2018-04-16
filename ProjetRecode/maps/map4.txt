@@ -1,30 +1,30 @@
 AAAAAAAAAAAAAAADAAAAAAAAAAAAAA
+A                      BBBBBBA
+A                      BBBBBBA
+A                        BBBBA
+A                          BBA
+APPPPPPPPPPPPPPP             A
 A                            A
 A                            A
 A                            A
 A                            A
+A            PPPPPPPPPPPPPPPPA
+A                            A
+A                            A
+A             PPP            A
+A             PCP            A
+A             PPP            A
+A                            A
+A                            A
+APPPPPPPPPPPPPPP             A
 A                            A
 A                            A
 A                            A
 A                            A
+A            PPPPPPPPPPPPPPPPA
 A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A              C             A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
-A                            A
+ABB                          A
+ABBBB                        A
+ABBBBBB                      A
+ABBBBBB                      A
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

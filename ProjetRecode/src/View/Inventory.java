@@ -3,14 +3,11 @@ package View;
 import Model.GameObject;
 import Model.Item;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import Model.Player;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
+
 
 public class Inventory extends JPanel{
 	

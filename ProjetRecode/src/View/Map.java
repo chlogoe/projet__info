@@ -69,7 +69,7 @@ public class Map extends JPanel {
             	break;
             case "H":
             	g.setColor(Color.BLACK);
-            	g.fillRect(x*32, y*32, 31, 31);
+            	g.fillRect(x*32, y*32, 32, 32);
             	break;
             case "D":
             	g.setColor(Color.WHITE);

@@ -82,4 +82,8 @@ public class Player extends Entity {
     public int getKeyAmount() {
     	return keyAmount;
     }
+    
+    public void useKey() {
+    	this.keyAmount--;
+    }
 }

@@ -1,19 +1,19 @@
 AAAAAAAAAAAAAAADAAAAAAAAAAAAAA
-ABBBBBBBBB                   A
-ABBBBBBBB                    A
-ABBBB                        A
-ABB                          A
-ABB                          A
-ABB                          A
-AB                           A
 A                            A
 A                            A
 A                            A
 A                            A
 A                            A
-A             PPP            A
-A             PCP            A
-A             PPP            A
+A                            A
+A                            A
+A                            A
+A                            A
+A                            A
+A                            A
+A                            A
+A                            A
+A              C             A
+A                            A
 A                            A
 A                            A
 A                            A

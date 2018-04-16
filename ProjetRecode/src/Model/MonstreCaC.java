@@ -13,7 +13,7 @@ public class MonstreCaC extends Entity implements Runnable{
 
 	
 	public MonstreCaC(int x, int y, Window window, Game game) {
-		super(x, y, "Test", 5, 5);
+		super(x, y, "Test", 5, 3);
 		new Thread(this).start();
 		this.window = window;
 		this.game = game;
@@ -62,6 +62,24 @@ public class MonstreCaC extends Entity implements Runnable{
 						y = 0;
 					}
 				}
+				Direction playerDirection = checkPlayerDirection(player);
+				if(playerDirection != null) {
+					Thread.sleep(200);
+					switch(playerDirection) {
+					case Left:
+						game.interact(Direction.Left,this);
+						break;
+					case Right:
+						game.interact(Direction.Right,this);
+						break;
+					case Up:
+						game.interact(Direction.Up,this);
+						break;
+					case Down:
+						game.interact(Direction.Down,this);
+						break;
+					}
+				}
 				
 				game.moveEntity(x, y, this);
 				Thread.sleep(sleepTime);
@@ -72,14 +90,20 @@ public class MonstreCaC extends Entity implements Runnable{
 		}
 	}
 
-	private Direction checkPlayer(Player player) {
-		if(player.isAtPosition(this.getPosX(), this.getPosX()-1))	{
+	private Direction checkPlayerDirection(Player player) {
+		if(player.isAtPosition(this.getPosX(), this.getPosY()-1)) {
 			return Direction.Up;
 		}
-		else if (true) {
+		else if (player.isAtPosition(this.getPosX(), this.getPosY()+1)) {
+			return Direction.Down;
+		}
+		else if (player.isAtPosition(this.getPosX()-1, this.getPosY())) {
 			return Direction.Left;
 		}
-		return Direction.Up;
+		else if (player.isAtPosition(this.getPosX()+1, this.getPosY())) {
+			return Direction.Right;
+		}
+		return null;
 	}
 	
 	@Override

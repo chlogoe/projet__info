@@ -62,6 +62,7 @@ public class MonstreCaC extends Entity implements Runnable{
 						y = 0;
 					}
 				}
+				
 				game.moveEntity(x, y, this);
 				Thread.sleep(sleepTime);
 				window.update();
@@ -71,6 +72,16 @@ public class MonstreCaC extends Entity implements Runnable{
 		}
 	}
 
+	private Direction checkPlayer(Player player) {
+		if(player.isAtPosition(this.getPosX(), this.getPosX()-1))	{
+			return Direction.Up;
+		}
+		else if (true) {
+			return Direction.Left;
+		}
+		return Direction.Down;
+	}
+	
 	@Override
 	public void dealDamage(int damage) {
 		int health = this.getHealth();

@@ -13,6 +13,7 @@ public class Player extends Entity {
     //private ArrayList<Item> inventory = new ArrayList<Item>();
     
     private Hashtable<String, Integer> inventory = new Hashtable<String, Integer>();
+    private Hashtable<String, Integer> maxItem = new Hashtable<String, Integer>();
     
     
     
@@ -26,9 +27,11 @@ public class Player extends Entity {
    // //////////////////////////////////////////////////////////////////////////////////////
     
     private void initializeInventory() {
-    	inventory.put("Bomb", 10);
+    	inventory.put("Bomb", 11);
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
+    	maxItem.put("Bomb", 10);
+    	maxItem.put("Key", 10);
     }
     
     @Override
@@ -100,7 +103,10 @@ public class Player extends Entity {
     	}
     	else {
     		String ID = item.getID();
-    		inventory.put(ID, inventory.get(ID)+1);
+    		if(maxItem.get(ID)==null || maxItem.get(ID)>inventory.get(ID)) {
+    			inventory.put(ID, inventory.get(ID)+1);
+    		}
+    		
     	}
     }
     

@@ -22,30 +22,45 @@ public class Map extends JPanel {
     private ArrayList<Item> items = null;
     
     
+    
     private BufferedImage font;
     private BufferedImage breakableBlock;
     private BufferedImage tintedRock;
     private BufferedImage spike;
+    private BufferedImage bomb1;
+    private BufferedImage bomb2;
+    private BufferedImage bomb3;
+    private BufferedImage bomb4;
+    private BufferedImage bomb5;
+    private BufferedImage bomb;
+    private BufferedImage heart;
 
     public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
         try { //Le try catch ici permet d'éviter les erreurs
-        	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.png")); //Charge l'image dans la mémoire du jeu
-        	this.breakableBlock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick.png"));
-        	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/stonebrick_cracked.png"));
+        	this.font = ImageIO.read(getClass().getResourceAsStream("/images/backGround.jpg")); //Charge l'image dans la mémoire du jeu
+        	this.breakableBlock = ImageIO.read(getClass().getResourceAsStream("/images/breakableBlock.png"));
+        	this.tintedRock = ImageIO.read(getClass().getResourceAsStream("/images/tintedRock.png"));
         	this.spike = ImageIO.read(getClass().getResourceAsStream("/images/spike.png"));
+        	this.bomb1 = ImageIO.read(getClass().getResourceAsStream("/images/bomb1.png"));
+        	this.bomb2 = ImageIO.read(getClass().getResourceAsStream("/images/bomb2.png"));
+        	this.bomb3 = ImageIO.read(getClass().getResourceAsStream("/images/bomb3.png"));
+        	this.bomb4 = ImageIO.read(getClass().getResourceAsStream("/images/bomb4.png"));
+        	this.bomb5 = ImageIO.read(getClass().getResourceAsStream("/images/bomb5.png"));
+        	this.bomb = ImageIO.read(getClass().getResourceAsStream("/images/bomb.png"));
+        	this.heart = ImageIO.read(getClass().getResourceAsStream("/images/heart.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
     }
 
     public void paint(Graphics g) {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j <4; j++) {
                 int x = i;
                 int y = j;
-                g.drawImage(font, x*32, y*32,null); //on dessine une image sur toutes les cases de sol, on ajoute plus bas les autres textures
+                g.drawImage(font, x*256, y*256,null); //on dessine une image sur toutes les cases de sol, on ajoute plus bas les autres textures
             }
         }
 
@@ -147,21 +162,27 @@ public class Map extends JPanel {
         	int y = item.getPosY();
         	String ID = item.getID();
         	switch(ID) {
-        	case "ActiveBomb":
-        		g.setColor(Color.MAGENTA);
-        		g.fillOval(x*32+8, y*32+8, 16, 16);
+        	case "ActiveBomb1":
+        		g.drawImage(bomb1, x*32, y*32, null);
         		break;
         	case "ActiveBomb2":
-        		g.setColor(Color.BLUE);
-        		g.fillOval(x*32+8, y*32+8, 16, 16);
+        		g.drawImage(bomb2, x*32, y*32, null);
+        		break;
+        	case "ActiveBomb3":
+        		g.drawImage(bomb3, x*32, y*32, null);
+        		break;
+        	case "ActiveBomb4":
+        		g.drawImage(bomb4, x*32, y*32, null);
+        		break;
+        	case "ActiveBomb5":
+        		g.drawImage(bomb5, x*32, y*32, null);
         		break;
         	case "Bomb":
-        		g.setColor(Color.BLACK);
-        		g.fillOval(x*32+8, y*32+8, 16, 16);
+        		g.drawImage(bomb, x*32, y*32, null);
         		break;
         	case "Heart":
-        		g.setColor(Color.PINK);
-        		g.fillOval(x*32+8, y*32+8, 16, 16);
+        		g.drawImage(heart, x*32, y*32, null);
+        		break;
         	}
         		
         }

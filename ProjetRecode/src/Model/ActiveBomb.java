@@ -5,7 +5,7 @@ public class ActiveBomb extends Item implements Runnable {
 	private Game game;
 	
 	public ActiveBomb(int x, int y, Game game) {
-		super(x, y, "ActiveBomb");
+		super(x, y, "ActiveBomb1");
 		this.game = game;
 		new Thread(this).start();
 	}
@@ -23,16 +23,28 @@ public class ActiveBomb extends Item implements Runnable {
 	@Override
 	public void run() {
 		int counter = 0;
-		int sleepTime = 20;
-		while(counter < 25) {
+		int sleepTime = 17;
+		while(counter < 20) {
 			try {
 				Thread.sleep(sleepTime*(25-counter));
 				counter++;
-				if(counter%2 == 0) {
-					this.setID("ActiveBomb");
-				}
-				else {
+				int modulo = counter%5;
+				switch(modulo) {
+				case 0:
+					this.setID("ActiveBomb1");
+					break;
+				case 1:
 					this.setID("ActiveBomb2");
+					break;
+				case 2:
+					this.setID("ActiveBomb3");
+					break;
+				case 3:
+					this.setID("ActiveBomb4");
+					break;
+				case 4:
+					this.setID("ActiveBomb5");
+					break;
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

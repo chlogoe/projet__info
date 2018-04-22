@@ -13,7 +13,6 @@ public class Main {
 			Keyboard keyboard = new Keyboard(game, game.getPlayer());
 			window.setKeyListener(keyboard);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

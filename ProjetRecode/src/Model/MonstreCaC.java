@@ -21,8 +21,25 @@ public class MonstreCaC extends Entity implements Runnable{
 	}
 
 	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
+	public void attack() throws Exception {
+		Direction playerDirection = checkPlayerDirection(game.getPlayer());
+		if(playerDirection != null) {
+			Thread.sleep(150);
+			switch(playerDirection) {
+			case Left:
+				game.interact(Direction.Left,this);
+				break;
+			case Right:
+				game.interact(Direction.Right,this);
+				break;
+			case Up:
+				game.interact(Direction.Up,this);
+				break;
+			case Down:
+				game.interact(Direction.Down,this);
+				break;
+			}
+		}
 
 	}
 	
@@ -76,24 +93,7 @@ public class MonstreCaC extends Entity implements Runnable{
 						y = 0;
 					}
 				}
-				Direction playerDirection = checkPlayerDirection(player);
-				if(playerDirection != null) {
-					Thread.sleep(150);
-					switch(playerDirection) {
-					case Left:
-						game.interact(Direction.Left,this);
-						break;
-					case Right:
-						game.interact(Direction.Right,this);
-						break;
-					case Up:
-						game.interact(Direction.Up,this);
-						break;
-					case Down:
-						game.interact(Direction.Down,this);
-						break;
-					}
-				}
+				attack();
 				
 				game.moveEntity(x, y, this);
 				Thread.sleep(sleepTime);

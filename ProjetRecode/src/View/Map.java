@@ -34,6 +34,8 @@ public class Map extends JPanel {
     private BufferedImage bomb5;
     private BufferedImage bomb;
     private BufferedImage heart;
+    
+    //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
     public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
@@ -78,10 +80,6 @@ public class Map extends JPanel {
             case "B":
             	g.drawImage(breakableBlock, x*32, y*32,null);
             	break;
-            case "W":
-            	g.setColor(Color.BLUE);
-            	g.fillRect(x * 32, y * 32, 32, 32);
-            	break;
             case "H":
             	g.setColor(Color.BLACK);
             	g.fillRect(x*32, y*32, 32, 32);
@@ -104,6 +102,7 @@ public class Map extends JPanel {
             case "C":
             	g.setColor(Color.ORANGE);
             	g.fillRect(x*32+4, y*32+4, 24, 24);
+            	break;
             }
             
             

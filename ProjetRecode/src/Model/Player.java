@@ -7,9 +7,6 @@ public class Player extends Entity {
 
     private int lifes = 3;
     
-    private int maxBombs = 5;
-    private int maxKeys = 5;
-    
     //private ArrayList<Item> inventory = new ArrayList<Item>();
     
     private Hashtable<String, Integer> inventory = new Hashtable<String, Integer>();
@@ -27,7 +24,7 @@ public class Player extends Entity {
    // //////////////////////////////////////////////////////////////////////////////////////
     
     private void initializeInventory() {
-    	inventory.put("Bomb", 11);
+    	inventory.put("Bomb", 0);
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
     	maxItem.put("Bomb", 10);
@@ -85,7 +82,7 @@ public class Player extends Entity {
 
     @Override
     public void attack() {
-    	// TODO Auto-generated method stub
+    	// TODO Gérer l'attaque du joueur par ici et non pas via la classe Game
 	}
     
     /*

@@ -40,6 +40,9 @@ public class Window {
         window.setLocationRelativeTo(null);//On place la fenêtre au centre de l'image
         window.setResizable(false);//On empêche de redimensionner la fenêtre
         window.setVisible(true);//On rend la fenêtre visible
+        
+        //TODO fixer la taille de la fenêtre
+        //TODO Ne plus dépendre de size
     }
 
     public void setGameObjects(ArrayList<GameObject> objects) { //Fonction qui ajoute tout le terrain à la carte
@@ -63,12 +66,9 @@ public class Window {
 
     public void update() {	//Met la carte et l'inventaire à jour
         this.windowPanel.repaint();
-       // this.inventory.redraw();
+        //TODO vérifier si cette fonction est encore nécéssaire
     }
     
-//    public void updateInventory() {
-//    	this.inventory.redraw();
-//    }
 
     public void setKeyListener(KeyListener keyboard) { //Ajoute le lecteur de clavier à la fenêtre
         this.map.addKeyListener(keyboard);

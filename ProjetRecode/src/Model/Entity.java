@@ -40,7 +40,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		this.health = health;
 	}
 	
-	public abstract void attack();
+	public abstract void attack() throws Exception;
 	
 	public void setDirection(Direction direction) {
 		this.direction = direction;

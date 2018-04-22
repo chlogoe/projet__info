@@ -45,8 +45,8 @@ public class Spike extends Block implements Runnable {
 				Thread.sleep(2000);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 }
+//TODO Revoir l'ensemble des object appelé et rendre le tout concordant (player et game.getPlayer() nottament)

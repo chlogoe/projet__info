@@ -39,6 +39,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
         for (DeletableObserver o : observers) {
         	if(this.getID() == "B2") {
         		o.delete(this, items.get(0));
+        		//TODO créer une véritable pool d'items
         	}
         	else {
         		o.delete(this, null);

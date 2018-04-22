@@ -55,8 +55,8 @@ public class Game implements DeletableObserver {
     		try {
 				this.getPlayer().setPosX(15);
 				this.getPlayer().setPosY(28);
+				// TODO passer les cooredonées en paramètre, dépendents de la taille de la map
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -85,6 +85,7 @@ public class Game implements DeletableObserver {
             }
         }
         notifyView();
+        //TODO Réfléchir à déplacer dans la classe Entity
     }
     
     private void pickUpItem() {
@@ -96,7 +97,6 @@ public class Game implements DeletableObserver {
 					pickedUp = true;
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		if(pickedUp) {
@@ -104,6 +104,7 @@ public class Game implements DeletableObserver {
     			break;
     		}
     	}
+    	//TODO Réfléchir à déplacer dans le classe Player
     }
 
     /*
@@ -167,6 +168,7 @@ public class Game implements DeletableObserver {
 		for(GameObject object : entity) {
 			((Entity) object).dealDamage(2);
 		}
+		//TODO Réfléchir à déplacer dans la classe ActveBomb
 	}
 	
 	/*
@@ -215,6 +217,7 @@ public class Game implements DeletableObserver {
 			((Entity) aimedObject).dealDamage(actor.getDamage());
 		}
 		notifyView();
+		//TODO Réfléchir à passer dans la classe Entity
     }
 
     /*
@@ -227,7 +230,7 @@ public class Game implements DeletableObserver {
 			e.printStackTrace();
 		}
         window.update();
-//        window.updateInventory();
+        //TODO Faire un thread uniquement destiné à lancer l'actualisation de la fenêtre
     }
 
     /*
@@ -321,9 +324,6 @@ public class Game implements DeletableObserver {
             block.attachDeletable(this);
             terrains.add(block);
 			break;
-		case 'W':
-			terrains.add(new BlockWater(x, y));
-			break;
 		case 'H':
 			terrains.add(new Hole(x,y));
 			break;
@@ -381,6 +381,7 @@ public class Game implements DeletableObserver {
         	in.close();//On vide la mémoire du fichier texte
         	file.close();//On ferme le fichier
         }
+        //TODO Modifier pour pouvoir générer des cartes de différentes tailles
     }
 
     /*
@@ -403,10 +404,10 @@ public class Game implements DeletableObserver {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
     	return isPlayerInZone;
+    	//TODO Réfléchir à déplacer hors du main (Peu probable au vu de l'utilisation de la fonction dans la génération des mobs
     }
 }

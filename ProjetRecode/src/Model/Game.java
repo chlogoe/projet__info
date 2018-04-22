@@ -258,7 +258,7 @@ public class Game implements DeletableObserver {
     		return (Player) player;
     	}
     	else {
-    		throw new Exception();
+    		throw new Exception("No player");
     	}
     }
     

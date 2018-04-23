@@ -148,7 +148,21 @@ public class Map extends JPanel {
         		break;
         	case "Test":
         		g.setColor(Color.GREEN);
-        		g.fillRect(x * 32+8, y * 32+8, 16, 16);
+        		switch(direction) {
+        		case Up:
+        			g.fillPolygon(a1,b1,3);
+                	break;
+        		case Right:
+        			g.fillPolygon(a2,b2,3);
+                	break;
+        		case Down:
+        			g.fillPolygon(a3,b3,3);
+                	break;
+        		case Left:
+        			g.fillPolygon(a4,b4,3);
+                	break;
+        		}
+        		
         		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
         		g.setColor(Color.RED);
         		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);

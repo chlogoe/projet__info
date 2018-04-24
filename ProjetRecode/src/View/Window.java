@@ -18,12 +18,9 @@ public class Window {
 	private JPanel windowPanel;
     private Map map = new Map();
     private Inventory inventory= new Inventory();
-    private int size;
     private String gameName = "Splendid Game";
 
-    public Window(int size) { // Ajout d'un paramètre permetant de définir la taille de la carte
-    	this.size = size;
-    	map.setSize(size); //Définit la taille de la carte
+    public Window() { // Ajout d'un paramètre permetant de définir la taille de la carte
     	
     	JFrame window = new JFrame(gameName);
 		this.windowPanel = new JPanel();
@@ -43,7 +40,6 @@ public class Window {
         
         new ViewUpdater(this);
         
-        //TODO Ne plus dépendre de size
     }
 
     public void setGameObjects(ArrayList<GameObject> objects) { //Fonction qui ajoute tout le terrain à la carte
@@ -72,9 +68,5 @@ public class Window {
 
     public void setKeyListener(KeyListener keyboard) { //Ajoute le lecteur de clavier à la fenêtre
         this.map.addKeyListener(keyboard);
-    }
-    
-    public int getSize() { //permet aux autre classe d'obtenir la taille de la carte
-    	return size; 
     }
 }

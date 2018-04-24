@@ -25,23 +25,16 @@ public class Game implements DeletableObserver {
         
         //Creating the player
         
-        Player player = new Player(size/2, size/2, 3, 10);
+        Player player = new Player(this);
         player.attachDeletable(this);
         entities.add(player);
         window.setPlayer(player);
    
-        startLevel();
+        new LevelUpdater(this);
     }
     
     
-    private void startLevel() throws IOException {
-    	int posX = 0;
-    	if(size%2 == 0) {
-    		posX = size/2+1;
-    	}
-    	else {
-    		posX = (size)/2;
-    	}
+    public void startLevel() throws IOException {
     	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).getPosY()==0)) {
     		terrains.clear();
     		items.clear();
@@ -53,13 +46,10 @@ public class Game implements DeletableObserver {
     		try {
 				this.getPlayer().setPosX(size/2);
 				this.getPlayer().setPosY(size-2);
-				// TODO passer les cooredonées en paramètre, dépendents de la taille de la map
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-            
-            
             addMonster(level);
             
             window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
@@ -67,29 +57,9 @@ public class Game implements DeletableObserver {
             window.setItems(items);
     	}
     }
-    
-    /*
-     * Fonction qui vérifie les condition nécéssaire au déplacement d'une entité
-     */
-    public void moveEntity(int x, int y, Entity entity) {
-    	int nextX = entity.getPosX() + x;
-        int nextY = entity.getPosY() + y;
 
-        if (!checkObstacle(nextX, nextY, entity)) {
-            entity.move(x, y);
-            if(entity instanceof Player) {
-            	pickUpItem();
-            	try {
-					startLevel();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-            }
-        }
-        //TODO Réfléchir à déplacer dans la classe Entity
-    }
     
-    private void pickUpItem() {
+    public void pickUpItem() {
     	boolean pickedUp = false;
     	for(Item item: items) {
     		try {
@@ -111,7 +81,7 @@ public class Game implements DeletableObserver {
     /*
      * Vérifie si il y a un obstacle empêchant le déplacement d'une entité
      */
-	private boolean checkObstacle(int x, int y, Entity entity) {
+	public boolean checkObstacle(int x, int y, Entity entity) {
     	boolean obstacle = false;
     	for (GameObject object : terrains) {
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
@@ -321,7 +291,7 @@ public class Game implements DeletableObserver {
 			terrains.add(new Door(x,y,this));
 			break;
 		case 'P':
-			terrains.add(new Spike(x,y,(Player) entities.get(0), this));
+			terrains.add(new Spike(x,y, this));
 			break;
 		case 'C':
 			terrains.add(new Chest(x,y));
@@ -363,7 +333,6 @@ public class Game implements DeletableObserver {
         	in.close();//On vide la mémoire du fichier texte
         	file.close();//On ferme le fichier
         }
-        //TODO Modifier pour pouvoir générer des cartes de différentes tailles
     }
 
     /*

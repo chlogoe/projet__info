@@ -19,12 +19,21 @@ public class MonstreCaC extends Entity implements Runnable{
 		this.game = game;
 		super.setMaxHealth(5);
 	}
+	
+	@Override
+	public void move(int x, int y) {
+		this.setDirection(getDirection(x,y));
+		if(!game.checkObstacle(getPosX()+x, getPosY()+y, this)) {
+    		this.setPosX(this.getPosX()+x);
+    		this.setPosY(this.getPosY()+y);
+    	}
+	}
 
 	@Override
 	public void attack() throws Exception {
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
 		if(playerDirection != null) {
-			Thread.sleep(150);
+			Thread.sleep(200);
 			switch(playerDirection) {
 			case Left:
 				game.interact(Direction.Left,this);
@@ -40,7 +49,6 @@ public class MonstreCaC extends Entity implements Runnable{
 				break;
 			}
 		}
-
 	}
 	
 	public void kill() {
@@ -73,7 +81,7 @@ public class MonstreCaC extends Entity implements Runnable{
 		Random rand = new Random();
 		try{
 			while (this.getHealth()>0 && game.getPlayer() != null){
-				int sleepTime = 250;
+				int sleepTime = 280;
 				int x = rand.nextInt(3)-1;
 				int y = 0;
 				Player player = game.getPlayer();
@@ -95,7 +103,7 @@ public class MonstreCaC extends Entity implements Runnable{
 				}
 				attack();
 				
-				game.moveEntity(x, y, this);
+				move(x, y);
 				Thread.sleep(sleepTime);
 				window.update();
 			}

@@ -2,16 +2,17 @@ package Model;
 
 public class Spike extends Block implements Runnable {
 	private Player player;
-	private int x;
-	private int y;
 	private int level;
 	private Game game;
+	private int damage = 2;
 	
-	public Spike(int x, int y, Player player, Game game) {
+	public Spike(int x, int y, Game game) {
 		super(x, y, "P");
-		this.player = player;
-		this.x = x;
-		this.y = y;
+		try {
+			this.player = game.getPlayer();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.level = game.getLevel();
 		this.game = game;
 		new Thread(this).start();
@@ -31,7 +32,7 @@ public class Spike extends Block implements Runnable {
 	public void run() {
 		try {
 			while(this.level == game.getLevel() && game.getPlayer() != null) {
-				while(!player.isAtPosition(x, y)) {
+				while(!player.isAtPosition(getPosX(), getPosY())) {
 					if(this.level == game.getLevel()) {
 						Thread.sleep(10);
 					}
@@ -40,7 +41,7 @@ public class Spike extends Block implements Runnable {
 					}
 				}
 				if(this.level == game.getLevel()) {
-				player.dealDamage(2);;
+				player.dealDamage(damage);;
 				}
 				Thread.sleep(2000);
 			}
@@ -48,5 +49,8 @@ public class Spike extends Block implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 }
-//TODO Revoir l'ensemble des object appelé et rendre le tout concordant (player et game.getPlayer() nottament)

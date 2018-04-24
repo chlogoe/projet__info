@@ -23,16 +23,16 @@ public class Keyboard implements KeyListener {
 
         switch (key) {
         case KeyEvent.VK_D:
-            game.moveEntity(1, 0, player);
+        	player.move(1, 0);
             break;
         case KeyEvent.VK_Q:
-            game.moveEntity(-1, 0, player);
+        	player.move(-1, 0);
             break;
         case KeyEvent.VK_S:
-            game.moveEntity(0, 1, player);
+        	player.move(0, 1);
             break;
         case KeyEvent.VK_Z:
-            game.moveEntity(0, -1, player);
+        	player.move(0, -1);
             break;
         case KeyEvent.VK_LEFT:
         	game.interact(Direction.Left, player);

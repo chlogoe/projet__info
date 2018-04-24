@@ -17,10 +17,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		this.damage = damage;
 	}
 	
-	public void move(int x, int y) {
-		this.setPosX(this.getPosX()+x);
-		this.setPosY(this.getPosY()+y);
-	}
+	public abstract void move(int x, int y);
 	
 	public boolean isObstacle(Entity entity) {
 		return true;
@@ -61,4 +58,20 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
     public void attachDeletable(DeletableObserver po) {
         observers.add(po);
     }
+	
+	@Override
+	public Direction getDirection(int x, int y) {
+		if(x == 1) {
+			return Direction.Right;
+		}
+		else if(x == -1) {
+			return Direction.Left;
+		}
+		else if(y == 1) {
+			return Direction.Down;
+		}
+		else {
+			return Direction.Up;
+		}
+	}
 }

@@ -6,7 +6,7 @@ import View.Window;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Window window = new Window(30);
+        Window window = new Window();
 
         Game game = new Game(window);
 		try {

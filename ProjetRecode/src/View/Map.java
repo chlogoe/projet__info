@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Map extends JPanel {
-	private int size;	//Initialisation des variables
     private ArrayList<GameObject> terrains = null;
     private ArrayList<Entity> entities = null;
     private ArrayList<Item> items = null;
@@ -215,9 +214,5 @@ public class Map extends JPanel {
 
     public void redraw() { //Redessine la map
         this.repaint();
-    }
-    
-    public void setSize(int size) { // Définit la taille de la map
-    	this.size = size;
     }
 }

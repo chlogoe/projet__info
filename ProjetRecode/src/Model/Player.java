@@ -1,23 +1,19 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Player extends Entity {
-
-    private int lifes = 3;
-    
-    //private ArrayList<Item> inventory = new ArrayList<Item>();
     
     private Hashtable<String, Integer> inventory = new Hashtable<String, Integer>();
     private Hashtable<String, Integer> maxItem = new Hashtable<String, Integer>();
     
-    
+    private Game game;
     
 
-    public Player(int x, int y, int maxBomb, int health) {
-        super(x, y, "Player", health, 4);
+    public Player(Game game) {
+        super(-1, -1, "Player", 10, 4);
         super.setMaxHealth(10);
+        this.game = game;
         initializeInventory();
     }
 
@@ -27,6 +23,7 @@ public class Player extends Entity {
     	inventory.put("Bomb", 0);
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
+    	inventory.put("OneUp", 2);
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
     }
@@ -59,15 +56,24 @@ public class Player extends Entity {
     	health = this.getHealth();
     	
     	
-    	if(lifes == 0 && health == 0) {
+    	if(inventory.get("OneUp") == 0 && health == 0) {
     		notifyDeletableObserver();
     		System.out.println("Fin de la partie");
     	}
     	else if(health == 0) {
     		this.setHealth(this.getMaxHealth());
-    		lifes--;
+    		inventory.put("OneUp", inventory.get("OneUp")-1);
     	}
     }
+    
+    @Override
+    public void move(int x, int y) {
+    	if(!game.checkObstacle(getPosX()+x, getPosY()+y, this)) {
+    		this.setPosX(this.getPosX()+x);
+    		this.setPosY(this.getPosY()+y);
+    		game.pickUpItem();
+    	}
+	}
     
     private void heal(int healing) {
     	int nextHealth = this.getHealth()+healing;

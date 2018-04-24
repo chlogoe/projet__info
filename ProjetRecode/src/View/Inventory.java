@@ -31,8 +31,4 @@ public class Inventory extends JPanel{
 	public void setPlayer(Player player) {
     	this.player = player;
     }	
-	
-	public void redraw() { 
-        this.repaint();
-    }
 }

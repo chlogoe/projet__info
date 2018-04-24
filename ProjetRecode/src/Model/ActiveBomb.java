@@ -49,7 +49,7 @@ public class ActiveBomb extends Item implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			game.notifyView();
+			game.getWindow().update();
 		}
 		explode();
 		

@@ -3,6 +3,7 @@ package Model;
 import View.Window;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,25 +15,13 @@ public class Game implements DeletableObserver {
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
     private ArrayList<Item> items = new ArrayList<Item>();
-    
-    /*
-     * Pour faire les listes de map,
-     * Prendre un paramètre de taille de map
-     * avec celui-ci aller chercher l'ensemble des maps de cette taille
-     * celles-ci se trouveraient dans un dossier du nom de leur taille
-     * Utiliser les proposition trouvée ici https://stackoverflow.com/questions/5694385/getting-the-filenames-of-all-files-in-a-folder
-     * Ensuite faire un random sur la longeur de la liste obtenue et prendre la map qui correspond au random
-     * 
-     */
 
     private Window window;
     private int size;
-    private int lineNumber;
     private int level = 0;
 
     public Game(Window window) throws IOException{
         this.window = window;
-        size = window.getSize();
         
         //Creating the player
         
@@ -42,26 +31,34 @@ public class Game implements DeletableObserver {
         window.setPlayer(player);
    
         startLevel();
-        notifyView();
     }
     
     
     private void startLevel() throws IOException {
-    	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).isAtPosition(15, 0))) {
+    	int posX = 0;
+    	if(size%2 == 0) {
+    		posX = size/2+1;
+    	}
+    	else {
+    		posX = (size)/2;
+    	}
+    	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).getPosY()==0)) {
     		terrains.clear();
     		items.clear();
     		level++;
     		
+    		// Map building
+            this.buildMap();
+    		
     		try {
-				this.getPlayer().setPosX(15);
-				this.getPlayer().setPosY(28);
+				this.getPlayer().setPosX(size/2);
+				this.getPlayer().setPosY(size-2);
 				// TODO passer les cooredonées en paramètre, dépendents de la taille de la map
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-            // Map building
-            this.buildMap();
+            
             
             addMonster(level);
             
@@ -82,9 +79,13 @@ public class Game implements DeletableObserver {
             entity.move(x, y);
             if(entity instanceof Player) {
             	pickUpItem();
+            	try {
+					startLevel();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         }
-        notifyView();
         //TODO Réfléchir à déplacer dans la classe Entity
     }
     
@@ -216,21 +217,11 @@ public class Game implements DeletableObserver {
 		if(aimedObject != null){
 			((Entity) aimedObject).dealDamage(actor.getDamage());
 		}
-		notifyView();
 		//TODO Réfléchir à passer dans la classe Entity
     }
 
-    /*
-     * Met l'affichage à jour
-     */
-    public void notifyView() {
-    	try {
-			startLevel();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        window.update();
-        //TODO Faire un thread uniquement destiné à lancer l'actualisation de la fenêtre
+    public Window getWindow() {
+    	return this.window;
     }
 
     /*
@@ -245,7 +236,6 @@ public class Game implements DeletableObserver {
         	item.attachDeletable(this);
             items.add(item);
         }
-        notifyView();
     }
     
     /*
@@ -299,8 +289,8 @@ public class Game implements DeletableObserver {
     		
     		boolean obstacle = true;
     		while(obstacle) {
-    			x = rand.nextInt(28) + 1;
-    			y = rand.nextInt(28) + 1;
+    			x = rand.nextInt(size-2) + 1;
+    			y = rand.nextInt(size-2) + 1;
     			obstacle = (checkObstacle(x,y,null) || playerInZone(x,y,5)); //Hey
     			
     		}
@@ -349,25 +339,17 @@ public class Game implements DeletableObserver {
     	FileReader file = null;
         BufferedReader in = null;
         Random rand = new Random();
-        int x = rand.nextInt(3);
-        String map;
-        if(x == 0) {
-        	map = "maps/map2.txt";
-        }
-        else if(x==1) {
-        	map = "maps/map3.txt";
-        }
-        else {
-        	map = "maps/map4.txt";
-        }
+        int x = rand.nextInt(new File("maps").listFiles().length-1)+1;
+        String map = "maps/map"+x+".txt";
         
         try {
         	file = new FileReader(map); //On ouvre le fichier de la map souhaité
         	in = new BufferedReader(file);//On met le fichier en mémoire
         	String line;
-        	lineNumber = 0;
+        	int lineNumber = 0;
         	while((line = in.readLine()) != null) {//On lit chaque ligne jusqu'à une ligne vide
-        		for(int i = 0; i < size ; i++) {
+        		for(int i = 0; i < line.length() ; i++) {
+        			this.size = line.length();
         			char ID = line.charAt(i);//Le type de terrain est définit par le caractère utilisé dans le fichier texte
         			this.addObject(i, lineNumber, ID);//Ajoute le block à la liste de block du terrain
         		}

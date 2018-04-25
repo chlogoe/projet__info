@@ -134,8 +134,11 @@ public class Game implements DeletableObserver {
 			}
 		}
 		for(GameObject object : terrain) {
-			((BlockBreakable) object).activate();
+			if(object instanceof BlockBreakable) {
+				((Activable) object).activate();
+			}
 		}
+		
 		for(GameObject object : entity) {
 			((Entity) object).dealDamage(2);
 		}

@@ -17,7 +17,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		this.damage = damage;
 	}
 	
-	public abstract void move(int x, int y);
+	public abstract void move(Direction direction);
 	
 	public boolean isObstacle(Entity entity) {
 		return true;
@@ -27,7 +27,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		return damage;
 	}
 	
-	public abstract void dealDamage(int damage);
+	public abstract void sufferDamage(int damage);
 	
 	public int getHealth() {
 		return health;

@@ -81,8 +81,14 @@ public class Game implements DeletableObserver {
     /*
      * Vérifie si il y a un obstacle empêchant le déplacement d'une entité
      */
-	public boolean checkObstacle(int x, int y, Entity entity) {
+	public boolean checkObstacle(Direction direction, Entity entity) {
     	boolean obstacle = false;
+    	int x = entity.getPosX();
+		int y = entity.getPosY();
+    	if(direction != null) {
+    		x = entity.getPosX() + direction.getX();
+        	y = entity.getPosY() + direction.getY();
+    	}
     	for (GameObject object : terrains) {
             if (object.isAtPosition(x, y)) {//regarde si il y a un obstacle devant
                 obstacle = object.isObstacle(entity);
@@ -114,6 +120,22 @@ public class Game implements DeletableObserver {
 	 * Fonction qui gère l'explosion d'une bombe et les dégats qu'elle inflige aux entités et à la carte
 	 */
 	
+	public GameObject getBlockType(Direction side, Entity entity) {
+		int x = side.getX();
+		int y = side.getY();
+		for (GameObject object : terrains) {
+            if (object.isAtPosition(entity.getPosX()+x, entity.getPosY()+y)) {
+                return object;
+            }
+        }
+    	for (GameObject object : entities) {
+    		if (object.isAtPosition(entity.getPosX()+x, entity.getPosY()+y)) {
+                return object;
+            }
+        }
+    	return null;
+	}
+	
 	public void explode(ActiveBomb bomb) {
 		int x = bomb.getPosX();
 		int y = bomb.getPosY();
@@ -140,7 +162,7 @@ public class Game implements DeletableObserver {
 		}
 		
 		for(GameObject object : entity) {
-			((Entity) object).dealDamage(2);
+			((Entity) object).sufferDamage(2);
 		}
 		//TODO Réfléchir à déplacer dans la classe ActveBomb
 	}
@@ -154,6 +176,7 @@ public class Game implements DeletableObserver {
 		activeBomb.attachDeletable(this);
 		items.add(activeBomb);
 	}
+	
     
 	/*
 	 * Fonction qui vérifie si il y a quelque chose à attaquer et, le cas échéant, attaque
@@ -188,7 +211,7 @@ public class Game implements DeletableObserver {
 			}
 		}
 		if(aimedObject != null){
-			((Entity) aimedObject).dealDamage(actor.getDamage());
+			((Entity) aimedObject).sufferDamage(actor.getDamage());
 		}
 		//TODO Réfléchir à passer dans la classe Entity
     }
@@ -245,30 +268,32 @@ public class Game implements DeletableObserver {
     public void addMonster(int number) {
     	Random rand = new Random();
     	Entity monster;
-    	int x = -1;
-    	int y = -1;
+    	
     	for(int i = 0;i<number;i++) {
+    		TempEntity te = new TempEntity(0,0);
+    		te.attachDeletable(this);
+    		boolean obstacle = true;
+    		
+    		while(obstacle) {
+    			te.setPosX(rand.nextInt(size-2) + 1);
+    			te.setPosY(rand.nextInt(size-2) + 1);
+    			obstacle = (checkObstacle(null,te) || playerInZone(te.getPosX(),te.getPosY(),5));
+    		}
+    		
+    		int x = te.getPosX();
+    		int y = te.getPosY();
+    		te.notifyDeletableObserver();
     		int j = rand.nextInt(1);//Changer le 1 en le nombre de type de monstre que l'on fait appairaitre aléatoirement
     		if(j == 0) {
-    			monster = new MonstreCaC(x, y, window, this);
+    			monster = new MonstreCaC(x, y, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}
     		else {
-    			monster = new MonstreCaC(-1, -1, window, this);
+    			monster = new MonstreCaC(-1, -1, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}
-    		
-    		boolean obstacle = true;
-    		while(obstacle) {
-    			x = rand.nextInt(size-2) + 1;
-    			y = rand.nextInt(size-2) + 1;
-    			obstacle = (checkObstacle(x,y,null) || playerInZone(x,y,5)); //Hey
-    			
-    		}
-    		monster.setPosX(x);
-    		monster.setPosY(y);
     	}
     }
     

@@ -3,6 +3,7 @@ package View;
 import Model.Direction;
 import Model.Entity;
 import Model.GameObject;
+import Model.Hole;
 import Model.Item;
 
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class Map extends JPanel {
     private BufferedImage bomb5;
     private BufferedImage bomb;
     private BufferedImage heart;
+    private BufferedImage images;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -51,6 +53,7 @@ public class Map extends JPanel {
         	this.bomb5 = ImageIO.read(getClass().getResourceAsStream("/images/bomb5.png"));
         	this.bomb = ImageIO.read(getClass().getResourceAsStream("/images/bomb.png"));
         	this.heart = ImageIO.read(getClass().getResourceAsStream("/images/heart.png"));
+        	images = ImageIO.read(getClass().getResourceAsStream("/images/spriteSheet.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -77,11 +80,16 @@ public class Map extends JPanel {
             	g.fillRect(x * 32, y * 32, 31, 31);
             	break;
             case "B":
-            	g.drawImage(breakableBlock, x*32, y*32,null);
+            	g.drawImage(images.getSubimage(6*32, 0, 32, 32), x*32, y*32, null);
+            	//g.drawImage(breakableBlock, x*32, y*32,null);
             	break;
             case "H":
             	g.setColor(Color.BLACK);
             	g.fillRect(x*32, y*32, 32, 32);
+            	if(!((Hole) terrain).isObstacle(null)) {
+            		g.setColor(Color.ORANGE);
+            		g.fill3DRect(x*32+8, y*32+8, 16, 16, false);
+            	}
             	break;
             case "D":
             	g.setColor(Color.WHITE);

@@ -23,19 +23,20 @@ public class Keyboard implements KeyListener {
 
         switch (key) {
         case KeyEvent.VK_D:
-        	player.move(1, 0);
+        	player.move(Direction.Right);
             break;
         case KeyEvent.VK_Q:
-        	player.move(-1, 0);
+        	player.move(Direction.Left);
             break;
         case KeyEvent.VK_S:
-        	player.move(0, 1);
+        	player.move(Direction.Down);
             break;
         case KeyEvent.VK_Z:
-        	player.move(0, -1);
+        	player.move(Direction.Up);
             break;
         case KeyEvent.VK_LEFT:
         	game.interact(Direction.Left, player);
+        	player.interract(Direction.Left);
         	break;
         case KeyEvent.VK_RIGHT:
         	game.interact(Direction.Right, player);

@@ -24,6 +24,7 @@ public class Player extends Entity {
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
     	inventory.put("OneUp", 2);
+    	inventory.put("Planch", 1);
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
     }
@@ -43,7 +44,7 @@ public class Player extends Entity {
      */
     
     @Override
-    public void dealDamage(int damage) {
+    public void sufferDamage(int damage) {
     	int health = this.getHealth();
     	
     	if(health - damage > 0) {
@@ -66,11 +67,18 @@ public class Player extends Entity {
     	}
     }
     
+    public void interract(Direction side) {
+    	GameObject target  = game.getBlockType(side, this);
+    	if(target instanceof Hole && inventory.get("Planch") > 0) {
+    		((Hole) target).activate();
+    	}
+    }
+    
     @Override
-    public void move(int x, int y) {
-    	if(!game.checkObstacle(getPosX()+x, getPosY()+y, this)) {
-    		this.setPosX(this.getPosX()+x);
-    		this.setPosY(this.getPosY()+y);
+    public void move(Direction direction) {
+    	if(!game.checkObstacle(direction, this)) {
+    		this.setPosX(this.getPosX()+direction.getX());
+    		this.setPosY(this.getPosY()+direction.getY());
     		game.pickUpItem();
     	}
 	}

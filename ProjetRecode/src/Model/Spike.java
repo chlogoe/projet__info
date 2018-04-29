@@ -41,7 +41,7 @@ public class Spike extends Block implements Runnable {
 					}
 				}
 				if(this.level == game.getLevel()) {
-				player.dealDamage(damage);;
+				player.sufferDamage(damage);;
 				}
 				Thread.sleep(2000);
 			}

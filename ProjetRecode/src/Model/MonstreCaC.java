@@ -3,36 +3,33 @@ package Model;
 
 import java.util.Random;
 
-import View.Window;
 import Model.Game;
 
 public class MonstreCaC extends Entity implements Runnable{
 	
-	private Window window;
 	private Game game;
 
 	
-	public MonstreCaC(int x, int y, Window window, Game game) {
+	public MonstreCaC(int x, int y, Game game) {
 		super(x, y, "Test", 5, 3);
 		new Thread(this).start();
-		this.window = window;
 		this.game = game;
 		super.setMaxHealth(5);
 	}
 	
 	@Override
-	public void move(int x, int y) {
-		this.setDirection(getDirection(x,y));
-		if(!game.checkObstacle(getPosX()+x, getPosY()+y, this)) {
-    		this.setPosX(this.getPosX()+x);
-    		this.setPosY(this.getPosY()+y);
+	public void move(Direction direction) {
+		this.setDirection(getDirection(direction.getX(),direction.getY()));
+		if(!game.checkObstacle(direction, this)) {
+    		this.setPosX(this.getPosX()+direction.getX());
+    		this.setPosY(this.getPosY()+direction.getY());
     	}
 	}
 
 	@Override
 	public void attack() throws Exception {
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
-		if(playerDirection != null) {
+		if(playerDirection != null&&this.getHealth()>0) {
 			Thread.sleep(200);
 			switch(playerDirection) {
 			case Left:
@@ -82,30 +79,48 @@ public class MonstreCaC extends Entity implements Runnable{
 		try{
 			while (this.getHealth()>0 && game.getPlayer() != null){
 				int sleepTime = 280;
-				int x = rand.nextInt(3)-1;
-				int y = 0;
 				Player player = game.getPlayer();
-				if(x==0) {
-					y  = rand.nextInt(3)-1;
-				}
 				
 				if(game.playerInZone(this.getPosX(), this.getPosY(),5)) {
 					int dx = player.getPosX()-this.getPosX();
 					int dy = player.getPosY()-this.getPosY();
 					if(Math.abs(dx) < Math.abs(dy)) {
-						y = dy/Math.abs(dy);
-						x = 0;
+						if(dy/Math.abs(dy) == -1) {
+							move(Direction.Up);
+						}
+						else {
+							move(Direction.Down);
+						}
 					}
 					else {
-						x = dx/Math.abs(dx);
-						y = 0;
+						if(dx/Math.abs(dx) == -1) {
+							move(Direction.Left);
+						}
+						else {
+							move(Direction.Right);
+						}
 					}
 				}
-				attack();
-				
-				move(x, y);
+				else {
+					int x = rand.nextInt(4);
+					switch(x) {
+					case 0:
+						move(Direction.Up);
+						break;
+					case 1:
+						move(Direction.Right);
+						break;
+					case 2:
+						move(Direction.Down);
+						break;
+					case 3:
+						move(Direction.Left);
+						break;
+					}
+					
+				}
 				Thread.sleep(sleepTime);
-				window.update();
+				attack();
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -129,7 +144,7 @@ public class MonstreCaC extends Entity implements Runnable{
 	}
 	
 	@Override
-	public void dealDamage(int damage) {
+	public void sufferDamage(int damage) {
 		int health = this.getHealth();
 		if(health - damage > 0) {
 			this.setHealth(health-damage);

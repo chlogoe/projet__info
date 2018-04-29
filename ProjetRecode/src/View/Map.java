@@ -84,8 +84,59 @@ public class Map extends JPanel {
             	//g.drawImage(breakableBlock, x*32, y*32,null);
             	break;
             case "H":
-            	g.setColor(Color.BLACK);
-            	g.fillRect(x*32, y*32, 32, 32);
+            	String subID = ((Hole) terrain).getSubID();
+            	
+            	switch(subID) {
+            	case "0000":
+            		g.drawImage(images.getSubimage(11*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0001":
+            		g.drawImage(images.getSubimage(25*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0010":
+            		g.drawImage(images.getSubimage(24*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0100":
+            		g.drawImage(images.getSubimage(23*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1000":
+            		g.drawImage(images.getSubimage(26*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0011":
+            		g.drawImage(images.getSubimage(13*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0101":
+            		g.drawImage(images.getSubimage(22*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1001":
+            		g.drawImage(images.getSubimage(14*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0110":
+            		g.drawImage(images.getSubimage(12*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1010":
+            		g.drawImage(images.getSubimage(21*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1100":
+            		g.drawImage(images.getSubimage(15*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "0111":
+            		g.drawImage(images.getSubimage(17*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1011":
+            		g.drawImage(images.getSubimage(18*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1101":
+            		g.drawImage(images.getSubimage(19*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1110":
+            		g.drawImage(images.getSubimage(16*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	case "1111":
+            		g.drawImage(images.getSubimage(20*32, 0, 32, 32), x*32, y*32, null);
+            		break;
+            	}
+        
             	if(!((Hole) terrain).isObstacle(null)) {
             		g.setColor(Color.ORANGE);
             		g.fill3DRect(x*32+8, y*32+8, 16, 16, false);

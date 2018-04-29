@@ -51,13 +51,21 @@ public class Game implements DeletableObserver {
 			}
 
             addMonster(level);
+            changeTextures();
             
             window.setGameObjects(terrains);//Une fois le terrain et toutes les entités dans les liste,
             window.setEntities(entities);//on ajoute les listes à la map et on rafraichit la map
             window.setItems(items);
     	}
     }
-
+    
+    private void changeTextures() {
+    	for(GameObject elem : terrains) {
+    		if(elem instanceof Hole) {
+    			((Hole) elem).setSubID();
+    		}
+    	}
+    }
     
     public void pickUpItem() {
     	boolean pickedUp = false;
@@ -120,7 +128,7 @@ public class Game implements DeletableObserver {
 	 * Fonction qui gère l'explosion d'une bombe et les dégats qu'elle inflige aux entités et à la carte
 	 */
 	
-	public GameObject getBlockType(Direction side, Entity entity) {
+	public GameObject getBlockType(Direction side, GameObject entity) {
 		int x = side.getX();
 		int y = side.getY();
 		for (GameObject object : terrains) {
@@ -177,44 +185,6 @@ public class Game implements DeletableObserver {
 		items.add(activeBomb);
 	}
 	
-    
-	/*
-	 * Fonction qui vérifie si il y a quelque chose à attaquer et, le cas échéant, attaque
-	 */
-    public void interact(Direction direction, Entity actor) {
-    	int x = actor.getPosX();
-    	int y = actor.getPosY();
-    	switch(direction) {
-    	case Left :
-    		x--;
-    		actor.setDirection(Direction.Left);
-    		break;
-    	case Right:
-    		x++;
-    		actor.setDirection(Direction.Right);
-    		break;
-    	case Up:
-    		y--;
-    		actor.setDirection(Direction.Up);
-    		break;
-    	case Down:
-    		y++;
-    		actor.setDirection(Direction.Down);
-    		break;
-    	}
-    	GameObject aimedObject = null;
-		for(GameObject object : entities){
-			if(object.isAtPosition(x,y)){
-			    if(object instanceof Damageable){
-			        aimedObject = object;
-			    }
-			}
-		}
-		if(aimedObject != null){
-			((Entity) aimedObject).sufferDamage(actor.getDamage());
-		}
-		//TODO Réfléchir à passer dans la classe Entity
-    }
 
     public Window getWindow() {
     	return this.window;
@@ -313,7 +283,7 @@ public class Game implements DeletableObserver {
             terrains.add(block);
 			break;
 		case 'H':
-			terrains.add(new Hole(x,y));
+			terrains.add(new Hole(x,y, this));
 			break;
 		case 'D':
 			terrains.add(new Door(x,y,this));

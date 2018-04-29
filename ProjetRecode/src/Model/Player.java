@@ -20,7 +20,7 @@ public class Player extends Entity {
    // //////////////////////////////////////////////////////////////////////////////////////
     
     private void initializeInventory() {
-    	inventory.put("Bomb", 0);
+    	inventory.put("Bomb", 1);
     	inventory.put("Key", 0);
     	inventory.put("DamageUp", 0);
     	inventory.put("OneUp", 2);
@@ -68,10 +68,22 @@ public class Player extends Entity {
     }
     
     public void interract(Direction side) {
+    	this.setDirection(side);
     	GameObject target  = game.getBlockType(side, this);
-    	if(target instanceof Hole && inventory.get("Planch") > 0) {
-    		((Hole) target).activate();
+    	if(target instanceof Hole) {
+    		if(((Hole) target).isObstacle(this) && inventory.get("Planch") > 0){
+    			inventory.put("Planch", inventory.get("Planch")-1);
+    			((Hole) target).activate();
+    		}
+    		else if(!((Hole) target).isObstacle(this)) {
+    			inventory.put("Planch", inventory.get("Planch")+1);
+    			((Hole) target).activate();
+    		}
     	}
+    	else if(target instanceof Entity) {
+    		((Entity) target).sufferDamage(this.getDamage());
+    	}
+    	
     }
     
     @Override

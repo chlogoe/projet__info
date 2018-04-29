@@ -35,17 +35,16 @@ public class Keyboard implements KeyListener {
         	player.move(Direction.Up);
             break;
         case KeyEvent.VK_LEFT:
-        	game.interact(Direction.Left, player);
         	player.interract(Direction.Left);
         	break;
         case KeyEvent.VK_RIGHT:
-        	game.interact(Direction.Right, player);
+        	player.interract(Direction.Right);
         	break;
         case KeyEvent.VK_UP:
-        	game.interact(Direction.Up, player);
+        	player.interract(Direction.Up);
         	break;
         case KeyEvent.VK_DOWN:
-        	game.interact(Direction.Down, player);
+        	player.interract(Direction.Down);
         	break;
         case KeyEvent.VK_E:
         	if(player.getBombAmount()>0) {

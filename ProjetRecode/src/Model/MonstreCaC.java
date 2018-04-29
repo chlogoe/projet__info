@@ -31,20 +31,7 @@ public class MonstreCaC extends Entity implements Runnable{
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
 		if(playerDirection != null&&this.getHealth()>0) {
 			Thread.sleep(200);
-			switch(playerDirection) {
-			case Left:
-				game.interact(Direction.Left,this);
-				break;
-			case Right:
-				game.interact(Direction.Right,this);
-				break;
-			case Up:
-				game.interact(Direction.Up,this);
-				break;
-			case Down:
-				game.interact(Direction.Down,this);
-				break;
-			}
+			game.getPlayer().sufferDamage(getDamage());
 		}
 	}
 	

@@ -225,6 +225,10 @@ public class Map extends JPanel {
         		g.setColor(Color.RED);
         		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
         		break;
+        	case "Proj":
+        		g.setColor(Color.CYAN);
+        		g.drawLine(x*32+4, y*32+14, x*32+28, y*32+16);
+        		break;
         	}
         }
         

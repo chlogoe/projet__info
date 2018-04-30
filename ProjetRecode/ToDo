@@ -2,7 +2,7 @@ Inventaire
 Coffre
 Menu graphique
 
-Faire une nouvelle attacke a distance. Les projectile ont un paramètre de dégat, de distance, de vitesse.
+Ajouter une nouvelle attaque a distance. Les projectile ont un paramètre de dégat, de distance, de vitesse.
 Avec les même projectile faire deux mob. Un archer simple qui tire si le joueur est sur une de ses lignes de vue.
 L'autre tirerait rapidement de manière aléatoire
 
@@ -17,6 +17,8 @@ Faire la configuration des touches
 Faire un menu (Avec le layout 'null' c'est relativement simple)
 
 Implémenter les powerUps
+
+Gérer les pool d'item (drop mob, tinted rock et coffre)
 
 
 Au changement de amp, les objects ne sont que retirer de la liste, il faut les supprimer completement de la mémoire, sinon risque de surcharge de la mémoire (en plus les threads sont encore actif)

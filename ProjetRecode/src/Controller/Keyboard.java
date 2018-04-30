@@ -7,6 +7,7 @@ import Model.Direction;
 import Model.Game;
 import Model.GameObject;
 import Model.Player;
+import Model.Projectile;
 
 public class Keyboard implements KeyListener {
     private Game game;
@@ -58,6 +59,8 @@ public class Keyboard implements KeyListener {
         case KeyEvent.VK_I:
         	System.out.println(player.getInventory());
         	break;
+        case KeyEvent.VK_O:
+        	game.throwProjectile(player);
         }
     }
 

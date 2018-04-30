@@ -299,6 +299,12 @@ public class Game implements DeletableObserver {
 			//Créer un block par défaut
 		}
     }
+    
+    public void throwProjectile(Entity entity) {
+    	Projectile projectile = new Projectile(entity, 5,5,this);
+    	projectile.attachDeletable(this);
+    	entities.add(projectile);
+    }
  
     /*
      * Fonction qui transforme la carte version texte en une liste de block

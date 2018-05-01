@@ -12,10 +12,12 @@ import java.util.Random;
 
 public class Game implements DeletableObserver {
 	
+	public boolean running = true;
+	
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
     private ArrayList<Item> items = new ArrayList<Item>();
-
+    
     private Window window;
     private int size;
     private int level = 0;
@@ -33,6 +35,18 @@ public class Game implements DeletableObserver {
         new LevelUpdater(this);
     }
     
+    public boolean isRunning() {
+    	return running;
+    }
+    
+    public void changeRunning() {
+    	if(running) {
+    		running = false;
+    	}
+    	else {
+    		running = true;
+    	}
+    }
     
     public void startLevel() throws IOException {
     	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).getPosY()==0)) {
@@ -209,7 +223,10 @@ public class Game implements DeletableObserver {
      * (utilisé pour permettre au clavier de savoir quelle entité il dirige)
      */
     public Player getPlayer() throws Exception {
-    	Entity player = entities.get(0);
+    	Entity player = null;
+    	if(entities.size()>0) {
+    		player = entities.get(0);
+    	}
     	if(player instanceof Player) {
     		return (Player) player;
     	}
@@ -253,14 +270,14 @@ public class Game implements DeletableObserver {
     		int x = te.getPosX();
     		int y = te.getPosY();
     		te.notifyDeletableObserver();
-    		int j = rand.nextInt(1);//Changer le 1 en le nombre de type de monstre que l'on fait appairaitre aléatoirement
+    		int j = rand.nextInt(2);//Changer le 1 en le nombre de type de monstre que l'on fait appairaitre aléatoirement
     		if(j == 0) {
     			monster = new MonstreCaC(x, y, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}
     		else {
-    			monster = new MonstreCaC(-1, -1, this);
+    			monster = new MonstreArcher(x, y, this);
     			monster.attachDeletable(this);
     			entities.add(monster);
     		}
@@ -301,7 +318,7 @@ public class Game implements DeletableObserver {
     }
     
     public void throwProjectile(Entity entity) {
-    	Projectile projectile = new Projectile(entity, 5,5,this);
+    	Projectile projectile = new Projectile(entity, 1, 15, 2,this);
     	projectile.attachDeletable(this);
     	entities.add(projectile);
     }

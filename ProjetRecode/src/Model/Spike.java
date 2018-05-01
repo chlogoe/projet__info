@@ -20,7 +20,7 @@ public class Spike extends Block implements Runnable {
 
 	@Override
 	public boolean isObstacle(Entity entity) {
-		if(entity instanceof Player) {
+		if(entity instanceof Player || entity instanceof Projectile) {
 			return false;
 		}
 		else {
@@ -41,9 +41,12 @@ public class Spike extends Block implements Runnable {
 					}
 				}
 				if(this.level == game.getLevel()) {
-				player.sufferDamage(damage);;
+					player.sufferDamage(damage);;
 				}
 				Thread.sleep(2000);
+				while(!game.isRunning()) {
+					Thread.sleep(15);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

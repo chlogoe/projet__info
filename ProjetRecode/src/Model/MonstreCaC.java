@@ -11,7 +11,7 @@ public class MonstreCaC extends Entity implements Runnable{
 
 	
 	public MonstreCaC(int x, int y, Game game) {
-		super(x, y, "Test", 5, 3);
+		super(x, y, "CaC", 5, 3);
 		new Thread(this).start();
 		this.game = game;
 		super.setMaxHealth(5);
@@ -65,6 +65,11 @@ public class MonstreCaC extends Entity implements Runnable{
 		Random rand = new Random();
 		try{
 			while (this.getHealth()>0 && game.getPlayer() != null){
+				
+				while(!game.isRunning()) {
+					Thread.sleep(15);
+				}
+				
 				int sleepTime = 280;
 				Player player = game.getPlayer();
 				

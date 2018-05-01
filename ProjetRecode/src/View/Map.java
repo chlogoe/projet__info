@@ -68,198 +68,237 @@ public class Map extends JPanel {
             }
         }
 
-        for (GameObject terrain : this.terrains) { //Dessine tout les composant du terrain
-            int x = terrain.getPosX();
-            int y = terrain.getPosY();
-            String ID = terrain.getID();
-            switch(ID) {
-            case "A":
-            	g.setColor(Color.BLACK);
-                g.drawRect(x * 32, y * 32, 31, 31);
-            	g.setColor(Color.DARK_GRAY);
-            	g.fillRect(x * 32, y * 32, 31, 31);
-            	break;
-            case "B":
-            	g.drawImage(images.getSubimage(6*32, 0, 32, 32), x*32, y*32, null);
-            	//g.drawImage(breakableBlock, x*32, y*32,null);
-            	break;
-            case "H":
-            	String subID = ((Hole) terrain).getSubID();
+        try {
+        	for (GameObject terrain : this.terrains) { //Dessine tout les composant du terrain
+                int x = terrain.getPosX();
+                int y = terrain.getPosY();
+                String ID = terrain.getID();
+                switch(ID) {
+                case "A":
+                	g.setColor(Color.BLACK);
+                    g.drawRect(x * 32, y * 32, 31, 31);
+                	g.setColor(Color.DARK_GRAY);
+                	g.fillRect(x * 32, y * 32, 31, 31);
+                	break;
+                case "B":
+                	g.drawImage(images.getSubimage(6*32, 0, 32, 32), x*32, y*32, null);
+                	//g.drawImage(breakableBlock, x*32, y*32,null);
+                	break;
+                case "H":
+                	String subID = ((Hole) terrain).getSubID();
+                	
+                	switch(subID) {
+                	case "0000":
+                		g.drawImage(images.getSubimage(11*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0001":
+                		g.drawImage(images.getSubimage(25*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0010":
+                		g.drawImage(images.getSubimage(24*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0100":
+                		g.drawImage(images.getSubimage(23*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1000":
+                		g.drawImage(images.getSubimage(26*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0011":
+                		g.drawImage(images.getSubimage(13*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0101":
+                		g.drawImage(images.getSubimage(22*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1001":
+                		g.drawImage(images.getSubimage(14*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0110":
+                		g.drawImage(images.getSubimage(12*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1010":
+                		g.drawImage(images.getSubimage(21*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1100":
+                		g.drawImage(images.getSubimage(15*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "0111":
+                		g.drawImage(images.getSubimage(17*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1011":
+                		g.drawImage(images.getSubimage(18*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1101":
+                		g.drawImage(images.getSubimage(19*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1110":
+                		g.drawImage(images.getSubimage(16*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	case "1111":
+                		g.drawImage(images.getSubimage(20*32, 0, 32, 32), x*32, y*32, null);
+                		break;
+                	}
+            
+                	if(!((Hole) terrain).isObstacle(null)) {
+                		g.setColor(Color.ORANGE);
+                		g.fill3DRect(x*32+8, y*32+8, 16, 16, false);
+                	}
+                	break;
+                case "D":
+                	g.setColor(Color.WHITE);
+                	if(entities.size() == 1) {
+                		g.fillRect(x*32+28, y*32, 4, 32);
+                	}
+                	else {
+                		g.fillRect(x*32, y*32+28, 32, 4);
+                	}
+                	break;
+                case "P":
+                	g.drawImage(spike, x*32, y*32, null);
+                	break;
+                case "B2":
+                	g.drawImage(tintedRock, x*32, y*32,null);
+                	break;
+                case "C":
+                	g.setColor(Color.ORANGE);
+                	g.fillRect(x*32+4, y*32+4, 24, 24);
+                	break;
+                default:
+                	g.setColor(Color.PINK);
+                	g.drawRoundRect(x*32, y*32, 32, 32, 8, 8);
+                	break;
+                }
+                
+                
             	
-            	switch(subID) {
-            	case "0000":
-            		g.drawImage(images.getSubimage(11*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0001":
-            		g.drawImage(images.getSubimage(25*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0010":
-            		g.drawImage(images.getSubimage(24*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0100":
-            		g.drawImage(images.getSubimage(23*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1000":
-            		g.drawImage(images.getSubimage(26*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0011":
-            		g.drawImage(images.getSubimage(13*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0101":
-            		g.drawImage(images.getSubimage(22*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1001":
-            		g.drawImage(images.getSubimage(14*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0110":
-            		g.drawImage(images.getSubimage(12*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1010":
-            		g.drawImage(images.getSubimage(21*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1100":
-            		g.drawImage(images.getSubimage(15*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "0111":
-            		g.drawImage(images.getSubimage(17*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1011":
-            		g.drawImage(images.getSubimage(18*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1101":
-            		g.drawImage(images.getSubimage(19*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1110":
-            		g.drawImage(images.getSubimage(16*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	case "1111":
-            		g.drawImage(images.getSubimage(20*32, 0, 32, 32), x*32, y*32, null);
-            		break;
-            	}
-        
-            	if(!((Hole) terrain).isObstacle(null)) {
-            		g.setColor(Color.ORANGE);
-            		g.fill3DRect(x*32+8, y*32+8, 16, 16, false);
-            	}
-            	break;
-            case "D":
-            	g.setColor(Color.WHITE);
-            	if(entities.size() == 1) {
-            		g.fillRect(x*32+28, y*32, 4, 32);
-            	}
-            	else {
-            		g.fillRect(x*32, y*32+28, 32, 4);
-            	}
-            	break;
-            case "P":
-            	g.drawImage(spike, x*32, y*32, null);
-            	break;
-            case "B2":
-            	g.drawImage(tintedRock, x*32, y*32,null);
-            	break;
-            case "C":
-            	g.setColor(Color.ORANGE);
-            	g.fillRect(x*32+4, y*32+4, 24, 24);
-            	break;
             }
             
-            
-        	
-        }
-        
-        for(Entity entity : this.entities) { //Dessine toutes les entités
-        	int x = entity.getPosX();
-        	int y = entity.getPosY();
-        	String ID = entity.getID();
-        	Direction direction = entity.getDirection();
-        	int a1[]={32*x+16,32*x+4,32*x+28};
-        	int b1[]={32*y+4,32*y+28,32*y+28};
-        	int a2[]={32*x+4,32*x+4,32*x+28};
-        	int b2[]={32*y+4,32*y+28,32*y+16};
-        	int a3[]={32*x+16,32*x+4,32*x+28};
-        	int b3[]={32*y+28,32*y+4,32*y+4};
-        	int a4[]={32*x+28,32*x+28,32*x+4};
-        	int b4[]={32*y+4,32*y+28,32*y+16};
-        	
-        	switch(ID) {
-        	case "Player":
-        		g.setColor(Color.RED);
-        		switch(direction) {
-        		case Up:
-        			g.fillPolygon(a1,b1,3);
-                	break;
-        		case Right:
-        			g.fillPolygon(a2,b2,3);
-                	break;
-        		case Down:
-        			g.fillPolygon(a3,b3,3);
-                	break;
-        		case Left:
-        			g.fillPolygon(a4,b4,3);
-                	break;
-        		}
-        		g.setColor(Color.GREEN);
-        		g.fillRect(x*32+1, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
-        		g.setColor(Color.RED);
-        		g.fillRect(x*32+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            for(Entity entity : this.entities) { //Dessine toutes les entités
+            	int x = entity.getPosX();
+            	int y = entity.getPosY();
+            	String ID = entity.getID();
+            	Direction direction = entity.getDirection();
+            	int a1[]={32*x+16,32*x+4,32*x+28};
+            	int b1[]={32*y+4,32*y+28,32*y+28};
+            	int a2[]={32*x+4,32*x+4,32*x+28};
+            	int b2[]={32*y+4,32*y+28,32*y+16};
+            	int a3[]={32*x+16,32*x+4,32*x+28};
+            	int b3[]={32*y+28,32*y+4,32*y+4};
+            	int a4[]={32*x+28,32*x+28,32*x+4};
+            	int b4[]={32*y+4,32*y+28,32*y+16};
             	
-        		break;
-        	case "Test":
-        		g.setColor(Color.GREEN);
-        		switch(direction) {
-        		case Up:
-        			g.fillPolygon(a1,b1,3);
+            	switch(ID) {
+            	case "Player":
+            		g.setColor(Color.RED);
+            		switch(direction) {
+            		case Up:
+            			g.fillPolygon(a1,b1,3);
+                    	break;
+            		case Right:
+            			g.fillPolygon(a2,b2,3);
+                    	break;
+            		case Down:
+            			g.fillPolygon(a3,b3,3);
+                    	break;
+            		case Left:
+            			g.fillPolygon(a4,b4,3);
+                    	break;
+            		}
+            		g.setColor(Color.GREEN);
+            		g.fillRect(x*32+1, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.setColor(Color.RED);
+            		g.fillRect(x*32+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+                	
+            		break;
+            	case "CaC":
+            		g.setColor(Color.GREEN);
+            		switch(direction) {
+            		case Up:
+            			g.fillPolygon(a1,b1,3);
+                    	break;
+            		case Right:
+            			g.fillPolygon(a2,b2,3);
+                    	break;
+            		case Down:
+            			g.fillPolygon(a3,b3,3);
+                    	break;
+            		case Left:
+            			g.fillPolygon(a4,b4,3);
+                    	break;
+            		}
+            		
+            		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.setColor(Color.RED);
+            		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		break;
+            	case "Archer":
+            		g.setColor(Color.MAGENTA);
+            		switch(direction) {
+            		case Up:
+            			g.fillPolygon(a1,b1,3);
+                    	break;
+            		case Right:
+            			g.fillPolygon(a2,b2,3);
+                    	break;
+            		case Down:
+            			g.fillPolygon(a3,b3,3);
+                    	break;
+            		case Left:
+            			g.fillPolygon(a4,b4,3);
+                    	break;
+            		}
+            		
+            		g.setColor(Color.GREEN);
+            		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.setColor(Color.RED);
+            		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		break;
+            	case "Proj":
+            		g.setColor(Color.CYAN);
+            		g.drawLine(x*32+4, y*32+14, x*32+28, y*32+16);
+            		break;
+            	default:
+                	g.setColor(Color.PINK);
+                	g.drawRoundRect(x*32, y*32, 32, 32, 8, 8);
                 	break;
-        		case Right:
-        			g.fillPolygon(a2,b2,3);
+            	}
+            }
+            
+            for(Item item : items) {
+            	int x = item.getPosX();
+            	int y = item.getPosY();
+            	String ID = item.getID();
+            	switch(ID) {
+            	case "ActiveBomb1":
+            		g.drawImage(bomb1, x*32, y*32, null);
+            		break;
+            	case "ActiveBomb2":
+            		g.drawImage(bomb2, x*32, y*32, null);
+            		break;
+            	case "ActiveBomb3":
+            		g.drawImage(bomb3, x*32, y*32, null);
+            		break;
+            	case "ActiveBomb4":
+            		g.drawImage(bomb4, x*32, y*32, null);
+            		break;
+            	case "ActiveBomb5":
+            		g.drawImage(bomb5, x*32, y*32, null);
+            		break;
+            	case "Bomb":
+            		g.drawImage(bomb, x*32, y*32, null);
+            		break;
+            	case "Heart":
+            		g.drawImage(heart, x*32, y*32, null);
+            		break;
+            	default:
+                	g.setColor(Color.PINK);
+                	g.drawRoundRect(x*32, y*32, 32, 32, 8, 8);
                 	break;
-        		case Down:
-        			g.fillPolygon(a3,b3,3);
-                	break;
-        		case Left:
-        			g.fillPolygon(a4,b4,3);
-                	break;
-        		}
-        		
-        		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
-        		g.setColor(Color.RED);
-        		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
-        		break;
-        	case "Proj":
-        		g.setColor(Color.CYAN);
-        		g.drawLine(x*32+4, y*32+14, x*32+28, y*32+16);
-        		break;
-        	}
-        }
-        
-        for(Item item : items) {
-        	int x = item.getPosX();
-        	int y = item.getPosY();
-        	String ID = item.getID();
-        	switch(ID) {
-        	case "ActiveBomb1":
-        		g.drawImage(bomb1, x*32, y*32, null);
-        		break;
-        	case "ActiveBomb2":
-        		g.drawImage(bomb2, x*32, y*32, null);
-        		break;
-        	case "ActiveBomb3":
-        		g.drawImage(bomb3, x*32, y*32, null);
-        		break;
-        	case "ActiveBomb4":
-        		g.drawImage(bomb4, x*32, y*32, null);
-        		break;
-        	case "ActiveBomb5":
-        		g.drawImage(bomb5, x*32, y*32, null);
-        		break;
-        	case "Bomb":
-        		g.drawImage(bomb, x*32, y*32, null);
-        		break;
-        	case "Heart":
-        		g.drawImage(heart, x*32, y*32, null);
-        		break;
-        	}
-        		
+            	}
+            		
+            }
+        }catch(Exception e) {
+        	System.out.println("Problème dans l'affichage");
+        	System.out.println(e);
         }
     }
 

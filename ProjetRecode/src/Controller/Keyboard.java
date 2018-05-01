@@ -21,47 +21,51 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent event) {
         int key = event.getKeyCode();
-
-        switch (key) {
-        case KeyEvent.VK_D:
-        	player.move(Direction.Right);
-            break;
-        case KeyEvent.VK_Q:
-        	player.move(Direction.Left);
-            break;
-        case KeyEvent.VK_S:
-        	player.move(Direction.Down);
-            break;
-        case KeyEvent.VK_Z:
-        	player.move(Direction.Up);
-            break;
-        case KeyEvent.VK_LEFT:
-        	player.interract(Direction.Left);
-        	break;
-        case KeyEvent.VK_RIGHT:
-        	player.interract(Direction.Right);
-        	break;
-        case KeyEvent.VK_UP:
-        	player.interract(Direction.Up);
-        	break;
-        case KeyEvent.VK_DOWN:
-        	player.interract(Direction.Down);
-        	break;
-        case KeyEvent.VK_E:
-        	if(player.getBombAmount()>0) {
-        		player.useBomb();
-        		game.dropBomb(player.getPosX(), player.getPosY());
-        	}
-        	break;
-        case KeyEvent.VK_H:
-        	game.addMonster(10);
-        	break;
-        case KeyEvent.VK_I:
-        	System.out.println(player.getInventory());
-        	break;
-        case KeyEvent.VK_O:
-        	game.throwProjectile(player);
+        if(key == KeyEvent.VK_P) {
+        	game.changeRunning();
         }
+        if(game.isRunning()) {
+        	switch (key) {
+            case KeyEvent.VK_D:
+            	player.move(Direction.Right);
+                break;
+            case KeyEvent.VK_Q:
+            	player.move(Direction.Left);
+                break;
+            case KeyEvent.VK_S:
+            	player.move(Direction.Down);
+                break;
+            case KeyEvent.VK_Z:
+            	player.move(Direction.Up);
+                break;
+            case KeyEvent.VK_LEFT:
+            	player.interract(Direction.Left);
+            	break;
+            case KeyEvent.VK_RIGHT:
+            	player.interract(Direction.Right);
+            	break;
+            case KeyEvent.VK_UP:
+            	player.interract(Direction.Up);
+            	break;
+            case KeyEvent.VK_DOWN:
+            	player.interract(Direction.Down);
+            	break;
+            case KeyEvent.VK_E:
+            	if(player.getBombAmount()>0) {
+            		player.useBomb();
+            		game.dropBomb(player.getPosX(), player.getPosY());
+            	}
+            	break;
+            case KeyEvent.VK_H:
+            	game.addMonster(10);
+            	break;
+            case KeyEvent.VK_I:
+            	System.out.println(player.getInventory());
+            	break;
+            case KeyEvent.VK_O:
+            	game.throwProjectile(player);
+            }
+        }  
     }
 
     @Override

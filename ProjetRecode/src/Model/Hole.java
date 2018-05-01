@@ -16,7 +16,7 @@ public class Hole extends Block implements Activable{
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {
-		if(plancked) {
+		if(plancked || entity instanceof Projectile) {
 			return false;
 		}
 		else {

@@ -23,9 +23,13 @@ public class ActiveBomb extends Item implements Runnable {
 	@Override
 	public void run() {
 		int counter = 0;
-		int sleepTime = 17;
+		int sleepTime = 15;
 		while(counter < 20) {
 			try {
+				while(!game.isRunning()) {
+					Thread.sleep(15);
+				}
+				
 				Thread.sleep(sleepTime*(25-counter));
 				counter++;
 				int modulo = counter%5;

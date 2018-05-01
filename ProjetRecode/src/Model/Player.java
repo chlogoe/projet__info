@@ -25,8 +25,11 @@ public class Player extends Entity {
     	inventory.put("DamageUp", 0);
     	inventory.put("OneUp", 2);
     	inventory.put("Planch", 1);
+    	inventory.put("Weapon", 0);
+    	inventory.put("Arrow", 5);
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
+    	maxItem.put("Arrow", 30);
     }
     
     @Override
@@ -60,10 +63,13 @@ public class Player extends Entity {
     	if(inventory.get("OneUp") == 0 && health == 0) {
     		notifyDeletableObserver();
     		System.out.println("Fin de la partie");
+    		game.changeRunning();
     	}
     	else if(health == 0) {
     		this.setHealth(this.getMaxHealth());
     		inventory.put("OneUp", inventory.get("OneUp")-1);
+    		setPosX(1);
+    		setPosY(1);
     	}
     }
     

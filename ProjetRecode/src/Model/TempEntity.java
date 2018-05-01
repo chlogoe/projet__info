@@ -21,20 +21,16 @@ public class TempEntity extends Entity {
 
 	@Override
 	public void move(Direction direction) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void sufferDamage(int damage) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void attack() throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

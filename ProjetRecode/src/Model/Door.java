@@ -13,6 +13,7 @@ public class Door extends Block {
 	public boolean isObstacle(Entity entity) {
 		if(game.getAmountEntities()>1) {
 			return true;
+			//TODO Revenir sur la facon de regarder si il y a encore des mobs, ici les flèches comptent
 		}
 		else {
 			return false;

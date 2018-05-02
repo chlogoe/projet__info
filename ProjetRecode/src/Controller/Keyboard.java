@@ -62,8 +62,10 @@ public class Keyboard implements KeyListener {
             case KeyEvent.VK_I:
             	System.out.println(player.getInventory());
             	break;
-            case KeyEvent.VK_O:
-            	game.throwProjectile(player);
+            case KeyEvent.VK_A:
+            	player.switchWeapon();
+            	System.out.println("Switched weapon");
+            	break;
             }
         }  
     }

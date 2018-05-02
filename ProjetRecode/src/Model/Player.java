@@ -8,6 +8,7 @@ public class Player extends Entity {
     private Hashtable<String, Integer> maxItem = new Hashtable<String, Integer>();
     
     private Game game;
+    private final int numberOfWeapon = 2;
     
 
     public Player(Game game) {
@@ -25,7 +26,7 @@ public class Player extends Entity {
     	inventory.put("DamageUp", 0);
     	inventory.put("OneUp", 2);
     	inventory.put("Planch", 1);
-    	inventory.put("Weapon", 0);
+    	inventory.put("Weapon", 1);
     	inventory.put("Arrow", 5);
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
@@ -39,6 +40,15 @@ public class Player extends Entity {
         }
     }
 
+    public void switchWeapon() {
+    	if(inventory.get("Weapon") < numberOfWeapon) {
+    		inventory.put("Weapon", inventory.get("Weapon")+1);
+    	}
+    	else {
+    		inventory.put("Weapon", 1);
+    	}
+    }
+    
     /*
      * Fonction qui gère la prise de dégat du joueur
      * Vérifie si la vie après les dégat est possible, sinon met la vie à zéro
@@ -86,8 +96,11 @@ public class Player extends Entity {
     			((Hole) target).activate();
     		}
     	}
-    	else if(target instanceof Entity) {
+    	else if(target instanceof Entity && inventory.get("Weapon") == 1) {
     		((Entity) target).sufferDamage(this.getDamage());
+    	}
+    	else if(inventory.get("Weapon") == 2){
+    		game.throwProjectile(this);
     	}
     	
     }

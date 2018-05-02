@@ -49,7 +49,7 @@ public class Game implements DeletableObserver {
     }
     
     public void startLevel() throws IOException {
-    	if(level == 0 || (this.getAmountEntities() == 1 && this.entities.get(0).getPosY()==0)) {
+    	if(level == 0 || (this.getAmountEntities() == 0 && this.entities.get(0).getPosY()==0)) {
     		terrains.clear();
     		items.clear();
     		level++;
@@ -240,7 +240,13 @@ public class Game implements DeletableObserver {
      * (utilisé pour l'ouverture de la porte)
      */
     public int getAmountEntities() {
-    	return entities.size();
+    	int entitiesAmount = 0;
+    	for(GameObject elem : entities) {
+    		if(!(elem instanceof Player) && !(elem instanceof Projectile)) {
+    			entitiesAmount++;
+    		}
+    	}
+    	return entitiesAmount;
     }
     
     public int getLevel() {
@@ -318,7 +324,7 @@ public class Game implements DeletableObserver {
     }
     
     public void throwProjectile(Entity entity) {
-    	Projectile projectile = new Projectile(entity, 1, 15, 2,this);
+    	Projectile projectile = new Projectile(entity, -5, 15, 2,this);
     	projectile.attachDeletable(this);
     	entities.add(projectile);
     }

@@ -27,7 +27,6 @@ public class Projectile extends Entity implements Runnable{
 		this.game = game;
 		this.launcher = entity;
 		new Thread(this).start();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class Projectile extends Entity implements Runnable{
 					Thread.sleep(15);
 				}
 				GameObject nextBlock = game.getBlockType(direction, this);
-				if(nextBlock instanceof Entity && nextBlock != launcher) {
+				if(nextBlock instanceof Entity && nextBlock != launcher && !(nextBlock instanceof Projectile)) {
 					((Entity) nextBlock).sufferDamage(damage);
 					i = range;
 				}

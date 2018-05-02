@@ -145,7 +145,7 @@ public class Map extends JPanel {
                 	break;
                 case "D":
                 	g.setColor(Color.WHITE);
-                	if(entities.size() == 1) {
+                	if(!terrain.isObstacle(null)) {
                 		g.fillRect(x*32+28, y*32, 4, 32);
                 	}
                 	else {

@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.IOException;
 
 public class LevelUpdater implements Runnable {
 	
@@ -16,7 +15,7 @@ public class LevelUpdater implements Runnable {
 			try {
 				Thread.sleep(15);
 				game.startLevel();
-			} catch (InterruptedException | IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

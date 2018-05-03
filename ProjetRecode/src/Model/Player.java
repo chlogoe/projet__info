@@ -12,7 +12,7 @@ public class Player extends Entity {
     
 
     public Player(Game game) {
-        super(-1, -1, "Player", 10, 4);
+        super(-1, -1, "Player", 10, 5);
         super.setMaxHealth(10);
         this.game = game;
         initializeInventory();

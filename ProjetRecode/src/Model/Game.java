@@ -48,8 +48,8 @@ public class Game implements DeletableObserver {
     	}
     }
     
-    public void startLevel() throws IOException {
-    	if(level == 0 || (this.getAmountEntities() == 0 && this.entities.get(0).getPosY()==0)) {
+    public void startLevel() throws Exception {
+    	if(level == 0 || (this.getAmountEntities() == 0 && getPlayer().getPosY()==0)) {
     		terrains.clear();
     		items.clear();
     		level++;

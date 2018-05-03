@@ -63,59 +63,72 @@ public class MonstreCaC extends Entity implements Runnable{
 	@Override
 	public synchronized void run() {
 		Random rand = new Random();
-		try{
-			while (this.getHealth()>0 && game.getPlayer() != null){
-				
-				while(!game.isRunning()) {
+		Player player = null;
+		while(game.isRunning() && player == null) {
+			try {
+				player = game.getPlayer();
+			} catch (Exception e) {
+				System.out.println("MonsterCaC ligne 71");
+				e.printStackTrace();
+			}
+		}
+		while (this.getHealth()>0){
+			
+			while(!game.isRunning()) {
+				try {
 					Thread.sleep(15);
+				} catch (InterruptedException e) {
+					System.out.println("MonsterCaC ligne 80");
+					e.printStackTrace();
 				}
+			}
 				
-				int sleepTime = 280;
-				Player player = game.getPlayer();
-				
-				if(game.playerInZone(this.getPosX(), this.getPosY(),5)) {
-					int dx = player.getPosX()-this.getPosX();
-					int dy = player.getPosY()-this.getPosY();
-					if(Math.abs(dx) < Math.abs(dy)) {
-						if(dy/Math.abs(dy) == -1) {
-							move(Direction.Up);
-						}
-						else {
-							move(Direction.Down);
-						}
+			int sleepTime = 280;
+			if(game.playerInZone(this.getPosX(), this.getPosY(),5)) {
+				int dx = player.getPosX()-this.getPosX();
+				int dy = player.getPosY()-this.getPosY();
+				if(Math.abs(dx) < Math.abs(dy)) {
+					if(dy/Math.abs(dy) == -1) {
+						move(Direction.Up);
 					}
 					else {
-						if(dx/Math.abs(dx) == -1) {
-							move(Direction.Left);
-						}
-						else {
-							move(Direction.Right);
-						}
+						move(Direction.Down);
 					}
 				}
 				else {
-					int x = rand.nextInt(4);
-					switch(x) {
-					case 0:
-						move(Direction.Up);
-						break;
-					case 1:
-						move(Direction.Right);
-						break;
-					case 2:
-						move(Direction.Down);
-						break;
-					case 3:
+					if(dx/Math.abs(dx) == -1) {
 						move(Direction.Left);
-						break;
 					}
-					
+					else {
+						move(Direction.Right);
+					}
 				}
+			}
+			else {
+				int x = rand.nextInt(4);
+				switch(x) {
+				case 0:
+					move(Direction.Up);
+					break;
+				case 1:
+					move(Direction.Right);
+					break;
+				case 2:
+					move(Direction.Down);
+					break;
+				case 3:
+					move(Direction.Left);
+					break;
+				}
+				
+			}
+			try {
 				Thread.sleep(sleepTime);
 				attack();
+			} catch (Exception e) {
+				System.out.println("MonsterCaC ligne 130");
+				e.printStackTrace();
 			}
-		}catch(Exception e){
-			e.printStackTrace();
 		}
 	}
 

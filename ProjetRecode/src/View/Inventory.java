@@ -7,11 +7,15 @@ import javax.swing.*;
 import Model.Player;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-
+@SuppressWarnings("serial")
 public class Inventory extends JPanel{
 	
 	private Player player;
+	
+	private BufferedImage bomb;
+	private BufferedImage key;
 	
 	public Inventory(){
 		this.setFocusable(true);
@@ -20,13 +24,22 @@ public class Inventory extends JPanel{
 	
 	
 	public void paint(Graphics g) {
-		//g.setColor(Color.LIGHT_GRAY);
-		//g.fillRect(0, 0, 10000, 10000);
-		g.setColor(Color.GREEN);
-		g.fillRect(100, 100, 300*player.getHealth()/player.getMaxHealth(), 20);
-		g.setColor(Color.RED);
-		g.fillRect(100+300*player.getHealth()/player.getMaxHealth(), 100, 300-300*player.getHealth()/player.getMaxHealth(), 20);
-    				
+		
+		for (int i=0; i<player.getMaxHealth(); i++) {
+			if (i<player.getHealth()) {
+				g.setColor(Color.GREEN);
+				g.fillOval(100+i*32, 100, 30, 30);
+			}
+			else {
+				g.setColor(Color.RED);
+				g.fillOval(100+i*32,100, 30, 30);
+			}
+		}
+		
+		
+		
+
+    	
 	}
 	public void setPlayer(Player player) {
     	this.player = player;

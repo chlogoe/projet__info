@@ -175,6 +175,8 @@ public class Map extends JPanel {
             for(Entity entity : this.entities) { //Dessine toutes les entités
             	int x = entity.getPosX();
             	int y = entity.getPosY();
+            	int health = (int) entity.getHealth();
+        		int maxHealth = (int) entity.getMaxHealth();
             	String ID = entity.getID();
             	Direction direction = entity.getDirection();
             	int a1[]={32*x+16,32*x+4,32*x+28};
@@ -203,10 +205,11 @@ public class Map extends JPanel {
             			g.fillPolygon(a4,b4,3);
                     	break;
             		}
+            		
             		g.setColor(Color.GREEN);
-            		g.fillRect(x*32+1, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.fillRect(x*32+1, y*32+2, 30*health/maxHealth, 2);
             		g.setColor(Color.RED);
-            		g.fillRect(x*32+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.fillRect(x*32+32*health/maxHealth, y*32+2, 30-30*health/maxHealth, 2);
                 	
             		break;
             	case "CaC":
@@ -226,9 +229,10 @@ public class Map extends JPanel {
                     	break;
             		}
             		
-            		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.setColor(Color.GREEN);
+            		g.fillRect(x*32+1, y*32+2, 30*health/maxHealth, 2);
             		g.setColor(Color.RED);
-            		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.fillRect(x*32+32*health/maxHealth, y*32+2, 30-30*health/maxHealth, 2);
             		break;
             	case "Archer":
             		g.setColor(Color.MAGENTA);
@@ -248,9 +252,9 @@ public class Map extends JPanel {
             		}
             		
             		g.setColor(Color.GREEN);
-            		g.fillRect(x*32, y*32+2, 30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.fillRect(x*32+1, y*32+2, 30*health/maxHealth, 2);
             		g.setColor(Color.RED);
-            		g.fillRect(x*32-1+32*entity.getHealth()/entity.getMaxHealth(), y*32+2, 30-30*entity.getHealth()/entity.getMaxHealth(), 2);
+            		g.fillRect(x*32+32*health/maxHealth, y*32+2, 30-30*health/maxHealth, 2);
             		break;
             	case "Proj":
             		g.setColor(Color.CYAN);

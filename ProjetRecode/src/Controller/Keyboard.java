@@ -51,10 +51,7 @@ public class Keyboard implements KeyListener {
             	player.interract(Direction.Down);
             	break;
             case KeyEvent.VK_E:
-            	if(player.getBombAmount()>0) {
-            		player.useBomb();
-            		game.dropBomb(player.getPosX(), player.getPosY());
-            	}
+            	player.useBomb();
             	break;
             case KeyEvent.VK_H:
             	game.addMonster(10);

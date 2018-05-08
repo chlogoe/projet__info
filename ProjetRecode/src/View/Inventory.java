@@ -36,7 +36,9 @@ public class Inventory extends JPanel{
 			}
 		}
 		
-		
+		g.setColor(Color.BLACK);
+		g.drawString(player.getInventory().toString(), 100, 200);
+		g.drawString(player.getUsable().toString(), 100, 250);
 		
 
     	

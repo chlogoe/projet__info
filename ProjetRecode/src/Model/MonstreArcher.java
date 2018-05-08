@@ -28,7 +28,7 @@ public class MonstreArcher extends Entity implements Runnable{
 
 	@Override
 	public void attack() throws Exception {
-		game.throwProjectile(this);
+		game.throwProjectile(this,10);
 		Thread.sleep(100);
 	}
 	
@@ -45,12 +45,30 @@ public class MonstreArcher extends Entity implements Runnable{
 	
 	private Item getLoot() {
 		Random rand = new Random();
-		int n = rand.nextInt(25);
-		if(n == 3) {
-			return new Heart(this.getPosX(), this.getPosY());
+		int n = rand.nextInt(100);
+		if(0 <=n && n <10) {
+			return new Item(this.getPosX(), this.getPosY(), "Heart");
 		}
-		else if(n == 7) {
-			return new Bomb(this.getPosX(), this.getPosY());
+		else if(10 <= n && n < 20) {
+			return new Item(this.getPosX(), this.getPosY(),"Bomb");
+		}
+		else if(20 <= n && n < 25) {
+			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
+		}
+		else if(25 <= n && n < 30) {
+			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
+		}
+		else if(30<=n && n<50) {
+			return new Item(this.getPosX(), this.getPosY(),"Arrow");
+		}
+		else if(50 <= n && n < 52) {
+			return new Item(this.getPosX(), this.getPosY(),"Armor");
+		}
+		else if(75 <= n && n < 80) {
+			return new Item(this.getPosX(), this.getPosY(),"RegenPotion");
+		}
+		else if(80 <= n && n < 85) {
+			return new Item(this.getPosX(), this.getPosY(),"DamagePotion");
 		}
 		else {
 			return null;
@@ -97,7 +115,7 @@ public class MonstreArcher extends Entity implements Runnable{
 	
 	@Override
 	public void sufferDamage(int damage) {
-		int health = this.getHealth();
+		float health = this.getHealth();
 		if(health - damage > 0) {
 			this.setHealth(health-damage);
 		}

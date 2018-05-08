@@ -6,7 +6,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 	
 	protected ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	
-	private int health;
+	private float health;
 	private int damage;
 	private int maxHealth;
 	private Direction direction = Direction.Up;
@@ -27,13 +27,17 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		return damage;
 	}
 	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
 	public abstract void sufferDamage(int damage);
 	
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
 	
-	public void setHealth(int health) {
+	public void setHealth(float health) {
 		this.health = health;
 	}
 	

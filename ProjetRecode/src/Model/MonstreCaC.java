@@ -30,7 +30,7 @@ public class MonstreCaC extends Entity implements Runnable{
 	public void attack() throws Exception {
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
 		if(playerDirection != null&&this.getHealth()>0) {
-			Thread.sleep(200);
+			Thread.sleep(250);
 			game.getPlayer().sufferDamage(getDamage());
 		}
 	}
@@ -48,12 +48,27 @@ public class MonstreCaC extends Entity implements Runnable{
 	
 	private Item getLoot() {
 		Random rand = new Random();
-		int n = rand.nextInt(25);
-		if(n == 3) {
-			return new Heart(this.getPosX(), this.getPosY());
+		int n = rand.nextInt(100);
+		if(0 <=n && n <10) {
+			return new Item(this.getPosX(), this.getPosY(), "Heart");
 		}
-		else if(n == 7) {
-			return new Bomb(this.getPosX(), this.getPosY());
+		else if(10 <= n && n < 20) {
+			return new Item(this.getPosX(), this.getPosY(),"Bomb");
+		}
+		else if(20 <= n && n < 25) {
+			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
+		}
+		else if(25 <= n && n < 30) {
+			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
+		}
+		else if(30 <= n && n < 32) {
+			return new Item(this.getPosX(), this.getPosY(),"Armor");
+		}
+		else if(75 <= n && n < 80) {
+			return new Item(this.getPosX(), this.getPosY(),"RegenPotion");
+		}
+		else if(80 <= n && n < 85) {
+			return new Item(this.getPosX(), this.getPosY(),"DamagePotion");
 		}
 		else {
 			return null;
@@ -150,7 +165,7 @@ public class MonstreCaC extends Entity implements Runnable{
 	
 	@Override
 	public void sufferDamage(int damage) {
-		int health = this.getHealth();
+		float health = this.getHealth();
 		if(health - damage > 0) {
 			this.setHealth(health-damage);
 		}

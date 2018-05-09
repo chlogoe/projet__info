@@ -35,6 +35,8 @@ public class Map extends JPanel {
     private BufferedImage bomb;
     private BufferedImage heart;
     private BufferedImage images;
+    private BufferedImage regenPotion;
+    private BufferedImage damagePotion;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -53,7 +55,9 @@ public class Map extends JPanel {
         	this.bomb5 = ImageIO.read(getClass().getResourceAsStream("/images/bomb5.png"));
         	this.bomb = ImageIO.read(getClass().getResourceAsStream("/images/bomb.png"));
         	this.heart = ImageIO.read(getClass().getResourceAsStream("/images/heart.png"));
-        	images = ImageIO.read(getClass().getResourceAsStream("/images/spriteSheet.png"));
+        	this.images = ImageIO.read(getClass().getResourceAsStream("/images/spriteSheet.png"));
+        	this.regenPotion = ImageIO.read(getClass().getResourceAsStream("/images/regenPotion.png"));
+        	this.damagePotion = ImageIO.read(getClass().getResourceAsStream("/images/damagePotion.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -292,6 +296,12 @@ public class Map extends JPanel {
             		break;
             	case "Heart":
             		g.drawImage(heart, x*32, y*32, null);
+            		break;
+            	case "RegenPotion":
+            		g.drawImage(regenPotion, x*32, y*32, null);
+            		break;
+            	case "DamagePotion":
+            		g.drawImage(damagePotion, x*32, y*32, null);
             		break;
             	default:
                 	g.setColor(Color.PINK);

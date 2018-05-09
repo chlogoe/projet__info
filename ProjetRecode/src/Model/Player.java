@@ -10,7 +10,7 @@ public class Player extends Entity {
     
     private Game game;
     private final int numberOfWeapon = 2;
-    
+    private int slot = 1;
 
     public Player(Game game) {
         super(-1, -1, "Player", 10, 5);
@@ -84,6 +84,20 @@ public class Player extends Entity {
     		setPosX(1);
     		setPosY(1);
     	}
+    }
+    
+    public void swapSlot(int slot) {
+    	this.slot = slot;
+    }
+    
+    public void useItem() {
+    	if(usable.get(slot) == "DamagePotion") {
+    		//TODO augmenter les dégats pour x secondes
+    	}
+    	else if(usable.get(slot) == "RegenPotion") {
+    		//TODO regen de la vie
+    	}
+    	usable.remove(slot);
     }
     
     public void interract(Direction side) {

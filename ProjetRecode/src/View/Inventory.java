@@ -19,6 +19,9 @@ public class Inventory extends JPanel{
 	private BufferedImage key;
 	private BufferedImage sword;
 	private BufferedImage shield;
+	private BufferedImage arrow;
+	private BufferedImage emptyHeart;
+	private BufferedImage fullHeart;
 	
 	public Inventory(){
 		this.setFocusable(true);
@@ -28,6 +31,9 @@ public class Inventory extends JPanel{
         	this.key = ImageIO.read(getClass().getResourceAsStream("/images/key.png"));
         	this.sword = ImageIO.read(getClass().getResourceAsStream("/images/sword.png"));
         	this.shield = ImageIO.read(getClass().getResourceAsStream("/images/shield.png"));
+        	this.arrow = ImageIO.read(getClass().getResourceAsStream("/images/Arrow.png"));
+        	this.emptyHeart = ImageIO.read(getClass().getResourceAsStream("/images/emptyHeart.png"));
+        	this.fullHeart = ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
         } catch (IOException e) {
     		e.printStackTrace();
         }
@@ -53,12 +59,10 @@ public class Inventory extends JPanel{
 	public void paintHealth( Graphics g) {
 		for (int i=0; i<player.getMaxHealth(); i++) {
 			if (i<player.getHealth()) {
-				g.setColor(Color.GREEN);
-				g.fillOval(100+i*32, 100, 30, 30);
+				g.drawImage(fullHeart,100+i*32,100,null);
 			}
 			else {
-				g.setColor(Color.RED);
-				g.fillOval(100+i*32,100, 30, 30);
+				g.drawImage(emptyHeart,100+i*32,100,null);
 			}
 		}
 	}
@@ -79,32 +83,30 @@ public class Inventory extends JPanel{
 	
 	public void paintOneUp(Graphics g) {
 		g.setColor(Color.BLACK);
-    	g.drawString("x "+ Integer.toString(player.getOneUpAmount()), 32* player.getMaxHealth()+120, 120);
+    	g.drawString("x "+ Integer.toString(player.getOneUpAmount()), 32* player.getMaxHealth()+110, 120);
 	}
 	
 	public void paintArrow(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(100, 250, 20, 10);
-		//g.drawImage(key,100,300,null);
-    	g.drawString(Integer.toString(player.getArrowAmount()), 130, 270);
+		g.drawImage(arrow,100,250,null);
+    	g.drawString(Integer.toString(player.getArrowAmount()), 140, 270);
 	}
 	
 	public void paintKey(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.drawImage(key,100,300,null);
-    	g.drawString(Integer.toString(player.getKeyAmount()), 130, 320);
+    	g.drawString(Integer.toString(player.getKeyAmount()), 140, 320);
 	}
 	
 	public void paintBomb(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.drawImage(bomb,100,350,null);
-    	g.drawString(Integer.toString(player.getBombAmount()), 130, 370);
+    	g.drawString(Integer.toString(player.getBombAmount()), 140, 370);
 	}
 	
 	public void paintPlanch(Graphics g) {
 		g.setColor(Color.ORANGE);
 		g.fillRect(100, 400, 20, 20);
 		g.setColor(Color.BLACK);
-		g.drawString(Integer.toString(player.getPlanchAmount()), 130, 420);
+		g.drawString(Integer.toString(player.getPlanchAmount()), 140, 420);
 	}
 }

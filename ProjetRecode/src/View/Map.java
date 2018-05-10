@@ -66,7 +66,7 @@ public class Map extends JPanel {
         	this.regenPotion = ImageIO.read(getClass().getResourceAsStream("/images/regenPotion.png"));
         	this.damagePotion = ImageIO.read(getClass().getResourceAsStream("/images/damagePotion.png"));
         	this.key=ImageIO.read(getClass().getResourceAsStream("/images/key2.png"));
-        	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/arrow.png"));
+        	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/Arrow.png"));
         	this.chest=ImageIO.read(getClass().getResourceAsStream("/images/chest.png"));
         	this.oneUp=ImageIO.read(getClass().getResourceAsStream("/images/1up.png"));
         	this.plank=ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));

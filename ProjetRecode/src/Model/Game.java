@@ -339,8 +339,8 @@ public class Game implements DeletableObserver {
     	FileReader file = null;
         BufferedReader in = null;
         Random rand = new Random();
-        int x = rand.nextInt(new File("src/maps").listFiles().length-1)+1;
-        String map = "src/maps/map"+x+".txt";
+        int x = rand.nextInt(new File("maps").listFiles().length-1)+1;
+        String map = "maps/map"+x+".txt";
         
         try {
         	file = new FileReader(map); //On ouvre le fichier de la map souhaité

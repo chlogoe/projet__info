@@ -37,6 +37,10 @@ public class Map extends JPanel {
     private BufferedImage images;
     private BufferedImage regenPotion;
     private BufferedImage damagePotion;
+    private BufferedImage key;
+    private BufferedImage arrow;
+    private BufferedImage chest;
+    private BufferedImage oneUp;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -58,6 +62,10 @@ public class Map extends JPanel {
         	this.images = ImageIO.read(getClass().getResourceAsStream("/images/spriteSheet.png"));
         	this.regenPotion = ImageIO.read(getClass().getResourceAsStream("/images/regenPotion.png"));
         	this.damagePotion = ImageIO.read(getClass().getResourceAsStream("/images/damagePotion.png"));
+        	this.key=ImageIO.read(getClass().getResourceAsStream("/images/key2.png"));
+        	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/arrow.png"));
+        	this.chest=ImageIO.read(getClass().getResourceAsStream("/images/chest.png"));
+        	this.oneUp=ImageIO.read(getClass().getResourceAsStream("/images/1up.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -163,8 +171,7 @@ public class Map extends JPanel {
                 	g.drawImage(tintedRock, x*32, y*32,null);
                 	break;
                 case "C":
-                	g.setColor(Color.ORANGE);
-                	g.fillRect(x*32+4, y*32+4, 24, 24);
+                	g.drawImage(chest, x*32, y*32,null);
                 	break;
                 default:
                 	g.setColor(Color.PINK);
@@ -302,6 +309,15 @@ public class Map extends JPanel {
             		break;
             	case "DamagePotion":
             		g.drawImage(damagePotion, x*32, y*32, null);
+            		break;
+            	case "Key":
+            		g.drawImage(key, x*32, y*32, null);
+            		break;
+            	case "Arrow":
+            		g.drawImage(arrow, x*32, y*32, null);
+            		break;
+            	case "OneUp":
+            		g.drawImage(oneUp, x*32, y*32, null);
             		break;
             	default:
                 	g.setColor(Color.PINK);

@@ -99,8 +99,7 @@ public class Map extends JPanel {
                 	g.fillRect(x * 32, y * 32, 31, 31);
                 	break;
                 case "B":
-                	g.drawImage(images.getSubimage(6*32, 0, 32, 32), x*32, y*32, null);
-                	//g.drawImage(breakableBlock, x*32, y*32,null);
+                	g.drawImage(breakableBlock, x*32, y*32,null);
                 	break;
                 case "H":
                 	String subID = ((Hole) terrain).getSubID();

@@ -207,6 +207,18 @@ public class Player extends Entity {
     	return inventory.get("Bomb");
     }
     
+    public int getArrowAmount() {
+    	return inventory.get("Arrow");
+    }
+    
+    public int getOneUpAmount() {
+    	return inventory.get("OneUp");
+    }
+    
+    public int getPlanchAmount() {
+    	return inventory.get("Planch");
+    }
+    
     public int getArmor() {
     	return inventory.get("Armor");
     }

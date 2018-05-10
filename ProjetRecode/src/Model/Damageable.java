@@ -1,5 +1,5 @@
 package Model;
 
 public interface Damageable {
-	public void sufferDamage(int damage);
+	public void sufferDamage(float damage);
 }

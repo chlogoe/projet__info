@@ -11,11 +11,12 @@ public class Player extends Entity {
     private Game game;
     private final int numberOfWeapon = 2;
     private int slot = 1;
-    private int damage = 3;
+    private float damage = 3;
 
     public Player(Game game) {
-        super(-1, -1, "Player", 10, 5);
-        super.setMaxHealth(10);
+        super(-1, -1, "Player",game);
+        setMaxHealth(10);
+        setHealth(getMaxHealth());
         this.game = game;
         initializeInventory();
     }
@@ -25,7 +26,7 @@ public class Player extends Entity {
     
     private void initializeInventory() {
     	inventory.put("Bomb", 1);
-    	inventory.put("Key", 0);
+    	inventory.put("Key", 1);
     	inventory.put("DamageUp", 0);
     	inventory.put("HealthUp", 0);
     	inventory.put("Armor", 1);
@@ -62,7 +63,7 @@ public class Player extends Entity {
      */
     
     @Override
-    public void sufferDamage(int damage) {
+    public void sufferDamage(float damage) {
     	float health = this.getHealth();
     	
     	if(health - damage > 0) {
@@ -107,9 +108,10 @@ public class Player extends Entity {
     			inventory.put("Planch", inventory.get("Planch")-1);
     			((Hole) target).activate();
     		}
-    		else if(!((Hole) target).isObstacle(this)) {
-    			inventory.put("Planch", inventory.get("Planch")+1);
-    			((Hole) target).activate();
+    	}
+    	else if(target instanceof Chest) {
+    		if(getKeyAmount()>0) {
+    			((Chest) target).activate();
     		}
     	}
     	else if(target instanceof Entity && inventory.get("Weapon") == 1) {
@@ -226,13 +228,13 @@ public class Player extends Entity {
     }
     
     @Override
-    public int getDamage() {
+    public float getDamage() {
     	return damage + 2*inventory.get("DamageUp");
     }
     
     @Override
-    public void setDamage(int damage) {
-    	this.damage = damage-2*inventory.get("DamageUp");
+    public void setDamage(float f) {
+    	this.damage = f-2*inventory.get("DamageUp");
     }
     
     

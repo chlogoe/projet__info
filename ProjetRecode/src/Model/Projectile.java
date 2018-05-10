@@ -11,7 +11,7 @@ public class Projectile extends Entity implements Runnable{
 	private int level;
 	
 	public Projectile(Entity entity, int range, Game game) {
-		super(entity.getPosX(), entity.getPosY(), "Proj", 0, 2);
+		super(entity.getPosX(), entity.getPosY(), "Proj", game);
 		if(range > 0) {
 			this.range = range;
 		}
@@ -44,7 +44,7 @@ public class Projectile extends Entity implements Runnable{
 	}
 	
 	@Override
-	public void sufferDamage(int damage) {
+	public void sufferDamage(float damage) {
 		//Pas d'effet
 	}
 	

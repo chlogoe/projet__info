@@ -11,10 +11,11 @@ public class MonstreArcher extends Entity implements Runnable{
 
 	
 	public MonstreArcher(int x, int y, Game game) {
-		super(x, y, "Archer", 5, 3);
+		super(x, y, "Archer", game);
 		new Thread(this).start();
 		this.game = game;
-		super.setMaxHealth(5);
+		setMaxHealth(5+game.getLevel());
+		setHealth(getMaxHealth());
 	}
 	
 	@Override
@@ -114,7 +115,7 @@ public class MonstreArcher extends Entity implements Runnable{
 	}
 	
 	@Override
-	public void sufferDamage(int damage) {
+	public void sufferDamage(float damage) {
 		float health = this.getHealth();
 		if(health - damage > 0) {
 			this.setHealth(health-damage);

@@ -6,15 +6,15 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 	
 	protected ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	
-	private float health;
-	private int damage;
+	private float health = 5;
+	private float damage = 3;
 	private int maxHealth;
+	private Game game;
 	private Direction direction = Direction.Up;
 	
-	public Entity(int x, int y, String ID, int health, int damage) {
+	public Entity(int x, int y, String ID, Game game) {
 		super(x,y,ID);
-		this.health = health;
-		this.damage = damage;
+		this.game = game;
 	}
 	
 	public abstract void move(Direction direction);
@@ -23,15 +23,14 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 		return true;
 	}
 	
-	public int getDamage() {
-		return damage;
+	public float getDamage() {
+		System.out.println((float) (damage+(0.2*game.getLevel())));
+		return (float) (damage+(0.2*game.getLevel()));
 	}
 	
-	public void setDamage(int damage) {
+	public void setDamage(float damage) {
 		this.damage = damage;
 	}
-	
-	public abstract void sufferDamage(int damage);
 	
 	public float getHealth() {
 		return health;

@@ -2,8 +2,8 @@ package Model;
 
 public class TempEntity extends Entity {
 
-	public TempEntity(int x, int y) {
-		super(x, y, " ",0,0);
+	public TempEntity(int x, int y, Game game) {
+		super(x, y, " ", game);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class TempEntity extends Entity {
 	}
 
 	@Override
-	public void sufferDamage(int damage) {
+	public void sufferDamage(float damage) {
 		
 	}
 

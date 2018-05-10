@@ -263,7 +263,7 @@ public class Game implements DeletableObserver {
     	Entity monster;
     	
     	for(int i = 0;i<number;i++) {
-    		TempEntity te = new TempEntity(0,0);
+    		TempEntity te = new TempEntity(0,0, this);
     		te.attachDeletable(this);
     		boolean obstacle = true;
     		
@@ -315,7 +315,9 @@ public class Game implements DeletableObserver {
 			terrains.add(new Spike(x,y, this));
 			break;
 		case 'C':
-			terrains.add(new Chest(x,y));
+			Chest chest = new Chest(x, y);
+            chest.attachDeletable(this);
+            terrains.add(chest);
 			break;
 			
 		default:

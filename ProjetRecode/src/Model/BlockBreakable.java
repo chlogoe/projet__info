@@ -6,7 +6,6 @@ import java.util.Random;
 public class BlockBreakable extends Block implements Deletable, Activable {
 
     private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
-    private ArrayList<Item> items = new ArrayList<Item>();
     
     public BlockBreakable(int x, int y) {
         super(x, y, "B");
@@ -15,8 +14,6 @@ public class BlockBreakable extends Block implements Deletable, Activable {
         if(tinted == 3) {
         	this.setID("B2");
         }
-        items.add(getLoot());
-        //items.add(new Key(x,y));
     }
     
     private Item getLoot() {
@@ -70,7 +67,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
     public void notifyDeletableObserver() {
         for (DeletableObserver o : observers) {
         	if(this.getID() == "B2") {
-        		o.delete(this, items.get(0));
+        		o.delete(this, getLoot());
         		//TODO créer une véritable pool d'items
         	}
         	else {

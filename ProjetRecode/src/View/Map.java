@@ -331,6 +331,7 @@ public class Map extends JPanel {
             		break;
             	case "Plank":
             		g.drawImage(plank, x*32, y*32, null);
+            		break;
             	default:
                 	g.setColor(Color.PINK);
                 	g.drawRoundRect(x*32, y*32, 32, 32, 8, 8);

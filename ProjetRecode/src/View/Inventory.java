@@ -28,7 +28,7 @@ public class Inventory extends JPanel{
 		this.requestFocusInWindow();
 		try { //Le try catch ici permet d'éviter les erreurs
         	this.bomb = ImageIO.read(getClass().getResourceAsStream("/images/bomb.png"));
-        	this.key = ImageIO.read(getClass().getResourceAsStream("/images/key.png"));
+        	this.key = ImageIO.read(getClass().getResourceAsStream("/images/key2.png"));
         	this.sword = ImageIO.read(getClass().getResourceAsStream("/images/sword.png"));
         	this.shield = ImageIO.read(getClass().getResourceAsStream("/images/shield.png"));
         	this.arrow = ImageIO.read(getClass().getResourceAsStream("/images/Arrow.png"));

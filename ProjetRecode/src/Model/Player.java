@@ -19,6 +19,7 @@ public class Player extends Entity {
         this.game = game;
         initializeInventory();
     }
+    
 
    // //////////////////////////////////////////////////////////////////////////////////////
     
@@ -201,6 +202,16 @@ public class Player extends Entity {
     public int getKeyAmount() {
     	return inventory.get("Key");
     }
+    
+    public int getBombAmount() {
+    	return inventory.get("Bomb");
+    }
+    
+    public int getArmor() {
+    	return inventory.get("Armor");
+    }
+    
+    
     
     public Hashtable<String, Integer> getInventory(){
     	return inventory;

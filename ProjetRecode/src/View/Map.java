@@ -66,7 +66,7 @@ public class Map extends JPanel {
         	this.regenPotion = ImageIO.read(getClass().getResourceAsStream("/images/regenPotion.png"));
         	this.damagePotion = ImageIO.read(getClass().getResourceAsStream("/images/damagePotion.png"));
         	this.key=ImageIO.read(getClass().getResourceAsStream("/images/key2.png"));
-        	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/arrow.png"));
+        	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/Arrow.png"));
         	this.chest=ImageIO.read(getClass().getResourceAsStream("/images/chest.png"));
         	this.oneUp=ImageIO.read(getClass().getResourceAsStream("/images/1up.png"));
         	this.plank=ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
@@ -99,8 +99,7 @@ public class Map extends JPanel {
                 	g.fillRect(x * 32, y * 32, 31, 31);
                 	break;
                 case "B":
-                	g.drawImage(images.getSubimage(6*32, 0, 32, 32), x*32, y*32, null);
-                	//g.drawImage(breakableBlock, x*32, y*32,null);
+                	g.drawImage(breakableBlock, x*32, y*32,null);
                 	break;
                 case "H":
                 	String subID = ((Hole) terrain).getSubID();

@@ -7,7 +7,6 @@ import Model.Direction;
 import Model.Game;
 import Model.GameObject;
 import Model.Player;
-import Model.Projectile;
 
 public class Keyboard implements KeyListener {
     private Game game;

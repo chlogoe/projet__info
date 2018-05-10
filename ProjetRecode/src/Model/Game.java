@@ -207,6 +207,7 @@ public class Game implements DeletableObserver {
     /*
      *Supprime l'objet auquel est attaché le Deletable ps
      */
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
     synchronized public void delete(Deletable ps, Item item) {
         entities.remove(ps);

@@ -34,17 +34,17 @@ public class BlockBreakable extends Block implements Deletable, Activable {
 		else if(25 <= n && n < 27) {
 			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
 		}
-		else if(30<=n && n<70) {
+		else if(30<=n && n<55) {
 			return null;
 		}
 		else if(70 <= n && n < 72) {
 			return new Item(this.getPosX(), this.getPosY(),"Armor");
 		}
 		else if(75 <= n && n < 80) {
-			return new Item(this.getPosX(), this.getPosY(),"RegenPotion");
+			return new Potion(this.getPosX(), this.getPosY(),"RegenPotion");
 		}
 		else if(80 <= n && n < 85) {
-			return new Item(this.getPosX(), this.getPosY(),"DamagePotion");
+			return new Potion(this.getPosX(), this.getPosY(),"DamagePotion");
 		}
 		else {
 			return new Item(this.getPosX(), this.getPosY(),"Bomb");

@@ -53,16 +53,15 @@ public class Keyboard implements KeyListener {
             case KeyEvent.VK_E:
             	player.useBomb();
             	break;
-            case KeyEvent.VK_H:
-            	game.addMonster(10);
-            	break;
-            case KeyEvent.VK_I:
-            	System.out.println(player.getInventory());
-            	break;
             case KeyEvent.VK_A:
             	player.switchWeapon();
             	System.out.println("Switched weapon");
             	break;
+            case KeyEvent.VK_ENTER:
+            	player.useItem();
+            	break;
+            case KeyEvent.VK_1: case KeyEvent.VK_2: case KeyEvent.VK_3: case KeyEvent.VK_4: case KeyEvent.VK_5: case KeyEvent.VK_6: case KeyEvent.VK_7: case KeyEvent.VK_8: case KeyEvent.VK_9:
+            	player.swapSlot(key-48);
             }
         }  
     }

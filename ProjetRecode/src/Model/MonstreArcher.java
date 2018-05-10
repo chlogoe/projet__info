@@ -65,10 +65,10 @@ public class MonstreArcher extends Entity implements Runnable{
 			return new Item(this.getPosX(), this.getPosY(),"Armor");
 		}
 		else if(75 <= n && n < 80) {
-			return new Item(this.getPosX(), this.getPosY(),"RegenPotion");
+			return new Potion(this.getPosX(), this.getPosY(),"RegenPotion");
 		}
 		else if(80 <= n && n < 85) {
-			return new Item(this.getPosX(), this.getPosY(),"DamagePotion");
+			return new Potion(this.getPosX(), this.getPosY(),"DamagePotion");
 		}
 		else {
 			return null;

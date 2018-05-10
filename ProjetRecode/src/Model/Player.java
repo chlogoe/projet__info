@@ -31,7 +31,7 @@ public class Player extends Entity {
     	inventory.put("HealthUp", 0);
     	inventory.put("Armor", 1);
     	inventory.put("OneUp", 2);
-    	inventory.put("Planch", 1);
+    	inventory.put("Plank", 1);
     	inventory.put("Weapon", 1);
     	inventory.put("Arrow", 5);
     	maxItem.put("Bomb", 10);
@@ -104,14 +104,15 @@ public class Player extends Entity {
     	this.setDirection(side);
     	GameObject target  = game.getBlockType(side, this);
     	if(target instanceof Hole && inventory.get("Weapon") != 2) {
-    		if(((Hole) target).isObstacle(this) && inventory.get("Planch") > 0){
-    			inventory.put("Planch", inventory.get("Planch")-1);
+    		if(((Hole) target).isObstacle(this) && inventory.get("Plank") > 0){
+    			inventory.put("Plank", inventory.get("Plank")-1);
     			((Hole) target).activate();
     		}
     	}
     	else if(target instanceof Chest) {
     		if(getKeyAmount()>0) {
     			((Chest) target).activate();
+    			inventory.put("Key", inventory.get("Key")-1);
     		}
     	}
     	else if(target instanceof Entity && inventory.get("Weapon") == 1) {
@@ -217,8 +218,8 @@ public class Player extends Entity {
     	return inventory.get("OneUp");
     }
     
-    public int getPlanchAmount() {
-    	return inventory.get("Planch");
+    public int getPlankAmount() {
+    	return inventory.get("Plank");
     }
     
     public int getArmor() {

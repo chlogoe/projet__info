@@ -1,0 +1,20 @@
+AAAAAAAAADAAAAAAAAAA
+A                  A
+A HHH          HHH A
+A HCH BBB  BBBPHPH A
+A HHH          HHH A
+A  P            P  A
+A  B  B      B  B  A
+A  B   B    B   B  A
+A  B    P  P    B  A
+AB       BB       BA
+AB       BB       BA
+A  B    P  P    B  A
+A  B   B    B   B  A
+A  B  B      B  B  A
+A  P            P  A
+A HHH          HHH A
+A HPHPBBB  BBBPHCH A
+A HHH          HHH A
+A                  A
+AAAAAAAAAAAAAAAAAAAA

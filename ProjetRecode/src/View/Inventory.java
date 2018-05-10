@@ -22,6 +22,7 @@ public class Inventory extends JPanel{
 	private BufferedImage arrow;
 	private BufferedImage emptyHeart;
 	private BufferedImage fullHeart;
+	private BufferedImage plank;
 	
 	public Inventory(){
 		this.setFocusable(true);
@@ -34,6 +35,7 @@ public class Inventory extends JPanel{
         	this.arrow = ImageIO.read(getClass().getResourceAsStream("/images/Arrow.png"));
         	this.emptyHeart = ImageIO.read(getClass().getResourceAsStream("/images/emptyHeart.png"));
         	this.fullHeart = ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
+        	this.plank = ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
         } catch (IOException e) {
     		e.printStackTrace();
         }
@@ -49,7 +51,7 @@ public class Inventory extends JPanel{
 		paintArrow(g);
 		paintKey(g);
 		paintBomb(g);
-		paintPlanch(g);
+		paintPlank(g);
     	
 	}
 	public void setPlayer(Player player) {
@@ -103,10 +105,9 @@ public class Inventory extends JPanel{
     	g.drawString(Integer.toString(player.getBombAmount()), 140, 370);
 	}
 	
-	public void paintPlanch(Graphics g) {
-		g.setColor(Color.ORANGE);
-		g.fillRect(100, 400, 20, 20);
+	public void paintPlank(Graphics g) {
+		g.drawImage(plank,100,400,null);
 		g.setColor(Color.BLACK);
-		g.drawString(Integer.toString(player.getPlanchAmount()), 140, 420);
+		g.drawString(Integer.toString(player.getPlankAmount()), 140, 420);
 	}
 }

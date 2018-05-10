@@ -24,7 +24,7 @@ public class Chest extends Block implements Activable, Deletable {
 			return new Item(this.getPosX(), this.getPosY(),"Armor");
 		}
 		else if(n<92){
-			return new Item(this.getPosX(), this.getPosY(),"Planch");
+			return new Item(this.getPosX(), this.getPosY(),"Plank");
 		}
 		else if(n<100) {
 			return new Potion(this.getPosX(), this.getPosY(),"OneUp");

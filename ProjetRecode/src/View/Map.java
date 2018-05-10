@@ -41,6 +41,7 @@ public class Map extends JPanel {
     private BufferedImage arrow;
     private BufferedImage chest;
     private BufferedImage oneUp;
+    private BufferedImage plank;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -66,6 +67,7 @@ public class Map extends JPanel {
         	this.arrow=ImageIO.read(getClass().getResourceAsStream("/images/arrow.png"));
         	this.chest=ImageIO.read(getClass().getResourceAsStream("/images/chest.png"));
         	this.oneUp=ImageIO.read(getClass().getResourceAsStream("/images/1up.png"));
+        	this.plank=ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -151,8 +153,7 @@ public class Map extends JPanel {
                 	}
             
                 	if(!((Hole) terrain).isObstacle(null)) {
-                		g.setColor(Color.ORANGE);
-                		g.fill3DRect(x*32+8, y*32+8, 16, 16, false);
+                		g.drawImage(plank, x*32, y*32,null);
                 	}
                 	break;
                 case "D":

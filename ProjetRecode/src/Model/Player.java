@@ -6,11 +6,12 @@ public class Player extends Entity {
     
     private Hashtable<String, Integer> inventory = new Hashtable<String, Integer>();
     private Hashtable<String, Integer> maxItem = new Hashtable<String, Integer>();
-    private Hashtable<Integer, String> usable = new Hashtable<Integer, String>();
+    private Hashtable<Integer, Potion> usable = new Hashtable<Integer, Potion>();
     
     private Game game;
     private final int numberOfWeapon = 2;
     private int slot = 1;
+    private int damage = 3;
 
     public Player(Game game) {
         super(-1, -1, "Player", 10, 5);
@@ -92,19 +93,16 @@ public class Player extends Entity {
     }
     
     public void useItem() {
-    	if(usable.get(slot) == "DamagePotion") {
-    		//TODO augmenter les dégats pour x secondes
+    	if(usable.get(slot)!=null) {
+    		usable.get(slot).use(this);
+        	usable.remove(slot);
     	}
-    	else if(usable.get(slot) == "RegenPotion") {
-    		//TODO regen de la vie
-    	}
-    	usable.remove(slot);
     }
     
     public void interract(Direction side) {
     	this.setDirection(side);
     	GameObject target  = game.getBlockType(side, this);
-    	if(target instanceof Hole) {
+    	if(target instanceof Hole && inventory.get("Weapon") != 2) {
     		if(((Hole) target).isObstacle(this) && inventory.get("Planch") > 0){
     			inventory.put("Planch", inventory.get("Planch")-1);
     			((Hole) target).activate();
@@ -117,8 +115,9 @@ public class Player extends Entity {
     	else if(target instanceof Entity && inventory.get("Weapon") == 1) {
     		((Entity) target).sufferDamage(this.getDamage());
     	}
-    	else if(inventory.get("Weapon") == 2){
+    	else if(inventory.get("Weapon") == 2 && inventory.get("Arrow")>0){
     		game.throwProjectile(this,7);
+    		inventory.put("Arrow", inventory.get("Arrow")-1);
     	}
     	
     }
@@ -132,7 +131,8 @@ public class Player extends Entity {
     	}
 	}
     
-    private void heal(int healing) {
+    
+    public void heal(float healing) {
     	float nextHealth = this.getHealth()+healing;
     	
     	if(nextHealth < this.getMaxHealth()) {
@@ -166,6 +166,7 @@ public class Player extends Entity {
     		break;
     	case "HealthUp":
     		this.setMaxHealth(getMaxHealth()+2);
+    		inventory.put("HealthUp", inventory.get("HealthUp")+1);
     		heal(2);
     		break;
     	case "Arrow":
@@ -176,14 +177,13 @@ public class Player extends Entity {
     			else {
     				inventory.put("Arrow", maxItem.get("Arrow"));
     			}
-    			
     		}
     		break;
     	case "RegenPotion":
-    		usable.put(usable.size(), ID);
+    		usable.put(usable.size()+1, (Potion) item);
     		break;
     	case "DamagePotion":
-    		usable.put(usable.size(), ID);
+    		usable.put(usable.size()+1, (Potion) item);
     		break;
     	default:
     		if(maxItem.get(ID)==null || maxItem.get(ID)>inventory.get(ID)) {
@@ -229,7 +229,7 @@ public class Player extends Entity {
     	return inventory;
     }
     
-    public Hashtable<Integer, String> getUsable(){
+    public Hashtable<Integer, Potion> getUsable(){
     	return usable;
     }
     
@@ -239,6 +239,13 @@ public class Player extends Entity {
     
     @Override
     public int getDamage() {
-    	return 3 + 2*inventory.get("DamageUp");
+    	return damage + 2*inventory.get("DamageUp");
     }
+    
+    @Override
+    public void setDamage(int damage) {
+    	this.damage = damage-2*inventory.get("DamageUp");
+    }
+    
+    
 }

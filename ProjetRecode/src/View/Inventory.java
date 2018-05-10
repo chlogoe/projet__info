@@ -23,6 +23,7 @@ public class Inventory extends JPanel{
 	private BufferedImage emptyHeart;
 	private BufferedImage fullHeart;
 	private BufferedImage plank;
+	private BufferedImage bow;
 	
 	public Inventory(){
 		this.setFocusable(true);
@@ -36,6 +37,7 @@ public class Inventory extends JPanel{
         	this.emptyHeart = ImageIO.read(getClass().getResourceAsStream("/images/emptyHeart.png"));
         	this.fullHeart = ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
         	this.plank = ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
+        	this.bow = ImageIO.read(getClass().getResourceAsStream("/images/bow.png"));
         } catch (IOException e) {
     		e.printStackTrace();
         }
@@ -74,7 +76,12 @@ public class Inventory extends JPanel{
 	
 	public void paintDamage(Graphics g) {
 		for (int i=0; i< player.getDamage();i++) {
-			g.drawImage(sword,100+i*32,150,null);
+			if (player.getWeapon()==1) {
+				g.drawImage(sword,100+i*32,150,null);
+			}
+			else {
+				g.drawImage(bow,100+i*32,150,null);
+			}
 		}
 	}
 	

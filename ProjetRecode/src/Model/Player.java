@@ -226,6 +226,10 @@ public class Player extends Entity {
     	return inventory.get("Armor");
     }
     
+    public int getWeapon() {
+    	return inventory.get("Weapon");
+    }
+    
     
     
     public Hashtable<String, Integer> getInventory(){

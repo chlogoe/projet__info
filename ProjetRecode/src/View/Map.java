@@ -42,6 +42,8 @@ public class Map extends JPanel {
     private BufferedImage chest;
     private BufferedImage oneUp;
     private BufferedImage plank;
+    private BufferedImage shield;
+    private BufferedImage sword;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -68,6 +70,8 @@ public class Map extends JPanel {
         	this.chest=ImageIO.read(getClass().getResourceAsStream("/images/chest.png"));
         	this.oneUp=ImageIO.read(getClass().getResourceAsStream("/images/1up.png"));
         	this.plank=ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
+        	this.shield=ImageIO.read(getClass().getResourceAsStream("/images/shield.png"));
+        	this.sword=ImageIO.read(getClass().getResourceAsStream("/images/sword.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -320,6 +324,14 @@ public class Map extends JPanel {
             	case "OneUp":
             		g.drawImage(oneUp, x*32, y*32, null);
             		break;
+            	case "Damage":
+            		g.drawImage(sword, x*32, y*32, null);
+            		break;
+            	case "Armor":
+            		g.drawImage(shield, x*32, y*32, null);
+            		break;
+            	case "Plank":
+            		g.drawImage(plank, x*32, y*32, null);
             	default:
                 	g.setColor(Color.PINK);
                 	g.drawRoundRect(x*32, y*32, 32, 32, 8, 8);

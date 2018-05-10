@@ -44,6 +44,7 @@ public class Inventory extends JPanel{
 	
 	public void paint(Graphics g) {
 		g.setFont(new Font("Calibri", Font.PLAIN, 18));
+		g.setColor(Color.BLACK);
 		paintHealth(g);
 		paintOneUp(g);
 		paintDamage(g);
@@ -84,7 +85,6 @@ public class Inventory extends JPanel{
 	}
 	
 	public void paintOneUp(Graphics g) {
-		g.setColor(Color.BLACK);
     	g.drawString("x "+ Integer.toString(player.getOneUpAmount()), 32* player.getMaxHealth()+110, 120);
 	}
 	
@@ -94,20 +94,17 @@ public class Inventory extends JPanel{
 	}
 	
 	public void paintKey(Graphics g) {
-		g.setColor(Color.BLACK);
 		g.drawImage(key,100,300,null);
     	g.drawString(Integer.toString(player.getKeyAmount()), 140, 320);
 	}
 	
 	public void paintBomb(Graphics g) {
-		g.setColor(Color.BLACK);
 		g.drawImage(bomb,100,350,null);
     	g.drawString(Integer.toString(player.getBombAmount()), 140, 370);
 	}
 	
 	public void paintPlank(Graphics g) {
 		g.drawImage(plank,100,400,null);
-		g.setColor(Color.BLACK);
 		g.drawString(Integer.toString(player.getPlankAmount()), 140, 420);
 	}
 }

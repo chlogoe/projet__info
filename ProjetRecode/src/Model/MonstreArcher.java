@@ -47,29 +47,35 @@ public class MonstreArcher extends Entity implements Runnable{
 	private Item getLoot() {
 		Random rand = new Random();
 		int n = rand.nextInt(100);
-		if(0 <=n && n <10) {
-			return new Item(this.getPosX(), this.getPosY(), "Heart");
+		if(n <10) {
+			return new Item(this.getPosX(), this.getPosY(), "Bomb");
 		}
-		else if(10 <= n && n < 20) {
-			return new Item(this.getPosX(), this.getPosY(),"Bomb");
+		else if(n < 20) {
+			return new Item(this.getPosX(), this.getPosY(),"Heart");
 		}
-		else if(20 <= n && n < 25) {
-			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
-		}
-		else if(25 <= n && n < 30) {
-			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
-		}
-		else if(30<=n && n<50) {
+		else if(n < 50) {
 			return new Item(this.getPosX(), this.getPosY(),"Arrow");
 		}
-		else if(50 <= n && n < 52) {
-			return new Item(this.getPosX(), this.getPosY(),"Armor");
+		else if(n < 51) {
+			return new Item(this.getPosX(), this.getPosY(),"Plank");
 		}
-		else if(75 <= n && n < 80) {
+		else if(n < 52) {
+			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
+		}
+		else if(n < 53) {
+			return new Potion(this.getPosX(), this.getPosY(),"HealthUp");
+		}
+		else if(n < 54) {
+			return new Potion(this.getPosX(), this.getPosY(),"Armour");
+		}
+		else if(n < 59) {
 			return new Potion(this.getPosX(), this.getPosY(),"RegenPotion");
 		}
-		else if(80 <= n && n < 85) {
+		else if(n < 64) {
 			return new Potion(this.getPosX(), this.getPosY(),"DamagePotion");
+		}
+		else if(n < 74) {
+			return new Potion(this.getPosX(), this.getPosY(),"Key");
 		}
 		else {
 			return null;

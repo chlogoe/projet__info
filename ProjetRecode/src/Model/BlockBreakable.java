@@ -19,32 +19,38 @@ public class BlockBreakable extends Block implements Deletable, Activable {
     private Item getLoot() {
     	Random rand = new Random();
     	int n = rand.nextInt(100);
-		if(0 <=n && n <10) {
-			return new Item(this.getPosX(), this.getPosY(), "Heart");
+    	if(n < 15) {
+			return new Item(this.getPosX(), this.getPosY(), "Bomb");
 		}
-		else if(10 <= n && n < 20) {
+		else if(n < 30) {
+			return new Item(this.getPosX(), this.getPosY(),"Heart");
+		}
+		else if(n < 45) {
 			return new Item(this.getPosX(), this.getPosY(),"Arrow");
 		}
-		else if(20 <= n && n < 25) {
+		else if(n < 50) {
+			return new Item(this.getPosX(), this.getPosY(),"Plank");
+		}
+		else if(n < 55) {
 			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
 		}
-		else if(25 <= n && n < 27) {
-			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
+		else if(n < 60) {
+			return new Potion(this.getPosX(), this.getPosY(),"HealthUp");
 		}
-		else if(30<=n && n<55) {
-			return null;
+		else if(n < 65) {
+			return new Potion(this.getPosX(), this.getPosY(),"Armour");
 		}
-		else if(70 <= n && n < 72) {
-			return new Item(this.getPosX(), this.getPosY(),"Armor");
-		}
-		else if(75 <= n && n < 80) {
+		else if(n < 75) {
 			return new Potion(this.getPosX(), this.getPosY(),"RegenPotion");
 		}
-		else if(80 <= n && n < 85) {
+		else if(n < 85) {
 			return new Potion(this.getPosX(), this.getPosY(),"DamagePotion");
 		}
+		else if(n < 100) {
+			return new Potion(this.getPosX(), this.getPosY(),"Key");
+		}
 		else {
-			return new Item(this.getPosX(), this.getPosY(),"Bomb");
+			return null;
 		}
     }
     

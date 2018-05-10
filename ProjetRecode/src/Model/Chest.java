@@ -14,17 +14,20 @@ public class Chest extends Block implements Activable, Deletable {
 	public Item getLoot() {
 		Random rand = new Random();
 		int n = rand.nextInt(100);
-		if(n<25) {
+		if(n<23) {
 			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
 		}
-		else if(n<50) {
+		else if(n<46) {
 			return new Item(this.getPosX(), this.getPosY(),"HealthUp");
 		}
-		else if(n<75) {
+		else if(n<69) {
 			return new Item(this.getPosX(), this.getPosY(),"Armor");
 		}
-		else if(n<100){
+		else if(n<92){
 			return new Item(this.getPosX(), this.getPosY(),"Planch");
+		}
+		else if(n<100) {
+			return new Potion(this.getPosX(), this.getPosY(),"OneUp");
 		}
 		else {
 			return null;

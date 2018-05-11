@@ -44,6 +44,11 @@ public class Map extends JPanel {
     private BufferedImage plank;
     private BufferedImage shield;
     private BufferedImage sword;
+    private BufferedImage arrowUp;
+    private BufferedImage arrowRight;
+    private BufferedImage arrowDown;
+    private BufferedImage arrowLeft;
+    private BufferedImage fullHeart;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -72,6 +77,11 @@ public class Map extends JPanel {
         	this.plank=ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
         	this.shield=ImageIO.read(getClass().getResourceAsStream("/images/shield.png"));
         	this.sword=ImageIO.read(getClass().getResourceAsStream("/images/sword.png"));
+        	this.arrowUp=ImageIO.read(getClass().getResourceAsStream("/images/arrowUp.png"));
+        	this.arrowRight=ImageIO.read(getClass().getResourceAsStream("/images/arrowRight.png"));
+        	this.arrowDown=ImageIO.read(getClass().getResourceAsStream("/images/arrowDown.png"));
+        	this.arrowLeft=ImageIO.read(getClass().getResourceAsStream("/images/arrowLeft.png"));
+        	this.fullHeart=ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -273,7 +283,20 @@ public class Map extends JPanel {
             		break;
             	case "Proj":
             		g.setColor(Color.CYAN);
-            		g.drawLine(x*32+4, y*32+14, x*32+28, y*32+16);
+            		switch(direction) {
+            		case Up:
+            			g.drawImage(arrowUp, x*32, y*32, null);
+                    	break;
+            		case Right:
+            			g.fillPolygon(a2,b2,3);
+                    	break;
+            		case Down:
+            			g.fillPolygon(a3,b3,3);
+                    	break;
+            		case Left:
+            			g.fillPolygon(a4,b4,3);
+                    	break;
+            		}
             		break;
             	default:
                 	g.setColor(Color.PINK);
@@ -323,7 +346,7 @@ public class Map extends JPanel {
             	case "OneUp":
             		g.drawImage(oneUp, x*32, y*32, null);
             		break;
-            	case "Damage":
+            	case "DamageUp":
             		g.drawImage(sword, x*32, y*32, null);
             		break;
             	case "Armor":

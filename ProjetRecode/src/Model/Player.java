@@ -33,10 +33,10 @@ public class Player extends Entity {
     	inventory.put("OneUp", 2);
     	inventory.put("Plank", 1);
     	inventory.put("Weapon", 1);
-    	inventory.put("Arrow", 5);
+    	inventory.put("Arrow", 10);
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
-    	maxItem.put("Arrow", 50);
+    	maxItem.put("Arrow", 100);
     }
     
     @Override
@@ -172,8 +172,8 @@ public class Player extends Entity {
     		break;
     	case "Arrow":
     		if(maxItem.get("Arrow")>inventory.get(ID)) {
-    			if(inventory.get("Arrow")+5 < maxItem.get("Arrow")) {
-    				inventory.put("Arrow", inventory.get("Arrow")+5);
+    			if(inventory.get("Arrow")+10 < maxItem.get("Arrow")) {
+    				inventory.put("Arrow", inventory.get("Arrow")+10);
     			}
     			else {
     				inventory.put("Arrow", maxItem.get("Arrow"));

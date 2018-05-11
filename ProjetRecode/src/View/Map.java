@@ -329,6 +329,9 @@ public class Map extends JPanel {
             		g.drawImage(bomb, x*32, y*32, null);
             		break;
             	case "Heart":
+            		g.drawImage(fullHeart, x*32, y*32, null);
+            		break;
+            	case "HealthUp":
             		g.drawImage(heart, x*32, y*32, null);
             		break;
             	case "RegenPotion":

@@ -12,7 +12,8 @@ import java.util.Random;
 
 public class Game implements DeletableObserver {
 	
-	public boolean running = true;
+	private boolean running = true;
+	private boolean isEnded = false;
 	
     private ArrayList<GameObject> terrains = new ArrayList<GameObject>();//une ArrayList pour le terrain
     private ArrayList<Entity> entities = new ArrayList<Entity>();//Et une pour les entités, permet de dessiner les entités par dessus le sol.
@@ -46,6 +47,18 @@ public class Game implements DeletableObserver {
     	else {
     		running = true;
     	}
+    }
+    
+    public void endGame() {
+    	changeRunning();
+    	isEnded = true;
+    	entities.clear();
+    	items.clear();
+    	terrains.clear();
+    }
+    
+    public boolean isEnded() {
+    	return isEnded;
     }
     
     public void startLevel() throws Exception {
@@ -210,6 +223,9 @@ public class Game implements DeletableObserver {
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
     synchronized public void delete(Deletable ps, Item item) {
+		if(ps instanceof Scorable) {
+			System.out.println(((Scorable) ps).getScore());
+		}
         entities.remove(ps);
         terrains.remove(ps);
         items.remove(ps);
@@ -223,7 +239,7 @@ public class Game implements DeletableObserver {
      * Fonction qui revoie l'objet joueur
      * (utilisé pour permettre au clavier de savoir quelle entité il dirige)
      */
-    public Player getPlayer() throws Exception {
+    public Player getPlayer(){
     	Entity player = null;
     	if(entities.size()>0) {
     		player = entities.get(0);
@@ -232,7 +248,7 @@ public class Game implements DeletableObserver {
     		return (Player) player;
     	}
     	else {
-    		throw new Exception("No player");
+    		return null;
     	}
     }
     

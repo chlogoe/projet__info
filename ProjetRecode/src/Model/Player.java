@@ -77,9 +77,9 @@ public class Player extends Entity {
     	
     	
     	if(inventory.get("OneUp") == 0 && health == 0) {
-    		notifyDeletableObserver();
     		System.out.println("Fin de la partie");
-    		game.changeRunning();
+    		game.endGame();
+    		notifyDeletableObserver();
     	}
     	else if(health == 0) {
     		this.setHealth(this.getMaxHealth());

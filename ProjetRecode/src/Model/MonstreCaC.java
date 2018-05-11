@@ -5,7 +5,7 @@ import java.util.Random;
 
 import Model.Game;
 
-public class MonstreCaC extends Entity implements Runnable{
+public class MonstreCaC extends Entity implements Runnable, Scorable{
 	
 	private Game game;
 
@@ -31,7 +31,6 @@ public class MonstreCaC extends Entity implements Runnable{
 	public void attack() throws Exception {
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
 		if(playerDirection != null&&this.getHealth()>0) {
-			Thread.sleep(250);
 			game.getPlayer().sufferDamage(getDamage());
 		}
 	}
@@ -89,9 +88,11 @@ public class MonstreCaC extends Entity implements Runnable{
 	public synchronized void run() {
 		Random rand = new Random();
 		Player player = null;
-		while(game.isRunning() && player == null) {
+		System.out.println(game.getLevel());
+		while(game.isRunning()) {
 			try {
 				player = game.getPlayer();
+				break;
 			} catch (Exception e) {
 				System.out.println("MonsterCaC ligne 71");
 				e.printStackTrace();
@@ -148,8 +149,8 @@ public class MonstreCaC extends Entity implements Runnable{
 				
 			}
 			try {
-				Thread.sleep(sleepTime);
 				attack();
+				Thread.sleep(sleepTime);
 			} catch (Exception e) {
 				System.out.println("MonsterCaC ligne 130");
 				e.printStackTrace();
@@ -183,5 +184,10 @@ public class MonstreCaC extends Entity implements Runnable{
 			this.setHealth(0);
 			kill();
 		}
+	}
+	
+	@Override
+	public int getScore() {
+		return (int) (100*game.getLevel())/4;
 	}
 }

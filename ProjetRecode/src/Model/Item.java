@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Item extends GameObject implements Deletable, Activable{
+public class Item extends GameObject implements Deletable, Activable, Scorable{
 	
 	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	
@@ -29,5 +29,15 @@ public class Item extends GameObject implements Deletable, Activable{
 	@Override
 	public void activate() {
 		this.notifyDeletableObserver();
+	}
+	
+	@Override
+	public int getScore() {
+		switch(getID()) {
+		case "Arrow" : case "Bomb" : case "Heart" : return 20;
+		case "RegenPotion" : case "DamagePotion" : return 50;
+		case "DamageUp" : case "HealthUp" : case "Plank" : case "Armor" : return 100;
+		default : return 1;
+		}
 	}
 }

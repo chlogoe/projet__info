@@ -18,7 +18,7 @@ public class Window {
 	private JPanel windowPanel;
     private Map map = new Map();
     private Inventory inventory= new Inventory();
-    private String gameName = "Splendid Game";
+    private String gameName = "The binding of Zelda: breath of the Isaac";
 
     public Window() { // Ajout d'un paramètre permetant de définir la taille de la carte
     	
@@ -39,7 +39,6 @@ public class Window {
         window.setVisible(true);//On rend la fenêtre visible
         
         new ViewUpdater(this);
-        
     }
 
     public void setGameObjects(ArrayList<GameObject> objects) { //Fonction qui ajoute tout le terrain à la carte

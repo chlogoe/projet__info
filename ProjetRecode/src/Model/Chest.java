@@ -53,7 +53,6 @@ public class Chest extends Block implements Activable, Deletable {
 
 	@Override
 	public void activate() {
-		System.out.println("I try to activate");
 		notifyDeletableObserver();
 	}
 }

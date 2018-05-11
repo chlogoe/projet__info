@@ -5,7 +5,7 @@ import java.util.Random;
 
 import Model.Game;
 
-public class MonstreArcher extends Entity implements Runnable{
+public class MonstreArcher extends Entity implements Runnable, Scorable{
 	
 	private Game game;
 
@@ -87,6 +87,7 @@ public class MonstreArcher extends Entity implements Runnable{
 		Random rand = new Random();
 		int shoot = 0;
 		try{
+			System.out.println(game.getLevel());
 			while (this.getHealth()>0 && game.getPlayer() != null){
 				
 				while(!game.isRunning()) {
@@ -108,11 +109,11 @@ public class MonstreArcher extends Entity implements Runnable{
 					move(Direction.Left);
 					break;
 				}
-				Thread.sleep(300);
 				if(shoot%3==0) {
 					attack();
 				}
 				shoot++;
+				Thread.sleep(300);
 			}
 				
 		}catch(Exception e){
@@ -130,5 +131,10 @@ public class MonstreArcher extends Entity implements Runnable{
 			this.setHealth(0);
 			kill();
 		}
+	}
+
+	@Override
+	public int getScore() {
+		return (int) (100*game.getLevel())/4;
 	}
 }

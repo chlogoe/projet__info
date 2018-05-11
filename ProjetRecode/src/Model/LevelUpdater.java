@@ -13,8 +13,10 @@ public class LevelUpdater implements Runnable {
 	public void run() {
 		while(true) {
 			try {
+				if(game.isRunning()) {
+					game.startLevel();
+				}
 				Thread.sleep(15);
-				game.startLevel();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -34,6 +34,8 @@ public class Player extends Entity {
     	inventory.put("Plank", 1);
     	inventory.put("Weapon", 1);
     	inventory.put("Arrow", 5);
+    	usable.put(1, new Potion (0,0,"RegenPotion"));
+    	usable.put(2, new Potion (0,0,"DamagePotion"));
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
     	maxItem.put("Arrow", 50);

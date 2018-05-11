@@ -24,6 +24,9 @@ public class Inventory extends JPanel{
 	private BufferedImage fullHeart;
 	private BufferedImage plank;
 	private BufferedImage bow;
+	private BufferedImage regenPotion;
+	private BufferedImage damagePotion;
+	
 	
 	public Inventory(){
 		this.setFocusable(true);
@@ -38,6 +41,8 @@ public class Inventory extends JPanel{
         	this.fullHeart = ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
         	this.plank = ImageIO.read(getClass().getResourceAsStream("/images/plank.png"));
         	this.bow = ImageIO.read(getClass().getResourceAsStream("/images/bow.png"));
+        	this.regenPotion = ImageIO.read(getClass().getResourceAsStream("/images/regenPotion.png"));
+        	this.damagePotion = ImageIO.read(getClass().getResourceAsStream("/images/damagePotion.png"));
         } catch (IOException e) {
     		e.printStackTrace();
         }
@@ -55,6 +60,11 @@ public class Inventory extends JPanel{
 		paintKey(g);
 		paintBomb(g);
 		paintPlank(g);
+		paintUsable(g);
+		
+		g.drawString(player.getUsable().toString(), 100, 500);
+		
+
     	
 	}
 	public void setPlayer(Player player) {
@@ -113,5 +123,16 @@ public class Inventory extends JPanel{
 	public void paintPlank(Graphics g) {
 		g.drawImage(plank,100,400,null);
 		g.drawString(Integer.toString(player.getPlankAmount()), 140, 420);
+	}
+	
+	public void paintUsable (Graphics g) {
+		for (int i=0; i<5; i++) {
+			g.drawRect(100+i*34, 450, 34, 34);
+		}
+		for (int j=0; j<player.getUsable().size(); j++) {
+			if (player.getUsable().get(j+1).getID()=="RegenPotion") {
+				g.drawImage(regenPotion, 101+j*32, 451, null);
+			}
+		}
 	}
 }

@@ -133,6 +133,7 @@ public class Inventory extends JPanel{
 			if (player.getUsable().get(j+1).getID()=="RegenPotion") {
 				g.drawImage(regenPotion, 101+j*32, 451, null);
 			}
+			
 		}
 	}
 }

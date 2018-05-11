@@ -181,10 +181,14 @@ public class Player extends Entity {
     		}
     		break;
     	case "RegenPotion":
-    		usable.put(usable.size()+1, (Potion) item);
+    		if(usable.size()<5) {
+    			usable.put(usable.size()+1, (Potion) item);
+    		}
     		break;
     	case "DamagePotion":
-    		usable.put(usable.size()+1, (Potion) item);
+    		if(usable.size()<5) {
+    			usable.put(usable.size()+1, (Potion) item);
+    		}
     		break;
     	default:
     		if(maxItem.get(ID)==null || maxItem.get(ID)>inventory.get(ID)) {

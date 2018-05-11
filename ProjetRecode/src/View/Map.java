@@ -284,19 +284,19 @@ public class Map extends JPanel {
             	case "Proj":
             		g.setColor(Color.CYAN);
             		switch(direction) {
-            		case Up:
-            			g.drawImage(arrowUp, x*32, y*32, null);
-                    	break;
-            		case Right:
-            			g.fillPolygon(a2,b2,3);
-                    	break;
-            		case Down:
-            			g.fillPolygon(a3,b3,3);
-                    	break;
-            		case Left:
-            			g.fillPolygon(a4,b4,3);
-                    	break;
-            		}
+            			case Up:
+            				g.drawImage(arrowUp, x*32, y*32, null);
+            				break;
+            			case Right:
+            				g.drawImage(arrowRight, x*32, y*32, null);
+            				break;
+            			case Down:
+            				g.drawImage(arrowDown, x*32, y*32, null);
+            				break;
+            			case Left:
+            				g.drawImage(arrowLeft, x*32, y*32, null);
+            				break;
+            			}
             		break;
             	default:
                 	g.setColor(Color.PINK);

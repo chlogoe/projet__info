@@ -38,7 +38,7 @@ public class BlockBreakable extends Block implements Deletable, Activable {
 			return new Potion(this.getPosX(), this.getPosY(),"HealthUp");
 		}
 		else if(n < 65) {
-			return new Potion(this.getPosX(), this.getPosY(),"Armour");
+			return new Potion(this.getPosX(), this.getPosY(),"Armor");
 		}
 		else if(n < 75) {
 			return new Potion(this.getPosX(), this.getPosY(),"RegenPotion");

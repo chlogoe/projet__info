@@ -4,7 +4,6 @@ public class Projectile extends Entity implements Runnable{
 
 	private int range;
 	private int speed = 2;
-	private Direction direction;
 	private Game game;
 	private Entity launcher;
 	private boolean used = false;
@@ -16,7 +15,7 @@ public class Projectile extends Entity implements Runnable{
 			this.range = range;
 		}
 		super.setDamage(damage);
-		direction = entity.getDirection();
+		super.setDirection(entity.getDirection());
 		this.game = game;
 		this.launcher = entity;
 		this.level = game.getLevel();
@@ -55,7 +54,7 @@ public class Projectile extends Entity implements Runnable{
 
 	@Override
 	public void attack() throws Exception {
-		GameObject nextBlock = game.getBlockType(direction, this);
+		GameObject nextBlock = game.getBlockType(getDirection(), this);
 		if(nextBlock instanceof Entity && nextBlock != launcher && !(nextBlock instanceof Projectile)) {
 			((Entity) nextBlock).sufferDamage(this.getDamage());
 			used = true;
@@ -74,7 +73,7 @@ public class Projectile extends Entity implements Runnable{
 					break;
 				}
 				
-				move(direction);
+				move(getDirection());
 				if(used) {
 					break;
 				}

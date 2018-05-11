@@ -10,12 +10,12 @@ public class Projectile extends Entity implements Runnable{
 	private boolean used = false;
 	private int level;
 	
-	public Projectile(Entity entity, int range, Game game) {
+	public Projectile(Entity entity, int range,float damage, Game game) {
 		super(entity.getPosX(), entity.getPosY(), "Proj", game);
 		if(range > 0) {
 			this.range = range;
 		}
-		
+		super.setDamage(damage);
 		direction = entity.getDirection();
 		this.game = game;
 		this.launcher = entity;

@@ -326,8 +326,8 @@ public class Game implements DeletableObserver {
 		}
     }
     
-    public void throwProjectile(Entity entity,int range) {
-    	Projectile projectile = new Projectile(entity, range,this);
+    public void throwProjectile(Entity entity,int range, float damage) {
+    	Projectile projectile = new Projectile(entity, range, damage ,this);
     	projectile.attachDeletable(this);
     	entities.add(projectile);
     }

@@ -29,7 +29,7 @@ public class MonstreArcher extends Entity implements Runnable{
 
 	@Override
 	public void attack() throws Exception {
-		game.throwProjectile(this,10);
+		game.throwProjectile(this,10, getDamage());
 		Thread.sleep(100);
 	}
 	

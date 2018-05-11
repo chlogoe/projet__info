@@ -34,8 +34,6 @@ public class Player extends Entity {
     	inventory.put("Plank", 1);
     	inventory.put("Weapon", 1);
     	inventory.put("Arrow", 5);
-    	usable.put(1, new Potion (0,0,"RegenPotion"));
-    	usable.put(2, new Potion (0,0,"DamagePotion"));
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
     	maxItem.put("Arrow", 50);
@@ -86,8 +84,6 @@ public class Player extends Entity {
     	else if(health == 0) {
     		this.setHealth(this.getMaxHealth());
     		inventory.put("OneUp", inventory.get("OneUp")-1);
-    		setPosX(1);
-    		setPosY(1);
     	}
     }
     
@@ -121,7 +117,7 @@ public class Player extends Entity {
     		((Entity) target).sufferDamage(this.getDamage());
     	}
     	else if(inventory.get("Weapon") == 2 && inventory.get("Arrow")>0){
-    		game.throwProjectile(this,7);
+    		game.throwProjectile(this,7, getDamage());
     		inventory.put("Arrow", inventory.get("Arrow")-1);
     	}
     	

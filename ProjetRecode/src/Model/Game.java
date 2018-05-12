@@ -213,10 +213,6 @@ public class Game implements DeletableObserver {
 	}
 	
 
-    public Window getWindow() {
-    	return this.window;
-    }
-
     /*
      *Supprime l'objet auquel est attaché le Deletable ps
      */
@@ -275,7 +271,7 @@ public class Game implements DeletableObserver {
      * L'emplacement des monstres est vérifier avant de placer le monstre.
      */
     
-    public void addMonster(int number) {
+    private void addMonster(int number) {
     	Random rand = new Random();
     	Entity monster;
     	

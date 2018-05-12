@@ -1,6 +1,6 @@
 package Model;
 
-public class Spike extends Block implements Runnable {
+public class Spike extends GameObject implements Runnable {
 	private Player player;
 	private int level;
 	private Game game;

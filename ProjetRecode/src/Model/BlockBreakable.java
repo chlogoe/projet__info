@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BlockBreakable extends Block implements Deletable, Activable {
+public class BlockBreakable extends GameObject implements Deletable, Activable {
 
     private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
     

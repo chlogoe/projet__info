@@ -1,6 +1,6 @@
 package Model;
 
-public class Hole extends Block implements Activable{
+public class Hole extends GameObject implements Activable{
 	private boolean plancked  = false;
 	private Game game;
 	private String subID = "0000";

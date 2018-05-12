@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Chest extends Block implements Activable, Deletable {
+public class Chest extends GameObject implements Activable, Deletable {
 	
 	private ArrayList<DeletableObserver> observers = new ArrayList<DeletableObserver>();
 	

@@ -1,6 +1,6 @@
 package Model;
 
-public class Door extends Block {
+public class Door extends GameObject {
 
 	private Game game;
 	

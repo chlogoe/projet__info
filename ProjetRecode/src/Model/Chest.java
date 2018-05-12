@@ -11,7 +11,7 @@ public class Chest extends GameObject implements Activable, Deletable {
 		super (x,y,"C");
 	}
 	
-	public Item getLoot() {
+	private Item getLoot() {
 		Random rand = new Random();
 		int n = rand.nextInt(100);
 		if(n<23) {

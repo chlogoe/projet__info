@@ -5,16 +5,15 @@ import java.awt.event.KeyListener;
 
 import Model.Direction;
 import Model.Game;
-import Model.GameObject;
 import Model.Player;
 
 public class Keyboard implements KeyListener {
     private Game game;
     private Player player;
 
-    public Keyboard(Game game, GameObject player) {
+    public Keyboard(Game game) {
         this.game = game;
-        this.player = (Player) player;
+        this.player = game.getPlayer();
     }
 
     @Override

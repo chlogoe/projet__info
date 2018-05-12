@@ -10,7 +10,7 @@ public class Main {
 
         Game game = new Game(window);
 		try {
-			Keyboard keyboard = new Keyboard(game, game.getPlayer());
+			Keyboard keyboard = new Keyboard(game);
 			window.setKeyListener(keyboard);
 		} catch (Exception e) {
 			e.printStackTrace();

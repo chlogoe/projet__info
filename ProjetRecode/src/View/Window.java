@@ -43,17 +43,14 @@ public class Window {
 
     public void setGameObjects(ArrayList<GameObject> objects) { //Fonction qui ajoute tout le terrain à la carte
         this.map.setTerrain(objects);
-        this.map.redraw();
     }
     
     public void setEntities(ArrayList<Entity> objects) { //Fonction qui ajoute toutes les entités à la carte
         this.map.setEntities(objects);
-        this.map.redraw();
     }
     
     public void setItems(ArrayList<Item> items) {
     	this.map.setItems(items);
-    	this.map.redraw();
     }
     
     public void setPlayer(Player player) {

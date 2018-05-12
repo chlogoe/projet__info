@@ -371,8 +371,8 @@ public class Map extends JPanel {
         }
     }
 
-    public void setTerrain(ArrayList<GameObject> terrain) { //Permet de modifier le terrain de la map depuis l'extérieur de la classe
-        this.terrains = terrain;
+    public void setTerrain(ArrayList<GameObject> terrains) { //Permet de modifier le terrain de la map depuis l'extérieur de la classe
+        this.terrains = terrains;
     }
     
     public void setEntities(ArrayList<Entity> entities) { //Permet d'ajouter des entités depuis l'ectérieur de la classe
@@ -381,9 +381,5 @@ public class Map extends JPanel {
     
     public void setItems(ArrayList<Item> items) {
     	this.items = items;
-    }
-
-    public void redraw() { //Redessine la map
-        this.repaint();
     }
 }

@@ -9,7 +9,7 @@ public class Player extends Entity {
     private Hashtable<Integer, Potion> usable = new Hashtable<Integer, Potion>();
     
     private Game game;
-    private final int numberOfWeapon = 2;
+    private int numberOfWeapon = 2;
     private int slot = 1;
     private float damage = 3;
 
@@ -43,6 +43,8 @@ public class Player extends Entity {
     public void notifyDeletableObserver() {
     	for (DeletableObserver o : observers) {
             o.delete(this, null);
+            System.out.println("Fin de la partie");
+    		game.endGame();
         }
     }
 
@@ -77,8 +79,6 @@ public class Player extends Entity {
     	
     	
     	if(inventory.get("OneUp") == 0 && health == 0) {
-    		System.out.println("Fin de la partie");
-    		game.endGame();
     		notifyDeletableObserver();
     	}
     	else if(health == 0) {
@@ -230,12 +230,6 @@ public class Player extends Entity {
     
     public int getWeapon() {
     	return inventory.get("Weapon");
-    }
-    
-    
-    
-    public Hashtable<String, Integer> getInventory(){
-    	return inventory;
     }
     
     public Hashtable<Integer, Potion> getUsable(){

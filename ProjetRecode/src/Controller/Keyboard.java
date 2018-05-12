@@ -53,7 +53,6 @@ public class Keyboard implements KeyListener {
             	break;
             case KeyEvent.VK_A:
             	player.switchWeapon();
-            	System.out.println("Switched weapon");
             	break;
             case KeyEvent.VK_ENTER:
             	player.useItem();

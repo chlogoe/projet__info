@@ -87,7 +87,6 @@ public class MonstreArcher extends Entity implements Runnable, Scorable{
 		Random rand = new Random();
 		int shoot = 0;
 		try{
-			System.out.println(game.getLevel());
 			while (this.getHealth()>0 && game.getPlayer() != null){
 				
 				while(!game.isRunning()) {

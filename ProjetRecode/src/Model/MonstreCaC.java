@@ -31,6 +31,7 @@ public class MonstreCaC extends Entity implements Runnable, Scorable{
 	public void attack() throws Exception {
 		Direction playerDirection = checkPlayerDirection(game.getPlayer());
 		if(playerDirection != null&&this.getHealth()>0) {
+			Thread.sleep(200);
 			game.getPlayer().sufferDamage(getDamage());
 		}
 	}
@@ -88,7 +89,6 @@ public class MonstreCaC extends Entity implements Runnable, Scorable{
 	public synchronized void run() {
 		Random rand = new Random();
 		Player player = null;
-		System.out.println(game.getLevel());
 		while(game.isRunning()) {
 			try {
 				player = game.getPlayer();

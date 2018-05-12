@@ -220,7 +220,7 @@ public class Game implements DeletableObserver {
 	@Override
     synchronized public void delete(Deletable ps, Item item) {
 		if(ps instanceof Scorable) {
-			System.out.println(((Scorable) ps).getScore());
+			//TODO Score
 		}
         entities.remove(ps);
         terrains.remove(ps);

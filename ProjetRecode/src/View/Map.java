@@ -103,10 +103,7 @@ public class Map extends JPanel {
                 String ID = terrain.getID();
                 switch(ID) {
                 case "A": // Bloc incassable
-                	g.setColor(Color.BLACK);
-                    g.drawRect(x * 32, y * 32, 31, 31);
-                	g.setColor(Color.DARK_GRAY);
-                	g.fillRect(x * 32, y * 32, 31, 31);
+                	g.drawImage(unbreakableBlock, x*32, y*32,null);
                 	break;
                 case "B": //Bloc cassable
                 	g.drawImage(breakableBlock, x*32, y*32,null);

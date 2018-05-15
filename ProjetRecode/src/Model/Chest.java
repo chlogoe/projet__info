@@ -13,7 +13,7 @@ public class Chest extends GameObject implements Activable, Deletable {
 	
 	private Item getLoot() {
 		Random rand = new Random();
-		int n = rand.nextInt(100);
+		int n = rand.nextInt(125);
 		if(n<23) {
 			return new Item(this.getPosX(), this.getPosY(),"DamageUp");
 		}
@@ -28,6 +28,12 @@ public class Chest extends GameObject implements Activable, Deletable {
 		}
 		else if(n<100) {
 			return new Potion(this.getPosX(), this.getPosY(),"OneUp");
+		}
+		else if(n<112) {
+			return new Item(this.getPosX(), this.getPosY(), "Key");
+		}
+		else if(n<125)  {
+			return new Item(this.getPosX(), this.getPosY(), "Bomb");
 		}
 		else {
 			return null;

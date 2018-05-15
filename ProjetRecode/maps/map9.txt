@@ -1,0 +1,15 @@
+AAAAAAADAAAAAAA
+ABBBBB   BBBBBA
+ABBBB     BBBBA
+ABBB       BBBA
+ABB         BBA
+AB           BA
+A             A
+A             A
+A             A
+AB           BA
+ABB         BBA
+ABBB       BBBA
+ABBBB     BBBBA
+ABBBBB   BBBBBA
+AAAAAAAAAAAAAAA

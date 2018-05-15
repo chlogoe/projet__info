@@ -133,13 +133,13 @@ public class Inventory extends JPanel{
 			}
 			g.drawRect(100+i*35, 450, 34, 34);
 		}
-		for (int j=1; j<5; j++) {
-			Potion potion = player.getUsable().get(j);
+		for (int j=0; j<5; j++) {
+			Potion potion = player.getUsable().get(j+1);
 			if(potion != null) {
-				if (player.getUsable().get(j+1).getID()=="RegenPotion") {
+				if (potion.getID()=="RegenPotion") {
 					g.drawImage(regenPotion, 101+j*35, 451, null);
 				}
-				else if (player.getUsable().get(j+1).getID()=="DamagePotion") {
+				else if (potion.getID()=="DamagePotion") {
 					g.drawImage(damagePotion, 101+j*35, 451, null);
 				}
 			}

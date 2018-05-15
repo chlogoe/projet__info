@@ -49,6 +49,7 @@ public class Map extends JPanel {
     private BufferedImage arrowDown;
     private BufferedImage arrowLeft;
     private BufferedImage fullHeart;
+    private BufferedImage unbreakableBlock;
     
     //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
 
@@ -82,6 +83,7 @@ public class Map extends JPanel {
         	this.arrowDown=ImageIO.read(getClass().getResourceAsStream("/images/arrowDown.png"));
         	this.arrowLeft=ImageIO.read(getClass().getResourceAsStream("/images/arrowLeft.png"));
         	this.fullHeart=ImageIO.read(getClass().getResourceAsStream("/images/fullHeart.png"));
+        	this.unbreakableBlock=ImageIO.read(getClass().getResourceAsStream("/images/unbreakableBlock.png"));
         } catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -103,10 +105,7 @@ public class Map extends JPanel {
                 String ID = terrain.getID();
                 switch(ID) {
                 case "A":
-                	g.setColor(Color.BLACK);
-                    g.drawRect(x * 32, y * 32, 31, 31);
-                	g.setColor(Color.DARK_GRAY);
-                	g.fillRect(x * 32, y * 32, 31, 31);
+                	g.drawImage(unbreakableBlock, x*32, y*32, null);
                 	break;
                 case "B":
                 	g.drawImage(breakableBlock, x*32, y*32,null);

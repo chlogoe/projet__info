@@ -50,8 +50,6 @@ public class Map extends JPanel {
     private BufferedImage arrowLeft;
     private BufferedImage fullHeart;
     
-    //TODO Changer de méthode de chargement d'image, ne plus qu'en charger une grande et la découper
-
     public Map() {
         this.setFocusable(true);//Autorise la map à être au premier plan
         this.requestFocusInWindow(); //Demande à la map d'être au premier plan
@@ -102,16 +100,16 @@ public class Map extends JPanel {
                 int y = terrain.getPosY();
                 String ID = terrain.getID();
                 switch(ID) {
-                case "A":
+                case "A": // Bloc incassable
                 	g.setColor(Color.BLACK);
                     g.drawRect(x * 32, y * 32, 31, 31);
                 	g.setColor(Color.DARK_GRAY);
                 	g.fillRect(x * 32, y * 32, 31, 31);
                 	break;
-                case "B":
+                case "B": //Bloc cassable
                 	g.drawImage(breakableBlock, x*32, y*32,null);
                 	break;
-                case "H":
+                case "H": //Trou
                 	String subID = ((Hole) terrain).getSubID();
                 	
                 	switch(subID) {
@@ -165,7 +163,7 @@ public class Map extends JPanel {
                 		break;
                 	}
             
-                	if(!((Hole) terrain).isObstacle(null)) {
+                	if(!((Hole) terrain).isObstacle(null)) { //Planche sur le trou
                 		g.drawImage(plank, x*32, y*32,null);
                 	}
                 	break;

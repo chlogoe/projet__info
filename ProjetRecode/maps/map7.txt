@@ -1,7 +1,7 @@
 AAAAAAAAADAAAAAAAAAA
 A                  A
 A HHH          HHH A
-A HCH BBB  BBBPHPH A
+A HCHPBBB  BBBPHPH A
 A HHH          HHH A
 A  P            P  A
 A  B  B      B  B  A

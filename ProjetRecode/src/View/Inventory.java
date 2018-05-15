@@ -129,14 +129,14 @@ public class Inventory extends JPanel{
 			else {
 				g.setColor(Color.BLACK);
 			}
-			g.drawRect(100+i*34, 450, 34, 34);
+			g.drawRect(100+i*35, 450, 34, 34);
 		}
 		for (int j=0; j<player.getUsable().size(); j++) {
 			if (player.getUsable().get(j+1).getID()=="RegenPotion") {
-				g.drawImage(regenPotion, 101+j*34, 451, null);
+				g.drawImage(regenPotion, 101+j*35, 451, null);
 			}
 			else if (player.getUsable().get(j+1).getID()=="DamagePotion") {
-				g.drawImage(damagePotion, 101+j*34, 451, null);
+				g.drawImage(damagePotion, 101+j*35, 451, null);
 			}
 
 		}

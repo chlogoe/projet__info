@@ -250,5 +250,9 @@ public class Player extends Entity {
     	this.damage = f-2*inventory.get("DamageUp");
     }
     
+    public int getSlot() {
+    	return slot; 
+    }
+    
     
 }

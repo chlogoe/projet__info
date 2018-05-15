@@ -61,12 +61,8 @@ public class Inventory extends JPanel{
 		paintBomb(g);
 		paintPlank(g);
 		paintUsable(g);
-		
-		g.drawString(player.getUsable().toString(), 100, 500);
-		
-
-    	
 	}
+	
 	public void setPlayer(Player player) {
     	this.player = player;
     }	
@@ -127,6 +123,12 @@ public class Inventory extends JPanel{
 	
 	public void paintUsable (Graphics g) {
 		for (int i=0; i<5; i++) {
+			if(i == player.getSlot()-1) {
+				g.setColor(Color.RED);
+			}
+			else {
+				g.setColor(Color.BLACK);
+			}
 			g.drawRect(100+i*34, 450, 34, 34);
 		}
 		for (int j=0; j<player.getUsable().size(); j++) {

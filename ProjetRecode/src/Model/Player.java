@@ -37,6 +37,7 @@ public class Player extends Entity {
     	maxItem.put("Bomb", 10);
     	maxItem.put("Key", 10);
     	maxItem.put("Arrow", 100);
+    	usable.put(1,new Potion(0,0,"DamagePotion"));
     }
     
     @Override

@@ -17,7 +17,6 @@ public class Potion extends Item implements Runnable {
 		if(getID() == "RegenPotion") {
 			for(int i = 0;i<20;i++) {
 				player.heal(0.1f);
-				System.out.println(player.getHealth());
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
@@ -35,7 +34,6 @@ public class Potion extends Item implements Runnable {
 				e.printStackTrace();
 			}
 			player.setDamage(player.getDamage()-2);
-			System.out.println(player.getDamage());
 		}
 	}
 	

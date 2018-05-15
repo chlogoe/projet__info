@@ -3,6 +3,8 @@ package View;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import Model.Player;
+import Model.Potion;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -131,14 +133,16 @@ public class Inventory extends JPanel{
 			}
 			g.drawRect(100+i*35, 450, 34, 34);
 		}
-		for (int j=0; j<player.getUsable().size(); j++) {
-			if (player.getUsable().get(j+1).getID()=="RegenPotion") {
-				g.drawImage(regenPotion, 101+j*35, 451, null);
+		for (int j=1; j<5; j++) {
+			Potion potion = player.getUsable().get(j);
+			if(potion != null) {
+				if (player.getUsable().get(j+1).getID()=="RegenPotion") {
+					g.drawImage(regenPotion, 101+j*35, 451, null);
+				}
+				else if (player.getUsable().get(j+1).getID()=="DamagePotion") {
+					g.drawImage(damagePotion, 101+j*35, 451, null);
+				}
 			}
-			else if (player.getUsable().get(j+1).getID()=="DamagePotion") {
-				g.drawImage(damagePotion, 101+j*35, 451, null);
-			}
-
 		}
 	}
 }

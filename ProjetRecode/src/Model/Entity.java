@@ -24,7 +24,7 @@ public abstract class Entity extends GameObject implements Deletable, Damageable
 	}
 	
 	public float getDamage() {
-		return (float) (damage+(0.2*game.getLevel()));
+		return (float) (damage+(0.1*game.getLevel()));
 	}
 	
 	public void setDamage(float damage) {
